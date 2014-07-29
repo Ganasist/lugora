@@ -113,9 +113,7 @@ section {
 
 div.splash.panel {
   height: 500px;
-  background-image:url(trees.jpg);
-  background-repeat: no-repeat;
-  background-position: center;
+  background: image-url('trees.jpg') no-repeat center center;
   border: none;
   margin: 0px;
   background-color: #eee;
