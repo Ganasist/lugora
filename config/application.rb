@@ -34,6 +34,7 @@ module Lugora
 
     # For Foundation 5
     config.assets.precompile += %w( vendor/modernizr )
+    config.serve_static_assets = true
 
   end
 end
