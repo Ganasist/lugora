@@ -46,6 +46,7 @@ main {
   @include twelve-columns;
   background-color: #eee;
   min-height: 100%;
+  padding: 0px;
   }
 section {
   @extend .row;
@@ -61,7 +62,7 @@ section {
     transition: height .33s ease;
   }
   .top-bar.expanded {
-      height: 180px;
+      height: 176px;
       transition: height .33s ease;
   }
 }
@@ -108,4 +109,13 @@ section {
   @extend .button;
   @extend .radius;
   @extend .tiny;
+}
+
+div.splash.panel {
+  background-image:url(trees.jpg);
+  background-repeat: no-repeat;
+  background-position: center;
+  border: none;
+  margin: 0px;
+  background-color: #eee;
 }
