@@ -1,9 +1,11 @@
 <% content_for :title do %>Splash<% end %>
 
 <div class="splash panel">
-	<h3 class="text-center authform">Welcome to TF</h3>
-	<div class="row authform">
-	    <%= link_to "User Sign Up", new_user_registration_path, class: "button expand left" %>
-	    <%= link_to "Vendor Sign Up", new_vendor_registration_path, class: "button expand right success" %>
+	<div class="vertical-center">
+		<h3 class="text-center authform welcome">WELCOME TO TF</h3>
+		<div class="row authform">
+		    <%= link_to "User Sign Up", new_user_registration_path, class: "button expand left" %>
+		    <%= link_to "Vendor Sign Up", new_vendor_registration_path, class: "button expand right success" %>
+		</div>
 	</div>
 </div>
