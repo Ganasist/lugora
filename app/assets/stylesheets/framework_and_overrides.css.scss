@@ -58,7 +58,7 @@ section {
 }
 .authform form {
   @include panel();
-  padding-bottom: 60px;
+  padding-bottom: 30px;
 }
 .authform form a {
   font-size: rem-calc(13);
