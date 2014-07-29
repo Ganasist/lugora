@@ -8,7 +8,11 @@
 .top-bar .name a {
   font-weight: normal;
   color: white;
-  padding: 0 15px; }
+  padding: 0 15px; 
+    &:hover {
+        color:#008cba;
+    }
+  }
 
 // THESE ARE EXAMPLES YOU CAN MODIFY
 // create mixins using Foundation classes
@@ -47,6 +51,20 @@ section {
   @extend .row;
   margin-top: 20px;
   }
+
+@media only screen and (max-width: 40em) { 
+  .top-bar-section {
+    width: 100%;
+    text-align: center;
+  }
+  nav.top-bar {
+    transition: height .33s ease;
+  }
+  .top-bar.expanded {
+      height: 180px;
+      transition: height .33s ease;
+  }
+}
 
 // Styles for form views
 // using Foundation
