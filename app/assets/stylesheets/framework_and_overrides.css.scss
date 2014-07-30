@@ -112,11 +112,15 @@ section {
 }
 
 div.splash.panel {
+  position: relative;
+  top: 0px;
   height: 500px;
+  width: 100%;
   background: image-url('trees.jpg') no-repeat center center;
   border: none;
   margin: 0px;
   background-color: #eee;
+  // z-index: -1;
 }
 
 div.vertical-center {

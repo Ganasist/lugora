@@ -1,5 +1,6 @@
 class Vendors::SessionsController < Devise::SessionsController
 	before_action :configure_permitted_parameters
+	before_action :authenticate_vendor!
 
 	def index
 		super
@@ -32,7 +33,9 @@ class Vendors::SessionsController < Devise::SessionsController
 	protected
 
 		def configure_permitted_parameters
-			devise_parameter_sanitizer.for(:sign_in) { |u| u.permit(:email, :password) }			
+			devise_parameter_sanitizer.for(:sign_in) { |u| u.permit(:email, 
+																															:password, 
+																															:remember_me) }			
 		end
 
 end
