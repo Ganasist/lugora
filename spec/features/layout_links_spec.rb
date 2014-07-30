@@ -7,122 +7,96 @@ describe 'LayoutLinks' do
     page.should have_title('Splash')
   end
 
-  it 'should have a Root link' do
+  it 'should have a root link' do
     visit root_path
     page.should have_link('TF Home', root_path)
   end
 
-  it 'should have a User Register link' do
-    visit root_path
-    page.should have_link('User Sign Up', new_user_registration_path)
-  end
-
-  it 'should have a Vendor Register link' do
-    visit root_path
-    page.should have_link('Vendor Sign Up', new_vendor_registration_path)
-  end
-
-  it 'should have a Sign-in link' do
-    visit root_path
-    page.should have_link('User Log in', new_user_session_path)
-  end
-
-  it 'should have a Sign-in link' do
-    visit root_path
-    page.should have_link('Vendor Log in', new_vendor_session_path)
-  end
-
-  it 'should have an About link' do
-    visit root_path
-    page.should have_link('About', page_path('about'))
-  end
-
-  it 'should have an About page at /about' do
-    visit('/about')
-    page.should have_content 'About'
-  end
-
-  it 'should have the right links in the layout' do
-    visit root_path
-    click_link 'About'
-    page.should have_content 'About'
-    page.should have_link('TF Home', root_path)
-
-    # click_link('Privacy', page_path('privacy'))
-    # expect(page).to have_content('TF Home', root_path)
-    # expect(page).to have_content 'Privacy Policy'   
-  end
-
-  it 'should have an User sign-in page at /user_login', focus: true do
-    visit root_path
-    click_link 'User Log in'
-    page.should have_content 'User Log in'
-    page.should have_field 'Email'
-    page.should have_field 'Password'
-    page.should have_link 'Forgot password?'
-    page.should have_unchecked_field 'user[remember_me]'
-    page.should have_button('Log in', new_user_session_path)
-  end
-
-  it 'should have an Vendor sign-in page at /vendor_login' do
-    visit root_path
-    click_link 'Vendor Log in'
-    page.should have_content 'Vendor Log in'
-    page.should have_field 'Email'
-    page.should have_field 'Password'
-    page.should have_link 'Forgot password?'
-    page.should have_unchecked_field 'vendor[remember_me]'
-    page.should have_button('Log in', new_vendor_session_path)
-  end
-
-  it 'should have an User sign-up page at /user_register', focus: true do
-    visit root_path
-    click_link 'User Sign Up'
-    page.should have_content 'User Log in'
-    page.should have_field 'Email'
-    page.should have_field 'Password'
-    page.should have_button('User Sign Up', new_user_registration_path)
-    page.should have_link('Sign in', new_user_session_path)
-    page.should have_link "Didn't receive confirmation instructions?"
-    page.should have_link "Didn't receive unlock instructions?"  
-  end
-
-  it 'should have an Vendor sign-up page at /vendor_register' do
-    visit root_path
-    click_link 'Vendor Sign Up'
-    page.should have_field 'Email'
-    page.should have_field 'Password'
-    page.should have_button('Vendor Sign Up', new_vendor_registration_path)
-    page.should have_link('Sign in', new_vendor_session_path)
-    page.should have_link "Didn't receive confirmation instructions?"
-    page.should have_link "Didn't receive unlock instructions?" 
-  end
-
-  describe 'when not signed in' do    
-    it 'should have a brand link pointing to the Splash page' do      
+  describe 'when not signed in' do
+    it 'should have an About link' do
       visit root_path
-      expect(page).to have_content("INFINITORY", root_path)
+      page.should have_link('About', page_path('about'))
     end
 
-    it 'should have a sign-in and sign-up link' do
-      visit root_path
-      expect(page).to have_link('SIGN-IN', new_user_session_path) 
-      expect(page).to have_link('Sign-up', new_user_registration_path)  
+    it 'should have an About page at /about' do
+      visit('/about')
+      page.should have_content 'About'
     end
 
     it 'should not have a sign out link' do
       visit root_path
       expect(page).to_not have_link("Sign-out", destroy_user_session_path)
     end
+    
+    it 'should have a User Register link' do
+      visit root_path
+      page.should have_link('User Sign Up', new_user_registration_path)
+    end
 
-    it 'should not have an Invitation page at /invitation/new' do
-      get '/invitation/new'
-      assert_redirected_to '/login'
-    end    
+    it 'should have a Vendor Register link' do
+      visit root_path
+      page.should have_link('Vendor Sign Up', new_vendor_registration_path)
+    end
 
-    it 'should not have a Feedback page at /messages/new' do
-      get '/messages/new'
-      assert_redirected_to '/login'
+    it 'should have a Sign-in link' do
+      visit root_path
+      page.should have_link('User Log in', new_user_session_path)
+    end
+
+    it 'should have a Sign-in link' do
+      visit root_path
+      page.should have_link('Vendor Log in', new_vendor_session_path)
+    end
+
+    it 'should have the right links in the layout' do
+      visit root_path
+      click_link 'About'
+      page.should have_content 'About'
+    end
+
+    it 'should have an User sign-in page at /user_login', focus: true do
+      visit root_path
+      click_link 'User Log in'
+      page.should have_content 'User Log in'
+      page.should have_field 'Email'
+      page.should have_field 'Password'
+      page.should have_link 'Forgot password?'
+      page.should have_unchecked_field 'user[remember_me]'
+      page.should have_button('Log in', new_user_session_path)
+    end
+
+    it 'should have an Vendor sign-in page at /vendor_login' do
+      visit root_path
+      click_link 'Vendor Log in'
+      page.should have_content 'Vendor Log in'
+      page.should have_field 'Email'
+      page.should have_field 'Password'
+      page.should have_link 'Forgot password?'
+      page.should have_unchecked_field 'vendor[remember_me]'
+      page.should have_button('Log in', new_vendor_session_path)
+    end
+
+    it 'should have an User sign-up page at /user_register', focus: true do
+      visit root_path
+      click_link 'User Sign Up'
+      page.should have_content 'User Log in'
+      page.should have_field 'Email'
+      page.should have_field 'Password'
+      page.should have_button('User Sign Up', new_user_registration_path)
+      page.should have_link('Sign in', new_user_session_path)
+      page.should have_link "Didn't receive confirmation instructions?"
+      page.should have_link "Didn't receive unlock instructions?"  
+    end
+
+    it 'should have an Vendor sign-up page at /vendor_register' do
+      visit root_path
+      click_link 'Vendor Sign Up'
+      page.should have_field 'Email'
+      page.should have_field 'Password'
+      page.should have_button('Vendor Sign Up', new_vendor_registration_path)
+      page.should have_link('Sign in', new_vendor_session_path)
+      page.should have_link "Didn't receive confirmation instructions?"
+      page.should have_link "Didn't receive unlock instructions?" 
     end
   end
 
