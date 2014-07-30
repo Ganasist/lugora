@@ -1,6 +1,7 @@
 <div class="splash panel">
 	<div class="authform">
-		<%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+		<%= simple_form_for(resource, as: resource_name, 
+																 url: vendor_registration_path(resource_name)) do |f| %>
 		  <h2>Vendor Sign Up</h2>
 		  <%= f.error_notification %>
 		  <div class="form-inputs">

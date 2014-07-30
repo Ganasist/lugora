@@ -7,9 +7,9 @@ class Users::RegistrationsController < Devise::RegistrationsController
 		super
 	end
 
-	# def show
-	# 	@user = current_user
-	# end
+	def show
+		super
+	end
 
 	def new
 		super

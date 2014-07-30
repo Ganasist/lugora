@@ -1,10 +1,9 @@
 class VendorsController < ApplicationController
-	before_action :authenticate_user!
+	# before_action :authenticate_vendor!
 
 	def show
 		@vendor = Vendor.find(params[:id])
 	end
-
 
 	private
 		rescue_from ActiveRecord::RecordNotFound do |exception|

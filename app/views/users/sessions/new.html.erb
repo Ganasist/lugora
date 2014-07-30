@@ -1,6 +1,8 @@
 <div class="splash panel">
   <div class="authform">
-    <%= simple_form_for(resource, :as => resource_name, :url => session_path(resource_name), :html => { :role => 'form'}) do |f| %>
+    <%= simple_form_for(resource, as: resource_name, 
+                                 url: session_path(resource_name), 
+                                html: { role: 'form'}) do |f| %>
       <h3 class="text-center">User Log in</h3>
       <%= devise_error_messages! %>
       <div class="form-group">
@@ -17,7 +19,7 @@
         <%= f.label :password %>
         <%= f.password_field :password, class: 'form-control' %>
       </div>
-        <%= f.submit 'Log in', :class => 'button expand' %>
+        <%= f.submit 'Log in', class: 'button expand' %>
         <% if devise_mapping.rememberable? -%>
           <div class="checkbox">
             <%= f.check_box :remember_me %> <%= f.label :remember_me %>

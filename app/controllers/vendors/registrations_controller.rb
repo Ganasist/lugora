@@ -1,7 +1,7 @@
 class Vendors::RegistrationsController < Devise::RegistrationsController
 	before_action :configure_permitted_parameters
-	prepend_before_filter :require_no_authentication, :only => [ :new, :create, :cancel ]
-  prepend_before_filter :authenticate_scope!, :only => [:edit, :update, :destroy, :show]
+	prepend_before_filter :require_no_authentication, only: [ :new, :create, :cancel ]
+  prepend_before_filter :authenticate_scope!, only: [:edit, :update, :destroy, :show]
 
 	def index
 		super
@@ -19,9 +19,9 @@ class Vendors::RegistrationsController < Devise::RegistrationsController
 		super
 	end
 
-	def create
-		super
-	end
+	# def create
+	# 	super
+	# end
 
 	def update
 		super
@@ -34,10 +34,15 @@ class Vendors::RegistrationsController < Devise::RegistrationsController
 	protected
 
 		def configure_permitted_parameters
-			devise_parameter_sanitizer.for(:sign_up) { |u| u.permit(:email, :password, :password_confirmation) }
+			devise_parameter_sanitizer.for(:sign_up) { |u| u.permit(:email, 
+																															:password, 
+																															:password_confirmation) }
 
 
-			devise_parameter_sanitizer.for(:account_update) { |u| u.permit(:email, :password, :password_confirmation) }
+			devise_parameter_sanitizer.for(:account_update) { |u| u.permit(:email, 
+																																		 :password, 
+																																		 :password_confirmation,
+																																		 :current_password) }
 
 		end
 
