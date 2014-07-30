@@ -8196,13 +8196,13 @@ th.hide-for-touch {
 }
 /* line 5, /Users/johntrichereau/Desktop/Dropbox/web_apps/lugora/app/assets/stylesheets/framework_and_overrides.css.scss */
 .top-bar .name {
-  font-size: 0.8125rem;
+  font-size: 1.25rem;
   line-height: 45px;
 }
 
 /* line 8, /Users/johntrichereau/Desktop/Dropbox/web_apps/lugora/app/assets/stylesheets/framework_and_overrides.css.scss */
 .top-bar .name a {
-  font-weight: normal;
+  font-weight: lighter;
   color: white;
   padding: 0 15px;
 }
@@ -8338,20 +8338,18 @@ section {
 /* line 114, /Users/johntrichereau/Desktop/Dropbox/web_apps/lugora/app/assets/stylesheets/framework_and_overrides.css.scss */
 div.splash.panel {
   height: 500px;
-  background-image: url(trees.jpg);
-  background-repeat: no-repeat;
-  background-position: center;
+  background: url(/assets/trees.jpg) no-repeat center center;
   border: none;
   margin: 0px;
   background-color: #eee;
 }
 
-/* line 124, /Users/johntrichereau/Desktop/Dropbox/web_apps/lugora/app/assets/stylesheets/framework_and_overrides.css.scss */
+/* line 122, /Users/johntrichereau/Desktop/Dropbox/web_apps/lugora/app/assets/stylesheets/framework_and_overrides.css.scss */
 div.vertical-center {
-  padding-top: 60px;
+  padding-top: 90px;
 }
 
-/* line 128, /Users/johntrichereau/Desktop/Dropbox/web_apps/lugora/app/assets/stylesheets/framework_and_overrides.css.scss */
+/* line 126, /Users/johntrichereau/Desktop/Dropbox/web_apps/lugora/app/assets/stylesheets/framework_and_overrides.css.scss */
 h3.welcome {
   color: white;
 }
