@@ -1,7 +1,7 @@
 class Vendors::RegistrationsController < Devise::RegistrationsController
 	before_action :configure_permitted_parameters
-	prepend_before_filter :require_no_authentication, only: [ :new, :create, :cancel ]
-  prepend_before_filter :authenticate_scope!, only: [:edit, :update, :destroy, :show]
+	# prepend_before_filter :require_no_authentication, only: [ :new, :create, :cancel ]
+ #  prepend_before_filter :authenticate_scope!, only: [:edit, :update, :destroy, :show]
 
 	def index
 		super

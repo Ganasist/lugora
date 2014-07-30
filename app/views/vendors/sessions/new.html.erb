@@ -1,7 +1,7 @@
 <div class="splash panel">
   <div class="authform">
-    <%= simple_form_for(resource, as: resource_name, 
-                                 url: session_path(resource_name), 
+    <%= simple_form_for(resource, as: resource, 
+                                 url: vendor_session_path(resource), 
                                 html: { role: 'form'}) do |f| %>
       <h3 class="text-center">Vendor Log in</h3>
       <%= devise_error_messages! %>
