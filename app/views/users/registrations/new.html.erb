@@ -5,13 +5,17 @@
 		  <h3 class="text-center">User Sign Up</h3>
 		  <%= f.error_notification %>
 		  <div class="form-inputs">
-		    <%= f.input :email, required: true, autofocus: true %>
+		    <%= f.input :email, required: true, 
+		    										autofocus: true, 
+		    										input_html: { :'data-tooltip' => '', 
+		    																		class: 'has-tip radius', 
+		    																		title: 'Required' } %>
 		    <%= f.input :password, required: true %>
 		    <%= f.input :password_confirmation, required: true %>
 		  </div>
 
 		  <div class="form-actions">
-		    <%= f.button :submit, 'User Sign Up', class: "expand" %>
+		    <%= f.button :submit, 'User Sign Up', class: 'expand' %>
 				<%= render 'users/shared/links' %>
 		  </div>
 		<% end %>

@@ -10,7 +10,7 @@ class VendorsController < ApplicationController
       if vendor_signed_in?
         redirect_to current_vendor
       else
-        flash[:alert] = "You need to sign in or sign up before continuing."
+        flash[:alert] = 'You need to sign in or sign up before continuing.'
         redirect_to root_url
       end
     end

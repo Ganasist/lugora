@@ -3,18 +3,18 @@ Rails.application.routes.draw do
   devise_for :vendors, controllers: { sessions: 'vendors/sessions',
 	  									 					 registrations: 'vendors/registrations' }
 
-  devise_for :users, controllers: { sessions: 'users/sessions',
-										  				 registrations: 'users/registrations' }
+  devise_for :users,   controllers: { sessions: 'users/sessions',
+										  				   registrations: 'users/registrations' }
 
 	authenticated :user do
 	  devise_scope :user do
-	    root to: "users#show", as: :authenticated_user
+	    root to: 'users#show', as: :authenticated_user
 	  end
 	end
 
 	authenticated :vendor do
 	  devise_scope :vendor do
-	    root to: "vendors#show", as: :authenticated_vendor
+	    root to: 'vendors#show', as: :authenticated_vendor
 	  end
 	end
 
