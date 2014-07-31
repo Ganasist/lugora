@@ -2,19 +2,45 @@
 	<%= simple_form_for(resource, as: resource, 
 															 url: vendor_registration_path(resource)) do |f| %>
 	  <h3 class="text-center">Vendor Sign Up</h3>
+	  <h6 class="text-center">All fields required</h6>
 	  <%= f.error_notification %>
-	  <div class="form-inputs">
-	    <%= f.input :email, required: true, 
-	    									 autofocus: true, 
-	    									input_html: { :'data-tooltip' => '', 
-	    																		class: 'has-tip radius', 
-	    																		title: 'Required' } %>
-	    <%= f.input :password, required: true %>
-	    <%= f.input :password_confirmation, required: true %>
-	  </div>
-	  <div class="form-actions">
-	    <%= f.button :submit, 'Vendor Sign Up', class: 'success expand' %>
-			<%= render 'vendors/shared/links' %>
+	  <div class="row">
+		  <div class="form-inputs columns large-6">
+		    <%= f.input :first_name, required: true, autofocus: true %>
+		    <%= f.input :last_name, required: true %>
+		    <%= f.input :business, required: true, label: 'Line of business' %>
+		    <%= f.input :email, required: true %>
+		    <ul class="inline-list">
+		  		<li>
+						<%= f.input :phone_prefix, required: true, label: 'Country code', placeholder: '0043',
+																					 input_html: { style: 'width:95px', maxlength: 4 } %>
+		  		</li>
+		  		<li>
+				    <%= f.input :phone_number, required: true, placeholder: '448355190',
+				    												 input_html: { style: 'width:200px' } %>
+		  		</li>
+		  	</ul>
+		  </div>
+		  <div class="form-inputs columns large-6">
+		  	<%= f.input :street_address, required: true %>
+		  	<ul class="inline-list">
+		  		<li>
+						<%= f.input :city, required: true %>
+		  		</li>
+		  		<li>
+				    <%= f.input :state, required: true %>
+		  		</li>
+		  		<li>
+						<%= f.input :postal_code, required: true %>
+		  		</li>
+		  	</ul>		    
+		    <%= f.input :password, required: true, placeholder: 'Must be 8-128 characters long' %>
+		    <%= f.input :password_confirmation, required: true %>
+		  </div>
+		</div>	  
+		<div class="form-actions large-6 large-centered columns">
+		    <%= f.button :submit, 'Vendor Sign Up', class: 'expand success' %>
+				<%= render 'vendors/shared/links' %>
 	  </div>
 	<% end %>
 </div>

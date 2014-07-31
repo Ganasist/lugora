@@ -34,12 +34,30 @@ class Vendors::RegistrationsController < Devise::RegistrationsController
 	protected
 
 		def configure_permitted_parameters
-			devise_parameter_sanitizer.for(:sign_up) { |u| u.permit(:email, 
+			devise_parameter_sanitizer.for(:sign_up) { |u| u.permit(:first_name,
+																															:last_name,
+																															:business,
+																															:email,
+																															:phone_prefix,
+																															:phone_number,
+																															:street_address,
+																															:city,
+																															:state,
+																															:postal_code, 
 																															:password, 
 																															:password_confirmation) }
 
 
-			devise_parameter_sanitizer.for(:account_update) { |u| u.permit(:email, 
+			devise_parameter_sanitizer.for(:account_update) { |u| u.permit(:first_name,
+																																		 :last_name,
+																																		 :business,
+																																		 :email,
+																																		 :phone_prefix,
+																																		 :phone_number,
+																																		 :street_address,
+																																		 :city,
+																																		 :state,
+																																		 :postal_code, 
 																																		 :password, 
 																																		 :password_confirmation,
 																																		 :current_password) }
