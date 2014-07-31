@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140730162634) do
+ActiveRecord::Schema.define(version: 20140731113835) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -32,6 +32,16 @@ ActiveRecord::Schema.define(version: 20140730162634) do
     t.integer  "failed_attempts",        default: 0,  null: false
     t.string   "unlock_token"
     t.datetime "locked_at"
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "occupation"
+    t.integer  "country_code"
+    t.integer  "phone_number"
+    t.string   "street_address"
+    t.string   "city"
+    t.string   "state"
+    t.string   "country"
+    t.string   "zip_code"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
@@ -54,6 +64,16 @@ ActiveRecord::Schema.define(version: 20140730162634) do
     t.datetime "locked_at"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "business"
+    t.integer  "country_code"
+    t.integer  "phone_number"
+    t.string   "street_address"
+    t.string   "city"
+    t.string   "state"
+    t.string   "country"
+    t.string   "zip_code"
   end
 
   add_index "vendors", ["email"], name: "index_vendors_on_email", unique: true, using: :btree
