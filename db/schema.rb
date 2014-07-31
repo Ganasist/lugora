@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140731113835) do
+ActiveRecord::Schema.define(version: 20140731133439) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -35,13 +35,13 @@ ActiveRecord::Schema.define(version: 20140731113835) do
     t.string   "first_name"
     t.string   "last_name"
     t.string   "occupation"
-    t.integer  "country_code"
-    t.integer  "phone_number"
+    t.string   "phone_prefix"
+    t.string   "phone_number"
     t.string   "street_address"
     t.string   "city"
     t.string   "state"
     t.string   "country"
-    t.string   "zip_code"
+    t.string   "postal_code"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
@@ -67,13 +67,13 @@ ActiveRecord::Schema.define(version: 20140731113835) do
     t.string   "first_name"
     t.string   "last_name"
     t.string   "business"
-    t.integer  "country_code"
-    t.integer  "phone_number"
+    t.string   "phone_prefix"
+    t.string   "phone_number"
     t.string   "street_address"
     t.string   "city"
     t.string   "state"
     t.string   "country"
-    t.string   "zip_code"
+    t.string   "postal_code"
   end
 
   add_index "vendors", ["email"], name: "index_vendors_on_email", unique: true, using: :btree
