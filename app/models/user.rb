@@ -1,5 +1,9 @@
 class User < ActiveRecord::Base
 	include Naming
+
+	scope :not_approved, -> { where(approved: false) }
+	scope :approved, -> { where(approved: true) }
+
   # Include default devise modules. Others available are:
   # :omniauthable, :confirmable
   devise :database_authenticatable, :registerable, :lockable,

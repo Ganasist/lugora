@@ -9,4 +9,8 @@ module Naming
       email
     end
   end
+
+  def phone
+  	phone_prefix + " " + phone_number
+  end
 end
