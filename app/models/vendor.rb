@@ -7,4 +7,6 @@ class Vendor < ActiveRecord::Base
 
   validates :first_name, :last_name, :business, :street_address, :phone_prefix,
  						:phone_number, :city, :state, :postal_code, presence: true
+
+	validates_numericality_of :phone_prefix, :phone_number 
 end
