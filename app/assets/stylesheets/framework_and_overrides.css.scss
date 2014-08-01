@@ -1,18 +1,6 @@
 // import the CSS framework
 @import "foundation";
 
-// override for the 'Home' navigation link
-.top-bar .name {
-  font-size: rem-calc(20);
-  line-height: 45px; }
-.top-bar .name a {
-  font-weight: lighter;
-  color: white;
-  padding: 0 15px; 
-    &:hover {
-        color:#008cba;
-    }
-  }
 
 // THESE ARE EXAMPLES YOU CAN MODIFY
 // create mixins using Foundation classes
@@ -75,7 +63,7 @@ section {
   max-width: 320px;
   margin: 0 auto;
   &.registration {
-    max-width: 1024px; 
+    max-width: 1024px;
   }
 }
 .authform form {
@@ -114,6 +102,19 @@ section {
   @extend .tiny;
 }
 
+// override for the 'Home' navigation link
+.top-bar .name {
+  font-size: rem-calc(20);
+  line-height: 45px; }
+.top-bar .name a {
+  font-weight: lighter;
+  color: white;
+  padding: 0 15px; 
+    &:hover {
+        color:#008cba;
+    }
+  }
+
 div.splash.panel {
   position: relative;
   top: 0px;
@@ -132,4 +133,15 @@ div.vertical-center {
 
 h3.welcome {
   color: white;
+}
+
+fieldset legend {
+  background-color: #eee;
+  border: none;
+}
+
+.vcard {
+  padding-top: 20px;
+  border: none;
+  font-size: 1.5em;
 }

@@ -1,11 +1,16 @@
 <div class="row">
-	<h2 class="text-center">Profile for <%= @user.email %></h2>
-
-	<ul class="vcard">
-	  <li class="fn">Gaius Baltar</li>
-	  <li class="street-address">123 Colonial Ave.</li>
-	  <li class="locality">Caprica City</li>
-	  <li><span class="state">Caprica</span>, <span class="zip">12345</span></li>
-	  <li class="email"><a href="#">g.baltar@example.com</a></li>
-	</ul>
+	<div class="columns large-12">
+		<h2 class="text-center"><%= @user.fullname %></h2>
+		<div class="columns large-6">
+			<ul class="vcard">					
+			  <li class="occupation"><%= @user.occupation %></li>
+			  <li class="street-address"><%= @user.street_address %></li>
+			  <li class="locality"><%= @user.city %></li>
+			  <li><span class="state"><%= @user.state %></span>
+			  	<span class="zip"><%= @user.postal_code %></span></li>
+			  <li class="email"><%= mail_to @user.email %></li>
+			</ul>
+			<hr>
+		</div>
+	</div>
 </div>

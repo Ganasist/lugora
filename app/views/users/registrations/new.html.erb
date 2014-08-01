@@ -1,6 +1,6 @@
 <div class="authform registration">
 	<%= simple_form_for(resource, as: resource, 
-															 url: user_registration_path(resource)) do |f| %>
+															 url: registration_path(resource)) do |f| %>
 	  <h3 class="text-center">User Sign Up</h3>
 	  <h6 class="text-center">All fields required</h6>
 	  <%= f.error_notification %>	
@@ -22,25 +22,22 @@
 		  	</ul>
 		  </div>
 		  <div class="form-inputs columns large-6">
-		  	<%= f.input :street_address, required: true %>
-		  	<ul class="inline-list">
-		  		<li>
-						<%= f.input :city, required: true %>
-		  		</li>
-		  		<li>
-				    <%= f.input :state, required: true %>
-		  		</li>
-		  		<li>
-						<%= f.input :postal_code, required: true %>
-		  		</li>
-		  	</ul>		    
+		  	<fieldset>
+          <legend>Address</legend>
+			  	<%= f.input :street_address, required: true, label: 'Street' %>
+			  	<ul class="inline-list">
+			  		<li><%= f.input :city, required: true %></li>
+			  		<li><%= f.input :state, required: true %></li>
+			  		<li><%= f.input :postal_code, required: true %></li>
+			  	</ul>		
+		  	</fieldset>    
 		    <%= f.input :password, required: true, placeholder: 'Must be 8-128 characters long' %>
 		    <%= f.input :password_confirmation, required: true %>
+		  </div>  
+			<div class="form-actions large-6 large-centered columns">
+			    <%= f.button :submit, 'User Sign Up', class: 'expand' %>
+					<%= render 'users/shared/links' %>
 		  </div>
-		</div>	  
-		<div class="form-actions large-6 large-centered columns">
-		    <%= f.button :submit, 'User Sign Up', class: 'expand' %>
-				<%= render 'users/shared/links' %>
-	  </div>
+		</div>	
 	<% end %>
 </div>
