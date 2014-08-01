@@ -17,17 +17,16 @@
         <% end %>
 
         <ul class="inline-list">
-          <li>
-            <%= f.input :phone_prefix, required: true, label: 'Country code', placeholder: '0043',
-                                           input_html: { style: 'width:95px', maxlength: 4 } %>
-          </li>
-          <li>
-            <%= f.input :phone_number, required: true, placeholder: '448355190',
-                                     input_html: { style: 'width:200px' } %>
-          </li>
+          <li><%= f.input :phone_prefix, required: true, 
+                                            label: 'Country code', 
+                                      placeholder: '0043',
+                                       input_html: { style: 'width:95px', maxlength: 4 } %></li>
+          <li><%= f.input :phone_number, required: true, 
+                                      placeholder: '448355190',
+                                       input_html: { style: 'width:200px' } %></li>
         </ul>
         <%= f.input :current_password, placeholder: "Enter current password to confirm changes", 
-                                 required: true %>
+                                          required: true %>
       </div>
       <div class="form-inputs large-6 columns">
         <fieldset>

@@ -11,14 +11,13 @@
 		    <%= f.input :occupation, required: true %>
 		    <%= f.input :email, required: true %>
 		    <ul class="inline-list">
-		  		<li>
-						<%= f.input :phone_prefix, required: true, label: 'Country code', placeholder: '0043',
-																					 input_html: { style: 'width:95px', maxlength: 4 } %>
-		  		</li>
-		  		<li>
-				    <%= f.input :phone_number, required: true, placeholder: '448355190',
-				    												 input_html: { style: 'width:200px' } %>
-		  		</li>
+		  		<li><%= f.input :phone_prefix, required: true, 
+		  																			label: 'Country code', 
+		  																placeholder: '0043',
+																			 input_html: { style: 'width:95px', maxlength: 4 } %></li>
+		  		<li><%= f.input :phone_number, required: true, 
+		  																placeholder: '448355190',
+				    													 input_html: { style: 'width:200px' } %></li>
 		  	</ul>
 		  </div>
 		  <div class="form-inputs columns large-6">
