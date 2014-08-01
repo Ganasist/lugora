@@ -4,6 +4,7 @@
 		<div class="columns large-6">
 			<ul class="vcard">					
 			  <li class="occupation"><%= @user.occupation %></li>
+			  <li class="phone">+<%= @user.phone_prefix %> <%= number_to_phone(@user.phone_number) %></li>
 			  <li class="street-address"><%= @user.street_address %></li>
 			  <li class="locality"><%= @user.city %></li>
 			  <li><span class="state"><%= @user.state %></span>
