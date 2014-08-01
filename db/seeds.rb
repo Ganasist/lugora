@@ -6,7 +6,7 @@ Fabricator(:user) do
   occupation								{ Faker::Company.catch_phrase }
   email											{ Faker::Internet.email }
   phone_prefix							{ Faker::PhoneNumber.subscriber_number }
-  phone_number							{ Faker::PhoneNumber.phone_number.gsub(/[.]/i, '').to_i }
+  phone_number							{ rand(1000000..99999999) }
   street_address						{ Faker::Address.street_address }
   city											{ Faker::Address.city }
   state											{ Faker::Address.state }
@@ -21,7 +21,7 @@ Fabricator(:vendor) do
   business									{ Faker::Company.name }
   email											{ Faker::Internet.email }
   phone_prefix							{ Faker::PhoneNumber.subscriber_number }
-  phone_number							{ Faker::PhoneNumber.phone_number.gsub(/[.]/i, '').to_i }
+  phone_number							{ rand(1000000..99999999) }
   street_address						{ Faker::Address.street_address }
   city											{ Faker::Address.city }
   state											{ Faker::Address.state }
