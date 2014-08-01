@@ -48,7 +48,8 @@ class Vendors::RegistrationsController < Devise::RegistrationsController
 																															:password_confirmation) }
 
 
-			devise_parameter_sanitizer.for(:account_update) { |u| u.permit(:first_name,
+			devise_parameter_sanitizer.for(:account_update) { |u| u.permit(:approved,
+																																		 :first_name,
 																																		 :last_name,
 																																		 :business,
 																																		 :email,

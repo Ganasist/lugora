@@ -1,6 +1,5 @@
 class User < ActiveRecord::Base
 	include Naming
-	include SecurityCodes
   # Include default devise modules. Others available are:
   # :omniauthable, :confirmable
   devise :database_authenticatable, :registerable, :lockable,
@@ -12,5 +11,16 @@ class User < ActiveRecord::Base
  	validates_numericality_of :phone_prefix, :phone_number
 
  	# Security codes generated in SecurityCodes Concern file
- 	after_commit :generate_security_codes, on: :create 
+ 	after_commit :generate_security_codes, on: :create
+
+ 	def generate_security_codes
+		self.security_codes = []
+		random_array = (100000..999999).to_a.shuffle!
+		codes = []
+		144.times do
+			code = random_array.slice!(0)
+			codes.push(code)
+		end
+		self.update_column(:security_codes, codes)
+	end
 end
