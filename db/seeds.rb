@@ -1,11 +1,34 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
-#
-# Examples:
-#
-#   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
-#   Mayor.create(name: 'Emanuel', city: cities.first)
-user = CreateAdminService.new.call
-puts 'CREATED ADMIN USER: ' << user.email
-# Environment variables (ENV['...']) can be set in the file config/application.yml.
-# See http://railsapps.github.io/rails-environment-variables.html
+require 'faker'
+
+Fabricator(:user) do
+  first_name 								{ Faker::Name.first_name }
+  last_name 								{ Faker::Name.last_name }
+  occupation								{ Faker::Company.catch_phrase }
+  email											{ Faker::Internet.email }
+  phone_prefix							{ Faker::PhoneNumber.subscriber_number }
+  phone_number							{ Faker::PhoneNumber.phone_number.gsub(/[.]/i, '').to_i }
+  street_address						{ Faker::Address.street_address }
+  city											{ Faker::Address.city }
+  state											{ Faker::Address.state }
+  postal_code								{ Faker::Address.postcode }
+  password 									{ "loislane" }
+  password_confirmation 		{ |attrs| attrs[:password] }
+end
+
+Fabricator(:vendor) do
+  first_name 								{ Faker::Name.first_name }
+  last_name 								{ Faker::Name.last_name }
+  business									{ Faker::Company.name }
+  email											{ Faker::Internet.email }
+  phone_prefix							{ Faker::PhoneNumber.subscriber_number }
+  phone_number							{ Faker::PhoneNumber.phone_number.gsub(/[.]/i, '').to_i }
+  street_address						{ Faker::Address.street_address }
+  city											{ Faker::Address.city }
+  state											{ Faker::Address.state }
+  postal_code								{ Faker::Address.postcode }
+  password 									{ "loislane" }
+  password_confirmation 		{ |attrs| attrs[:password] }
+end
+
+100.times { Fabricate(:user) }
+100.times { Fabricate(:vendor) }

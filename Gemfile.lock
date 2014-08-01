@@ -88,6 +88,7 @@ GEM
     erubis (2.7.0)
     excon (0.38.0)
     execjs (2.2.1)
+    fabrication (2.11.3)
     factory_girl (4.4.0)
       activesupport (>= 3.0.0)
     factory_girl_rails (4.4.1)
@@ -317,6 +318,7 @@ DEPENDENCIES
   coffee-rails (~> 4.0.0)
   database_cleaner
   devise
+  fabrication
   factory_girl_rails
   faker
   figaro (>= 1.0.0.rc1)

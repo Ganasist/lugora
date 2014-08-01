@@ -11,6 +11,8 @@ gem 'sdoc', '~> 0.4.0',          group: :doc
 gem 'spring',        group: :development
 gem 'devise'
 gem 'activeadmin', github: 'gregbell/active_admin'
+gem 'fabrication'
+gem 'faker'
 gem 'figaro', '>= 1.0.0.rc1'
 gem 'foundation-rails'
 gem 'high_voltage'
@@ -43,7 +45,6 @@ end
 group :test do
   gem 'capybara'
   gem 'database_cleaner'
-  gem 'faker'
   gem 'launchy'
   gem 'selenium-webdriver'
 end
