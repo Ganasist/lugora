@@ -10,6 +10,7 @@ gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0',          group: :doc
 gem 'spring',        group: :development
 gem 'devise'
+gem 'activeadmin', github: 'gregbell/active_admin'
 gem 'figaro', '>= 1.0.0.rc1'
 gem 'foundation-rails'
 gem 'high_voltage'
