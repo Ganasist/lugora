@@ -1,3 +1,5 @@
+require 'sidekiq/web'
+
 Rails.application.routes.draw do
 
   devise_for :admin_users, ActiveAdmin::Devise.config
@@ -22,6 +24,8 @@ Rails.application.routes.draw do
 
 	resources :users, only: [:show, :index]
 	resources :vendors, only: [:show, :index]
+
+  mount Sidekiq::Web, at: '/sidekiq'
 
   root to: 'high_voltage/pages#show', id: 'splash'
 end

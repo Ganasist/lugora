@@ -22,6 +22,10 @@ gem 'sendgrid'
 gem 'simple_form'
 gem 'unicorn'
 gem 'unicorn-rails'
+gem 'redis'
+gem 'sidekiq'
+gem 'sinatra', '>= 1.3.0', require: nil
+gem 'devise-async'
 gem 'heroku'
 gem 'rails_12factor', group: :production
 gem 'newrelic_rpm'

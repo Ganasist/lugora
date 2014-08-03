@@ -11,6 +11,8 @@ before_fork do |server, worker|
   if defined?(ActiveRecord::Base)
     ActiveRecord::Base.connection.disconnect!
   end
+
+  @sidekiq_pid ||= spawn('bundle exec sidekiq')
 end
 
 after_fork do |server, worker|
@@ -23,5 +25,18 @@ after_fork do |server, worker|
     config['reaping_frequency'] = ENV['DB_REAP_FREQ'] || 10 # seconds
     config['pool']            =   ENV['DB_POOL'] || 10
     ActiveRecord::Base.establish_connection(config)
+  end
+
+  Sidekiq.configure_server do |config|
+    config.redis = { url: ENV['LIVE_REDISTOGO_URL'],
+                    size: 5,
+               namespace: "TF_#{Rails.env}" }
+    config.poll_interval = 5
+  end
+
+  Sidekiq.configure_client do |config|
+    config.redis = { url: ENV['LIVE_REDISTOGO_URL'],
+                    size: 1,
+               namespace: "TF_#{Rails.env}" }
   end
 end
