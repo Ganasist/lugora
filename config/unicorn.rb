@@ -12,7 +12,7 @@ before_fork do |server, worker|
     ActiveRecord::Base.connection.disconnect!
   end
 
-  @sidekiq_pid ||= spawn('bundle exec sidekiq -c 2')
+  @sidekiq_pid ||= spawn('bundle exec sidekiq -C config/sidekiq.yml')
 end
 
 after_fork do |server, worker|

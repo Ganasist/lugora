@@ -89,7 +89,6 @@ GEM
       devise (~> 3.2)
     diff-lcs (1.2.5)
     erubis (2.7.0)
-    excon (0.38.0)
     execjs (2.2.1)
     fabrication (2.11.3)
     factory_girl (4.4.0)
@@ -126,15 +125,6 @@ GEM
     has_scope (0.6.0.rc)
       actionpack (>= 3.2, < 5)
       activesupport (>= 3.2, < 5)
-    heroku (3.9.3)
-      heroku-api (~> 0.3.19)
-      launchy (>= 0.3.2)
-      netrc (~> 0.7.7)
-      rest-client (~> 1.6.1)
-      rubyzip
-    heroku-api (0.3.19)
-      excon (~> 0.38)
-      multi_json (~> 1.8)
     high_voltage (2.2.1)
     hike (1.2.3)
     hub (1.12.2)
@@ -170,7 +160,6 @@ GEM
     mini_portile (0.6.0)
     minitest (5.4.0)
     multi_json (1.10.1)
-    netrc (0.7.7)
     newrelic_rpm (3.9.0.229)
     nokogiri (1.6.3.1)
       mini_portile (= 0.6.0)
@@ -233,9 +222,6 @@ GEM
       redis (~> 3.0, >= 3.0.4)
     responders (1.0.0)
       railties (>= 3.2, < 5)
-    rest-client (1.6.8)
-      mime-types (~> 1.16)
-      rdoc (>= 2.4.2)
     rspec (3.0.0)
       rspec-core (~> 3.0.0)
       rspec-expectations (~> 3.0.0)
@@ -345,7 +331,6 @@ DEPENDENCIES
   guard-bundler
   guard-rails
   guard-rspec
-  heroku
   high_voltage
   hub
   jbuilder (~> 2.0)
