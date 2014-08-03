@@ -27,16 +27,16 @@ after_fork do |server, worker|
     ActiveRecord::Base.establish_connection(config)
   end
 
-  Sidekiq.configure_server do |config|
-    config.redis = { url: ENV['LIVE_REDISTOGO_URL'],
-                    size: 5,
-               namespace: "TF_#{Rails.env}" }
-    config.poll_interval = 5
-  end
+  # Sidekiq.configure_server do |config|
+  #   config.redis = { url: ENV['REDISTOGO_URL'],
+  #                   size: 5,
+  #              namespace: "TF_#{ Rails.env }" }
+  #   config.poll_interval = 5
+  # end
 
-  Sidekiq.configure_client do |config|
-    config.redis = { url: ENV['LIVE_REDISTOGO_URL'],
-                    size: 1,
-               namespace: "TF_#{Rails.env}" }
-  end
+  # Sidekiq.configure_client do |config|
+  #   config.redis = { url: ENV['REDISTOGO_URL'],
+  #                   size: 1,
+  #              namespace: "TF_#{ Rails.env }" }
+  # end
 end

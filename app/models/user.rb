@@ -14,17 +14,9 @@ class User < ActiveRecord::Base
 
  	validates_numericality_of :phone_prefix, :phone_number
 
- 	# Security codes generated in SecurityCodes Concern file
+ 	# Security codes generated in SecurityCodesWorker
  	after_commit :generate_security_codes, on: :create
-
  	def generate_security_codes
-		self.security_codes = []
-		random_array = (100000..999999).to_a.shuffle!
-		codes = []
-		144.times do
-			code = random_array.slice!(0)
-			codes.push(code)
-		end
-		self.update_column(:security_codes, codes)
+ 		SecurityCodeWorker.perform_async(self.id)
 	end
 end
