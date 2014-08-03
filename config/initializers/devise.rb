@@ -13,7 +13,6 @@ Devise.setup do |config|
   config.mailer_sender = 'no-reply@lugora.com'
 
   # Configure the class responsible to send e-mails.
-  # config.mailer = 'DeviseBackgrounder'
   config.mailer = 'Devise::Mailer'
 
   # ==> ORM configuration

@@ -12,7 +12,7 @@ before_fork do |server, worker|
     ActiveRecord::Base.connection.disconnect!
   end
 
-  @sidekiq_pid ||= spawn('bundle exec sidekiq')
+  @sidekiq_pid ||= spawn('bundle exec sidekiq -c 2')
 end
 
 after_fork do |server, worker|
@@ -23,7 +23,7 @@ after_fork do |server, worker|
   if defined?(ActiveRecord::Base)
     config = ActiveRecord::Base.configurations[Rails.env]
     config['reaping_frequency'] = ENV['DB_REAP_FREQ'] || 10 # seconds
-    config['pool']            =   ENV['DB_POOL'] || 10
+    config['pool']              =   ENV['DB_POOL'] || 10
     ActiveRecord::Base.establish_connection(config)
   end
 
