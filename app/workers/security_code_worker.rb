@@ -1,6 +1,6 @@
 class SecurityCodeWorker
   include Sidekiq::Worker
-  sidekiq_options retry: false
+  sidekiq_options retry: true
 
   def perform(user_id)
     user = User.find(user_id)
