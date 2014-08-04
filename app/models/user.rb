@@ -1,6 +1,9 @@
 class User < ActiveRecord::Base
 	include Naming
 
+	has_many :transactions
+	has_many :vendors, through: :transactions
+
 	scope :not_approved, -> { where(approved: false) }
 	scope :approved, -> { where(approved: true) }
 

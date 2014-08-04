@@ -5,7 +5,6 @@ class UsersController < ApplicationController
 		@user = User.find(params[:id])
 	end
 
-
 	private
 		rescue_from ActiveRecord::RecordNotFound do |exception|
       if user_signed_in?

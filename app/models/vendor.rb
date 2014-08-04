@@ -1,6 +1,9 @@
 class Vendor < ActiveRecord::Base
 	include Naming
 
+	has_many :transactions
+	has_many :users, through: :transactions
+
 	scope :not_approved, -> { where(approved: false) }
 	scope :approved, -> { where(approved: true) }
   
