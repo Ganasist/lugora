@@ -10,7 +10,7 @@ end
 Sidekiq.configure_server do |config|
 	Rails.logger = Sidekiq::Logging.logger
   config.redis = { url: ENV['REDISTOGO_URL'],
-  								size: 5,
+  								size: 2,
   					 namespace: "TF_#{ Rails.env }" }
   config.poll_interval = 5
 end
