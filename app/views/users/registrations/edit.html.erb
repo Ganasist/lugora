@@ -3,7 +3,7 @@
                                url: registration_path(resource), 
                               html: { method: :put }) do |f| %>
     <h3 class="text-center"><%= @user.fullname %></h3>
-    <h6 class="text-center">All fields required</h6>
+    <h6 class="text-center">* Required fields</h6>
     <%= f.error_notification %>
     <div class="row">
       <div class="form-inputs large-6 columns">
@@ -31,7 +31,7 @@
                                           label: 'Street' %>
           <ul class="inline-list">
             <li><%= f.input :city, required: true %></li>
-            <li><%= f.input :state, required: true %></li>
+            <li><%= f.input :state %></li>
             <li><%= f.input :postal_code, required: true %></li>
           </ul>
         </fieldset>

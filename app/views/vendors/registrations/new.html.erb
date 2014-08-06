@@ -2,7 +2,7 @@
 	<%= simple_form_for(resource, as: resource, 
 															 url: registration_path(resource)) do |f| %>
 	  <h3 class="text-center">Vendor Sign Up</h3>
-	  <h6 class="text-center">All fields required</h6>
+	  <h6 class="text-center">* Required fields</h6>
 	  <%= f.error_notification %>
 	  <div class="row">
 		  <div class="form-inputs columns large-6">
@@ -27,7 +27,7 @@
 			  																	label: 'Street' %>
 			  	<ul class="inline-list">
 			  		<li><%= f.input :city, required: true %></li>
-			  		<li><%= f.input :state, required: true %></li>
+			  		<li><%= f.input :state %></li>
 			  		<li><%= f.input :postal_code, required: true %></li>
 			  	</ul>	
 		  	</fieldset>	    

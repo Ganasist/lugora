@@ -2,7 +2,7 @@
 	<%= simple_form_for(resource, as: resource, 
 															 url: registration_path(resource)) do |f| %>
 	  <h3 class="text-center">User Sign Up</h3>
-	  <h6 class="text-center">All fields required</h6>
+	  <h6 class="text-center">* Required fields</h6>
 	  <%= f.error_notification %>	
 	  <div class="row">
 		  <div class="form-inputs columns large-6">
@@ -14,10 +14,12 @@
 		  		<li><%= f.input :phone_prefix, required: true, 
 		  																			label: 'Country code', 
 		  																placeholder: '0043',
-																			 input_html: { style: 'width:95px', maxlength: 4 } %></li>
+																			 input_html: { style: 'width:95px', maxlength: 4 } %>
+					</li>
 		  		<li><%= f.input :phone_number, required: true, 
 		  																placeholder: '448355190',
-				    													 input_html: { style: 'width:200px' } %></li>
+				    													 input_html: { style: 'width:200px' } %>
+				  </li>
 		  	</ul>
 		  </div>
 		  <div class="form-inputs columns large-6">
@@ -26,7 +28,7 @@
 			  	<%= f.input :street_address, required: true, label: 'Street' %>
 			  	<ul class="inline-list">
 			  		<li><%= f.input :city, required: true %></li>
-			  		<li><%= f.input :state, required: true %></li>
+			  		<li><%= f.input :state %></li>
 			  		<li><%= f.input :postal_code, required: true %></li>
 			  	</ul>		
 		  	</fieldset>    
