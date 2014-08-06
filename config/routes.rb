@@ -2,10 +2,10 @@ require 'sidekiq/web'
 
 Rails.application.routes.draw do
 
-  resources :transactions
 
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
+
   devise_for :vendors, controllers: { sessions: 'vendors/sessions',
 	  									 					 registrations: 'vendors/registrations' }
 
@@ -25,7 +25,9 @@ Rails.application.routes.draw do
 	end
 
 	resources :users, only: [:show, :index]
-	resources :vendors, only: [:show, :index]
+	resources :vendors, only: [:show, :index] do
+	  resources :transactions
+	end
 
   mount Sidekiq::Web, at: '/sidekiq'
 

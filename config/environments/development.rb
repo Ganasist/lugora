@@ -27,7 +27,6 @@ Rails.application.configure do
   # number of complex assets.
   config.assets.debug = true
   
-
   # ActionMailer Config
   config.action_mailer.default_url_options    = { host: 'localhost:8080' }
   config.action_mailer.smtp_settings          = { address: 'localhost', port: 1025 }
