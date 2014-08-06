@@ -5,7 +5,7 @@ class TransactionsController < ApplicationController
 	end
 
 	def new
-		
+		@vendor = Vendor.find(params[:vendor_id])		
 	end
 
 	def create

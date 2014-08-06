@@ -12,6 +12,7 @@ class SecurityCodeWorker
       codes.push(code)
     end
     user.security_codes = codes
+    user.code_pool = (1..144).to_a
     user.save!
   end
 end
