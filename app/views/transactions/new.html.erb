@@ -1,3 +1,6 @@
+<% @amount = %w(100 1000 10000 100000 1000000).sample %>
+<% @code_position = current_user.code_pool.sample %>
+
 <div class="row">
 	<div class="columns large-12 text-center">
 		<h2><%= @vendor.fullname %></h2>
@@ -8,14 +11,18 @@
 			  <%= f.error_notification %>
 
 			  <div class="form-actions">
-			    <%= f.input :amount, as: :hidden, input_html: { value: "#{ @amount }" } %>
-			    <%= f.input :security_code, label: "Enter Security Code ##{ @code_number }" %>
-			    <%= f.input :vendor_id, as: :hidden %>
-			    <%= f.input :user_id, as: :hidden, input_html: { value: current_user.id } %>
+			    <%= f.input :amount, as: :hidden, 
+			    						 input_html: { value: "#{ @amount }" } %>
+			    <%= f.input :code_position, as: :hidden, 
+			    										input_html: { value: "#{ @code_position }" } %>
+			    <%= f.input :security_code, label: "Enter Security Code ##{ @code_position }",
+			    											 input_html: { maxlength: 6 } %>
 			  </div>
 
 			  <div class="form-actions">
-			    <%= f.button :submit, 'Buy Now', class: 'btn-large btn-warning', id: 'item_submit' %>
+			    <%= f.button :submit, 'Buy Now', 
+			    											class: 'btn-large btn-warning success radius', 
+			    												 id: 'item_submit' %>
 			  </div>
 			<% end %>
 		</div>
