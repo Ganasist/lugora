@@ -9,7 +9,6 @@ class TransactionsController < ApplicationController
 	def new
 		@vendor 		 = Vendor.find(params[:vendor_id])
 		@transaction = Transaction.new
-		# @code_position = current_user.code_pool.sample
 	end
 
 	def create
@@ -22,7 +21,6 @@ class TransactionsController < ApplicationController
 		if TransactionCheck.new(current_user, @transaction).check?
 	    respond_to do |format|
 	      if @transaction.save
-	      	# DepleteUserCodePool.new(current_user, @transaction.code_position).deplete
 	        format.html { redirect_to current_user, notice: 'Purchase was successful.' }
 	        format.json { render action: 'show', status: :created, location: @transaction }
 	      else
