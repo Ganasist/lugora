@@ -1,9 +1,24 @@
 <div class="row">
 	<div class="columns large-12 text-center">
 		<h2><%= @vendor.fullname %></h2>
-		<h3>Cost: <%= number_with_delimiter(%w(100 1000 10000 100000).sample, delimiter: ',') %> credits</h3>
+		<h3>Cost: <%= number_with_delimiter(@amount, delimiter: ',') %> credits</h3>
 
-		<h3>Enter code #</h3>
+		<div class="authform registration large-4 large-centered columns">
+			<%= simple_form_for [@vendor, @transaction] do |f| %>
+			  <%= f.error_notification %>
+
+			  <div class="form-actions">
+			    <%= f.input :amount, as: :hidden, input_html: { value: "#{ @amount }" } %>
+			    <%= f.input :security_code, label: "Enter Security Code ##{ @code_number }" %>
+			    <%= f.input :vendor_id, as: :hidden %>
+			    <%= f.input :user_id, as: :hidden, input_html: { value: current_user.id } %>
+			  </div>
+
+			  <div class="form-actions">
+			    <%= f.button :submit, 'Buy Now', class: 'btn-large btn-warning', id: 'item_submit' %>
+			  </div>
+			<% end %>
+		</div>
 	
 	</div>
 </div>

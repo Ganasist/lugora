@@ -24,7 +24,10 @@ Rails.application.routes.draw do
 	  end
 	end
 
-	resources :users, only: [:show, :index]
+	resources :users, only: [:show, :index] do
+		resources :transactions, only: [:show, :index]
+	end
+
 	resources :vendors, only: [:show, :index] do
 	  resources :transactions
 	end

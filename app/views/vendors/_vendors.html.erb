@@ -3,7 +3,6 @@
 	<tr>
 		<td><%= link_to v.fullname, v %></td>
 		<td><%= v.email %></td>
-		<td><%= v.phone %></td>
 		<td><%= link_to 'Buy', new_vendor_transaction_path(v), class: 'button tiny success radius index_buttons' %></td>
 	</tr>
 	<% end %>
