@@ -13,17 +13,17 @@
 			</ul>
 			<hr>
 		</div>
-		<div class="columns large-12">
+		<!-- <div class="columns large-12">
 			<table>
-				<% @user.security_codes.in_groups_of(12, false).each_with_index do |codes, top_index| %>
+				<%# @user.security_codes.in_groups_of(12, false).each_with_index do |codes, top_index| %>
 				<tr>
-					<% codes.each_with_index do |code, index| %>
-						<td><%= (index + 1) + (top_index * 12) %>: <%= code %></td>
-					<% end %>
+					<%# codes.each_with_index do |code, index| %>
+						<td><%#= (index + 1) + (top_index * 12) %>: <%#= code %></td>
+					<%# end %>
 				</tr>
-				<% end %>
+				<%# end %>
 			</table>
 			<hr>
-		</div>
+		</div> -->
 	</div>
 </div>
