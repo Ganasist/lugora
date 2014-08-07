@@ -1,9 +1,4 @@
-<% if !user_signed_in? && !vendor_signed_in? %>
-	<li><%= link_to 'About', page_path('about') %></li>
-<% end %>
-<% if user_signed_in? || vendor_signed_in? %>
-	<li><%= link_to 'Vendors', vendors_path %></li>
-<% end %>
+<li><%= link_to 'Vendors', vendors_path %></li>
 <% if user_signed_in? %>
 	<li><%= link_to "Codes left: #{ current_user.code_pool.length }", current_user %></li>
   <li><%= link_to 'Edit account', edit_user_registration_path %></li>
