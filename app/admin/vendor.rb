@@ -1,4 +1,5 @@
 ActiveAdmin.register Vendor do
+  menu label: "TF Vendors"
 
   scope :all
   scope :not_approved
