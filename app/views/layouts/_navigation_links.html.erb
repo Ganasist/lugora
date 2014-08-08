@@ -1,6 +1,8 @@
 <li><%= link_to 'Vendors', vendors_path %></li>
 <% if user_signed_in? %>
-	<li><%= link_to "Codes left: #{ current_user.code_pool.length }", current_user %></li>
+	<% if current_user.code_pool.length < 4 %>
+		<li><%= link_to "Codes left: #{ current_user.code_pool.length }", current_user, class: "alert-text" %></li>
+	<% end %>
   <li><%= link_to 'Edit account', edit_user_registration_path %></li>
   <li><%= link_to 'Sign out', destroy_user_session_path, method: 'delete' %></li>
 <% elsif vendor_signed_in? %>
