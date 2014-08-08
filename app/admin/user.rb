@@ -24,21 +24,13 @@ ActiveAdmin.register User do
     actions
   end
 
-  form do |f|
-    f.semantic_errors *f.object.errors.keys
-    f.inputs "Details" do
-      f.input :email
-      f.input :password
-      f.input :password_confirmation
-      f.input :occupation
-      f.input :street_address
-      f.input :city
-      f.input :state
-      f.input :postal_code
-      f.input :phone_number
-      f.input :approved
+  batch_action :regenerate_codes_all, 
+                confirm: "Are you sure you want to regenerate codes for all of these Users?" do |selection|
+    User.find(selection).each do |user|
+      user.generate_security_codes
+      user.save
     end
-    f.actions
+    redirect_to :back
   end
 
   batch_action :disapprove_all do |selection|
@@ -57,13 +49,49 @@ ActiveAdmin.register User do
     redirect_to :back
   end
 
-  batch_action :regenerate_codes_all, 
-                confirm: "Are you sure you want to regenerate codes for all of these Users?" do |selection|
-    User.find(selection).each do |user|
-      user.generate_security_codes
-      user.save
+  form do |f|
+    f.semantic_errors *f.object.errors.keys
+    f.inputs "Details" do
+      f.input :email
+      f.input :password
+      f.input :password_confirmation
+      f.input :occupation
+      f.input :street_address
+      f.input :city
+      f.input :state
+      f.input :postal_code
+      f.input :phone_number
+      f.input :approved
     end
-    redirect_to :back
+    f.actions
+  end
+
+  show do |user|
+    attributes_table do
+      row :id
+      row :approved
+      row :name do |user|
+        user.fullname
+      end
+      row :email
+      row :occupation
+      row :phone_prefix
+      row :phone_number
+      row :street_address
+      row :city
+      row :state
+      row :phone_number
+      row :postal_code
+      row :create_at
+      row :updated_at
+      row :sign_in_count
+      row :current_sign_in_at
+      row :last_sign_in_at
+      row :failed_attempts
+      row :code_pool
+    end
+    render "users/code_table" 
+    active_admin_comments
   end
 
   action_item only: :show do
@@ -74,20 +102,16 @@ ActiveAdmin.register User do
     link_to "Regenerate codes", regenerate_codes_admin_user_path(user), method: :post
   end
 
-  action_item only: :show do
-    link_to 'Approve User', approve_user_admin_user_path(user), method: :post if !user.approved?
-  end
-
-  action_item only: :show do
-    link_to 'Disapprove User', disapprove_user_admin_user_path(user), method: :post if user.approved?
-  end
-
   member_action :regenerate_codes, method: :post do
     user = User.find(params[:id])
     user.generate_security_codes
 
     flash[:notice] = "#{ user.first_name }'s codes are being regenerated. Refresh this page in a few seconds to see the new codes."
     redirect_to admin_user_path(id: user.id)
+  end
+
+  action_item only: :show do
+    link_to 'Approve User', approve_user_admin_user_path(user), method: :post if !user.approved?
   end
 
   member_action :approve_user, method: :post do
@@ -98,6 +122,10 @@ ActiveAdmin.register User do
     flash[:notice] = "#{ user.first_name } has been approved."
     redirect_to admin_user_path(id: user.id)
   end
+
+  action_item only: :show do
+    link_to 'Disapprove User', disapprove_user_admin_user_path(user), method: :post if user.approved?
+  end 
 
   member_action :disapprove_user, method: :post do
     user = User.find(params[:id])
