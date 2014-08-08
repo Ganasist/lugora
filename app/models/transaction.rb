@@ -2,6 +2,8 @@ class Transaction < ActiveRecord::Base
 	belongs_to :user
 	belongs_to :vendor
 
+	default_scope { order("created_at desc") }
+
 	validates :user, :vendor, :amount, :security_code, :code_position, presence: true
 	validates :amount, :security_code, :code_position, numericality: { only_integer: true }
 	validates :security_code, length: { is: 6 }
