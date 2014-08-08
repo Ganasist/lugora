@@ -13,6 +13,30 @@
 			</ul>
 			<hr>
 		</div>
+		<div class="columns large-7">
+			<% unless @user.transactions.nil? %>
+			<table class="recent-transactions">
+				<thead>
+					<caption>Recent Purchases</caption>
+					 <tr>
+					 	<th class="text-center">Transaction ID</th>
+			      <th class="text-center">Vendor</th>
+			      <th class="text-center">Amount</th>
+			      <th class="text-center">Date</th>
+			    </tr>
+				</thead>
+				<% @user.transactions.to_a.each do |t| %>
+				<tr>
+					<td class="text-right"><%= link_to t.id, user_transaction_path(@user, t) %></td>
+					<td class="text-right"><%= link_to t.vendor.fullname, t.vendor unless t.vendor.nil? %></td>
+					<td class="text-right"><%= number_with_delimiter(t.amount, delimiter: ',') %></td>
+					<td class="text-right"><%= time_ago_in_words(t.created_at) %> ago</td>
+				</tr>
+				<% end %>
+			</table>
+			<% end %>
+		</div>
+
 		<!-- <div class="columns large-12">
 			<table>
 				<%# @user.security_codes.in_groups_of(12, false).each_with_index do |codes, top_index| %>

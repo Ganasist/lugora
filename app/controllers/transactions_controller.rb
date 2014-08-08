@@ -21,7 +21,8 @@ class TransactionsController < ApplicationController
 		if TransactionCheck.new(current_user, @transaction).check?
 	    respond_to do |format|
 	      if @transaction.save
-	        format.html { redirect_to current_user, notice: 'Purchase was successful.' }
+	        format.html { redirect_to user_transaction_path(current_user, @transaction), 
+	        													notice: 'Purchase was successful.' }
 	        format.json { render action: 'show', status: :created, location: @transaction }
 	      else
 	        format.html { render action: 'new' }
@@ -31,12 +32,16 @@ class TransactionsController < ApplicationController
 	  else
 	  	flash[:error] = 'You have entered an incorrect security code'
       render action: 'new'
-      # format.json { render json: @transaction.errors, status: :unprocessable_entity }
     end
 	end
 
 	def show
-		
+		if user_signed_in?
+			@user = User.find(params[:user_id])
+			@transaction = Transaction.find(params[:id])
+		elsif vendor_signed_in?
+			@vendor = current_vendor					
+		end
 	end
 
 	def edit
