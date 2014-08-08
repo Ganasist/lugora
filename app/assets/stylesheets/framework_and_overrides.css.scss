@@ -108,6 +108,13 @@ section {
   @extend .tiny;
 }
 
+
+@media only screen and (max_width 710px) {
+  .authform {
+    color: red;
+  }
+}
+
 // override for the 'Home' navigation link
 .top-bar .name {
   font-size: rem-calc(20);
