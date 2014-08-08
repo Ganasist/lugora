@@ -1,11 +1,20 @@
 <% content_for :title do %>Welcome to TF<% end %>
 
 <div class="splash panel">
-	<div class="vertical-center">
+	<div class="columns large-12">
 		<h3 class="text-center authform welcome">WELCOME TO TF</h3>
-		<div class="row authform">
-		    <%= link_to "User Sign Up", new_user_registration_path, class: "button expand left" %>
-		    <%= link_to "Vendor Sign Up", new_vendor_registration_path, class: "button expand right success" %>
-		</div>
+		<% if mobile? %>
+			<div class="authform columns large-4">
+				<%= render 'users/sessions/new' %>
+		    <%= render 'vendors/sessions/new' %>
+		  </div>			
+	  <% else %>
+	  	<div class="authform columns large-4">
+				<%= render 'users/sessions/new' %>
+		  </div>
+		  <div class="authform columns large-4">
+		    <%= render 'vendors/sessions/new' %>
+		  </div>
+	  <% end %>
 	</div>
 </div>

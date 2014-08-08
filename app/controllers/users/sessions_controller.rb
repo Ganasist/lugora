@@ -37,5 +37,4 @@ class Users::SessionsController < Devise::SessionsController
 																															:password, 
 																															:remember_me) }			
 		end
-
 end
