@@ -13,6 +13,7 @@ ActiveAdmin.register User do
   filter :phone_number
 
   index do
+    selectable_column
     column :id
     column :name, sortable: :last_name do |user|
       user.fullname
@@ -36,4 +37,40 @@ ActiveAdmin.register User do
     end
     f.actions
   end
+
+  batch_action :disapprove_all do |selection|
+    User.find(selection).each do |user|
+      user.approved = false
+      user.save
+    end
+    redirect_to :back
+  end
+
+  batch_action :approve_all do |selection|
+    User.find(selection).each do |user|
+      user.approved = true
+      user.save
+    end
+    redirect_to :back
+  end
+
+  batch_action :regenerate_codes_all, 
+                confirm: "Are you sure you want to regenerate codes for all of these users?" do |selection|
+    User.find(selection).each do |user|
+      user.generate_security_codes
+      user.save
+    end
+    redirect_to :back
+  end
+
+  # member_action :approve do
+  #   User.find(params[:id]).generate_security_codes
+  #   redirect_to :back
+  # end
+
+  # member_action :regenerate_codes, :method => :put do
+  #   user = User.find(params[:id])
+  #   user.generate_security_codes
+  #   # redirect_to { :action => :show }, { :notice => "Codes regenerated for #{ user.fullname }!" }
+  # end
 end

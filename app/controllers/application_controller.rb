@@ -8,7 +8,6 @@ class ApplicationController < ActionController::Base
 		  root_path
 		end
 
-		
 	 # def mobile?  
 	 #   request.user_agent =~ /Mobile|webOS/  
 	 # end 
