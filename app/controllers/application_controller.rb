@@ -5,12 +5,6 @@ class ApplicationController < ActionController::Base
 
   private
 	  def after_sign_out_path_for(resource_or_scope)
-		  root_path
+     root_path
 		end
-
-	 # def mobile?  
-	 #   request.user_agent =~ /Mobile|webOS/  
-	 # end 
-
-	 # helper_method :mobile?
 end

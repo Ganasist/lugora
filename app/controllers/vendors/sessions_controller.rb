@@ -16,6 +16,10 @@ class Vendors::SessionsController < Devise::SessionsController
 
 	protected
 
+  	def after_sign_out_path_for(resource_or_scope)
+	    new_vendor_session_path
+	  end
+
 		def configure_permitted_parameters
 			devise_parameter_sanitizer.for(:sign_in) { |u| u.permit(:email, 
 																															:password, 

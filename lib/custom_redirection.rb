@@ -1,6 +1,10 @@
 class CustomRedirection < Devise::FailureApp
   def redirect_url
-    root_path
+    if warden_options[:scope] == :user 
+      signin_path 
+    else 
+      new_admin_user_session_path 
+    end 
   end
   def respond
     if http_auth?
