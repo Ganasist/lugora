@@ -1,7 +1,9 @@
 class CustomRedirection < Devise::FailureApp
   def redirect_url
     if warden_options[:scope] == :user 
-      signin_path 
+      root_path 
+    elsif warden_options[:scope] == :vendor
+      new_vendor_session_path
     else 
       new_admin_user_session_path 
     end 
