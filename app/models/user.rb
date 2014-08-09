@@ -13,7 +13,7 @@ class User < ActiveRecord::Base
   			 :timeoutable, :recoverable, :rememberable, :trackable, :validatable
 
  	validates :first_name, :last_name,:occupation, :street_address, :phone_prefix,
- 						:phone_number, :city, :postal_code, presence: true
+ 						:phone_number, :city, presence: true
 
  	validates_numericality_of :phone_prefix, :phone_number
 
