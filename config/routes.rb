@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
 
-  devise_for :vendors, path: 'vendor', path_names: { sign_in: 'login', 
+  devise_for :vendors, path: 'vendors', path_names: { sign_in: 'login', 
   																									sign_out: 'logout' },
   															      controllers: { sessions: 'vendors/sessions',
 	  									 				      registrations: 'vendors/registrations' }
