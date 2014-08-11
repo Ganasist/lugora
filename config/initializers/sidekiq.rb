@@ -2,7 +2,7 @@ require 'sidekiq'
 require 'sidekiq/web'
 
 if Rails.env.development?
-	url = 'redis://localhost:6379/'
+	url = 'redis://localhost:6379/0'
 else
 	url = ENV['REDISTOGO_URL']
 end
