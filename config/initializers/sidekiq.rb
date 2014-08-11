@@ -1,6 +1,12 @@
 require 'sidekiq'
 require 'sidekiq/web'
 
+if Rails.env.development?
+	url = 'redis://localhost:6379/'
+else
+	url = ENV['REDISTOGO_URL']
+end
+
 Sidekiq.default_worker_options = { 'backtrace' => true }
 
 Sidekiq::Web.use(Rack::Auth::Basic) do |user, password|
@@ -9,14 +15,14 @@ end
 
 Sidekiq.configure_server do |config|
 	Rails.logger = Sidekiq::Logging.logger
-  config.redis = { url: ENV['REDISTOGO_URL'],
+  config.redis = { url: url,
   								size: 2,
   					 namespace: "TF_#{ Rails.env }" }
   config.poll_interval = 5
 end
 
 Sidekiq.configure_client do |config|
-  config.redis = { url: ENV['REDISTOGO_URL'],
+  config.redis = { url: url,
   								size: 1,
   					 namespace: "TF_#{ Rails.env }" }
 end
