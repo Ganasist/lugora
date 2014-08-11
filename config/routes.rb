@@ -8,10 +8,12 @@ Rails.application.routes.draw do
   devise_for :vendors, path: 'vendors', path_names: { sign_in: 'login', 
   																									sign_out: 'logout' },
   															      controllers: { sessions: 'vendors/sessions',
-	  									 				      registrations: 'vendors/registrations' }
+	  									 				      						registrations: 'vendors/registrations',
+			  									 				      						passwords: 'passwords' }
 
-  devise_for :users,   controllers: { sessions: 'users/sessions',
-										  				   registrations: 'users/registrations' }
+  devise_for :users, controllers: { sessions: 'users/sessions',
+										 				   registrations: 'users/registrations',
+				 				      						 passwords: 'passwords' }
 
 	authenticated :user do
 	  devise_scope :user do

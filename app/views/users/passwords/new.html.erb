@@ -6,11 +6,12 @@
                                 html: { method: :post }) do |f| %>
       <%= f.error_notification %>
 
-        <%= f.input :email, required: true, 
-                           autofocus: true %>
-        <%= f.button :submit, label: 'Send me reset password instructions',
-                           required: true,
-                              class: 'button expand' %>
+      <%= f.input :email, required: true, 
+                         autofocus: true %>
+                         
+      <%= f.button :submit, 'Send password reset instructions',
+                             required: true,
+                                class: 'button expand' %>
 
     <%= render 'users/shared/links' %>
     <% end %>
