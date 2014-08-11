@@ -4,6 +4,8 @@ class Vendor < ActiveRecord::Base
 	has_many :transactions
 	has_many :users, through: :transactions
 
+	default_scope { order('created_at desc').limit(10) }
+
 	scope :not_approved, -> { where(approved: false) }
 	scope :approved, -> { where(approved: true) }
   

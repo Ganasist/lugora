@@ -2,7 +2,7 @@ class VendorsController < ApplicationController
 	# before_action :authenticate_vendor!
 
   def index
-    @vendors = Vendor.all  
+    @vendors = Vendor.all
   end
 
 	def show

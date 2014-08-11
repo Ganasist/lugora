@@ -2,7 +2,7 @@ class Transaction < ActiveRecord::Base
 	belongs_to :user
 	belongs_to :vendor
 
-	default_scope { order("created_at desc").limit(10) }
+	default_scope { order('created_at desc').limit(10) }
 
 	validates :user, :vendor, :amount, :security_code, :code_position, presence: true
 	validates :amount, :security_code, :code_position, numericality: { only_integer: true }
