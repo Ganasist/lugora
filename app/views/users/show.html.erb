@@ -12,20 +12,6 @@
 			  <li class="email"><%= mail_to @user.email %></li>
 			</ul>
 			<hr>
-
-			<%= simple_form_for @user, url: user_uuid_credit_path(@user), method: :patch do |m| %>
-	      <%= m.simple_fields_for @uuid_credit do |u| %>
-	      <div class="form-actions">
-	        <%= u.input :uuid, as: :string, label: 'Enter a valid UUID to increase your credit' %>
-	      </div>
-	      <% end %>
-	      <div class="form-actions">
-			    <%= m.button :submit, 'Add credits now', 
-			    											class: 'small success radius expand' %>
-			  </div>
-	    <% end %>
-
-			<hr>
 		</div>
 		<div class="columns large-6">
 			<%= simple_form_for :transactions, url: user_path(@user), method: 'get' do %>
