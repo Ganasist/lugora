@@ -1,9 +1,6 @@
 <div class="row">
 	<div class="columns large-12">
-		<%= simple_form_for vendors_path, method: 'get' do %>
-		  <%= text_field_tag :search, params[:search], placeholder: 'Search Vendors' %>
-		  <%= submit_tag 'Search', name: nil %>
-		<% end %>
+		<% unless @vendors.empty? %>
 			<table>
 			  <thead>
 			    <tr>
@@ -14,5 +11,8 @@
 			  </thead>
 			  <%= render 'vendors' %>
 			</table>
+		<% else %>
+			<h2 class="text-center">Vendor not found</h2>
+		<% end %>
 	</div>
 </div>

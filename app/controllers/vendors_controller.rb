@@ -3,7 +3,7 @@ class VendorsController < ApplicationController
 
   def index
     if params[:search] && params[:search] != ""
-      @vendors = Vendor.search(params[:search]).order('created_at DESC')
+      @vendors = Vendor.search(params[:search]).order('created_at DESC') 
     else
       @vendors = Vendor.all
     end

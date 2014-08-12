@@ -1,4 +1,3 @@
-<li><%= link_to 'Vendors', vendors_path %></li>
 <% if user_signed_in? %>
 	<% if current_user.code_pool.length < 4 %>
 		<li><%= link_to "Codes left: #{ current_user.code_pool.length }", 
