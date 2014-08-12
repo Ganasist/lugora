@@ -2,7 +2,11 @@ class VendorsController < ApplicationController
 	# before_action :authenticate_vendor!
 
   def index
-    @vendors = Vendor.all
+    if params[:search]
+      @vendors = Vendor.search(params[:search]).order('created_at DESC')
+    else
+      @vendors = Vendor.all
+    end
   end
 
 	def show
