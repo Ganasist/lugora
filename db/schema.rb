@@ -98,7 +98,7 @@ ActiveRecord::Schema.define(version: 20140812140650) do
   add_index "users", ["unlock_token"], name: "index_users_on_unlock_token", unique: true, using: :btree
 
   create_table "uuid_credits", force: true do |t|
-    t.integer  "user_id",                    null: false
+    t.integer  "user_id"
     t.uuid     "uuid",                       null: false
     t.integer  "credit",                     null: false
     t.boolean  "used",       default: false, null: false

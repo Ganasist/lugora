@@ -35,6 +35,8 @@ Rails.application.routes.draw do
 	  resources :transactions
 	end
 
+	match 'users/:id/uuid_credit' => 'users#uuid_credit', as: 'user_uuid_credit', via: :patch
+
   mount Sidekiq::Web, at: '/sidekiq'
 
   root to: 'high_voltage/pages#show', id: 'splash'

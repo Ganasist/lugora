@@ -13,17 +13,16 @@
 			</ul>
 			<hr>
 
-			<%= simple_form_for @user do |f| %>
+			<%= simple_form_for [@user, @uuid_credit], url: user_uuid_credit_path(@user) do |f| %>
 			  <%= f.error_notification %>
 
 			  <div class="form-actions">
-			    <%= f.input :credit_uuid, as: :integer %>
+			    <%= f.input :uuid, as: :string %>
 			  </div>
 
 			  <div class="form-actions">
 			    <%= f.button :submit, 'Add credits now', 
-			    											class: 'btn-large btn-warning success radius', 
-			    												 id: 'item_submit' %>
+			    											class: 'small success radius expand' %>
 			  </div>
 			<% end %>
 		</div>

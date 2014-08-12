@@ -1,7 +1,7 @@
 class CreateUuidCredits < ActiveRecord::Migration
   def change
     create_table :uuid_credits do |t|
-    	t.references :user, null: false
+    	t.references :user
     	t.uuid 		:uuid, null: false
     	t.integer :credit, null: false
     	t.boolean :used, null: false, default: false
