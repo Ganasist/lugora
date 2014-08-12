@@ -12,6 +12,20 @@
 			  <li class="email"><%= mail_to @user.email %></li>
 			</ul>
 			<hr>
+
+			<%= simple_form_for @user do |f| %>
+			  <%= f.error_notification %>
+
+			  <div class="form-actions">
+			    <%= f.input :credit_uuid, as: :integer %>
+			  </div>
+
+			  <div class="form-actions">
+			    <%= f.button :submit, 'Add credits now', 
+			    											class: 'btn-large btn-warning success radius', 
+			    												 id: 'item_submit' %>
+			  </div>
+			<% end %>
 		</div>
 		<div class="columns large-6">
 			<%= simple_form_for :transactions, url: user_path(@user), method: 'get' do %>

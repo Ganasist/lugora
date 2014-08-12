@@ -15,6 +15,12 @@ class Transaction < ActiveRecord::Base
 		self.user.save!
 	end
 
+	after_commit :subtract_credits, on: :create
+	def subtract_credits
+		self.user.credits -= self.amount
+		self.user.save!
+	end
+
 	def self.search(user, query)
 		user.transactions.where("created_at <= :q", q: "#{ query }")
 	end

@@ -14,6 +14,7 @@ Fabricator(:user) do
   password 									{ "loislane" }
   password_confirmation 		{ |attrs| attrs[:password] }
 end
+100.times { Fabricate(:user) }
 
 Fabricator(:vendor) do
   first_name 								{ Faker::Name.first_name }
@@ -29,6 +30,15 @@ Fabricator(:vendor) do
   password 									{ "loislane" }
   password_confirmation 		{ |attrs| attrs[:password] }
 end
-
-100.times { Fabricate(:user) }
 100.times { Fabricate(:vendor) }
+
+# Fabricator(:transaction) do
+#   user                        { User.all.sample }
+#   vendor                      { Vendor.all.sample }
+#   amount                      { rand(100..100000) }
+#   security_code               { rand(100000..999999) }
+#   code_position               { rand(127) }
+#   disputed                    { false }
+#   created_at                  { Time.now - rand(1000).days - rand(1000).minutes }
+# end
+# 500.times { Fabricate(:transaction) }
