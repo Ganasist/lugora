@@ -15,15 +15,21 @@ class UsersController < ApplicationController
   def uuid_credit
     @user = current_user
     # authorize @user
-    respond_to do |format|
-      if @uuid_credit.update(uuid_credit_params)
-        # ItemBackgroundWorker.perform_async("device", @device.id, 'created', current_user.id)
-        format.html { redirect_to @user }
-        format.json { render action: 'show', status: :created, location: @user }
-      else
-        format.html { render action: @user }
-        format.json { render json: @uuid_credit.errors, status: :unprocessable_entity }
+    @uuid_credit = UUID_Credit.where(uuid: @uuid_credit.uuid)
+    if @uuid_credit && !@uuid_credit.used?
+      respond_to do |format|
+        if @uuid_credit.update(uuid_credit_params)
+          # ItemBackgroundWorker.perform_async("device", @device.id, 'created', current_user.id)
+          format.html { redirect_to @user }
+          format.json { render action: 'show', status: :created, location: @user }
+        else
+          format.html { render action: 'show' }
+          format.json { render json: @uuid_credit.errors, status: :unprocessable_entity }
+        end
       end
+    else
+      flash[:error] = 'You have entered an incorrect UUID credit code'
+      render action: 'show'
     end
   end
 

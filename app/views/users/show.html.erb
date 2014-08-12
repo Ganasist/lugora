@@ -17,7 +17,7 @@
 			  <%= f.error_notification %>
 
 			  <div class="form-actions">
-			    <%= f.input :uuid, as: :string %>
+			    <%= f.input :uuid, as: :string, label: 'Enter a valid UUID to increase your credit' %>
 			  </div>
 
 			  <div class="form-actions">
@@ -25,6 +25,7 @@
 			    											class: 'small success radius expand' %>
 			  </div>
 			<% end %>
+			<hr>
 		</div>
 		<div class="columns large-6">
 			<%= simple_form_for :transactions, url: user_path(@user), method: 'get' do %>
