@@ -16,15 +16,15 @@
 		<div class="columns large-6">
 			<%= simple_form_for :transactions, url: user_path(@user), method: 'get' do %>
 				<%= date_field_tag :search, params[:search], placeholder: 'Search Transactions', class: 'text-center' %>
-				<%= submit_tag 'Search Transactions by date', name: nil, class: 'button small radius expand' %>
+				<%= submit_tag 'Search verifications by date', name: nil, class: 'button small radius expand' %>
 			<% end %>
 			<% unless @transactions.count == 0 %>
 			<table class="recent-transactions">
 				<thead>
 					<% unless params[:search] && params[:search] != "" %>
-						<caption>Recent Purchases</caption>
+						<caption>Recent verifications</caption>
 					<% else %>
-						<caption>Purchases before <%= @date.strftime("%A, %B %d %Y") %></caption>
+						<caption>Verifications before <%= @date.strftime("%A, %B %d %Y") %></caption>
 					<% end %>
 					 <tr>
 					 	<th class="text-center">ID</th>
@@ -43,7 +43,7 @@
 				<% end %>
 			</table>
 			<% else %>
-			<h2 class="text-center">No recent purchases</h2>
+			<h2 class="text-center">No verifications found</h2>
 			<% end %>
 		</div>
 	</div>
