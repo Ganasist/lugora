@@ -20,6 +20,6 @@ class Vendor < ActiveRecord::Base
 	validates_numericality_of :phone_prefix, :phone_number
 
 	def self.search(query)
-		where("last_name ilike :q or first_name ilike :q", q: "%{query}%")
+		where("last_name @@ :q or first_name @@ :q", q: "%#{query}%")
 	end
 end
