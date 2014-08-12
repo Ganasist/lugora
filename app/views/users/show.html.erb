@@ -1,7 +1,7 @@
 <div class="row">
 	<div class="columns large-12">
 		<h2 class="text-center"><%= @user.fullname %></h2>
-		<div class="columns large-5">
+		<div class="columns large-6">
 			<ul class="vcard">					
 			  <li class="occupation"><%= @user.occupation %></li>
 			  <li class="phone">+<%= number_to_phone(@user.phone) %></li>
@@ -13,27 +13,37 @@
 			</ul>
 			<hr>
 		</div>
-		<div class="columns large-7">
-			<% unless @user.transactions.nil? %>
+		<div class="columns large-6">
+			<%= simple_form_for :transactions, url: user_path(@user), method: 'get' do %>
+				<%= date_field_tag :search, params[:search], placeholder: 'Search Transactions', class: 'text-center' %>
+				<%= submit_tag 'Search Transactions by date', name: nil, class: 'button small radius expand' %>
+			<% end %>
+			<% unless @transactions.count == 0 %>
 			<table class="recent-transactions">
 				<thead>
-					<caption>Recent Purchases</caption>
+					<% unless params[:search] && params[:search] != "" %>
+						<caption>Recent Purchases</caption>
+					<% else %>
+						<caption>Purchases before <%= params[:search] %></caption>
+					<% end %>
 					 <tr>
-					 	<th class="text-center">Transaction ID</th>
+					 	<th class="text-center">ID</th>
 			      <th class="text-center">Vendor</th>
 			      <th class="text-center">Amount</th>
 			      <th class="text-center">Date</th>
 			    </tr>
 				</thead>
-				<% @user.transactions.to_a.each do |t| %>
+				<% @transactions.each do |t| %>
 				<tr>
 					<td class="text-right"><%= link_to t.id, user_transaction_path(@user, t) %></td>
 					<td class="text-right"><%= link_to t.vendor.fullname, t.vendor unless t.vendor.nil? %></td>
 					<td class="text-right"><%= number_with_delimiter(t.amount, delimiter: ',') %></td>
-					<td class="text-right"><%= time_ago_in_words(t.created_at) %> ago</td>
+					<td class="text-right"><%= t.created_at.to_formatted_s(:long_ordinal) %></td>
 				</tr>
 				<% end %>
 			</table>
+			<% else %>
+			<h2 class="text-center">No recent purchases</h2>
 			<% end %>
 		</div>
 	</div>

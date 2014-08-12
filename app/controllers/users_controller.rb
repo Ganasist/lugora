@@ -2,8 +2,13 @@ class UsersController < ApplicationController
 	# before_action :authenticate_user!
 
 	def show
-		@user = User.includes(:transactions).find(params[:id])
-	end
+		@user = User.find(params[:id])
+    if params[:search] && params[:search] != ""
+      @transactions = Transaction.search(@user, params[:search]).limit(10).order('created_at DESC')
+    else
+      @transactions = @user.transactions
+	  end
+  end
 
 	private
 		rescue_from ActiveRecord::RecordNotFound do |exception|

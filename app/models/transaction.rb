@@ -14,4 +14,8 @@ class Transaction < ActiveRecord::Base
 		self.user.code_pool_will_change!
 		self.user.save!
 	end
+
+	def self.search(user, query)
+		user.transactions.where("created_at <= :q", q: "#{ query }")
+	end
 end
