@@ -4,7 +4,8 @@ class UsersController < ApplicationController
 	def show
 		@user = User.find(params[:id])
     if params[:search] && params[:search] != ""
-      @transactions = Transaction.search(@user, params[:search]).limit(10).order('created_at DESC')
+      @date = params[:search].to_time.end_of_day
+      @transactions = Transaction.search(@user, @date).limit(10).order('created_at DESC')
     else
       @transactions = @user.transactions
 	  end

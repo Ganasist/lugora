@@ -24,7 +24,7 @@
 					<% unless params[:search] && params[:search] != "" %>
 						<caption>Recent Purchases</caption>
 					<% else %>
-						<caption>Purchases before <%= params[:search] %></caption>
+						<caption>Purchases before <%= @date.strftime("%A, %B %d %Y") %></caption>
 					<% end %>
 					 <tr>
 					 	<th class="text-center">ID</th>
