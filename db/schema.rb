@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140812154612) do
+ActiveRecord::Schema.define(version: 20140813130708) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -61,6 +61,10 @@ ActiveRecord::Schema.define(version: 20140812154612) do
     t.integer  "code_position", default: 0, null: false
   end
 
+  add_index "transactions", ["user_id", "vendor_id"], name: "index_transactions_on_user_id_and_vendor_id", using: :btree
+  add_index "transactions", ["user_id"], name: "index_transactions_on_user_id", using: :btree
+  add_index "transactions", ["vendor_id"], name: "index_transactions_on_vendor_id", using: :btree
+
   create_table "users", force: true do |t|
     t.string   "email",                  default: "",    null: false
     t.string   "encrypted_password",     default: "",    null: false
@@ -106,6 +110,7 @@ ActiveRecord::Schema.define(version: 20140812154612) do
     t.datetime "updated_at"
   end
 
+  add_index "uuid_credits", ["user_id"], name: "index_uuid_credits_on_user_id", using: :btree
   add_index "uuid_credits", ["uuid"], name: "index_uuid_credits_on_uuid", unique: true, using: :btree
 
   create_table "vendors", force: true do |t|
