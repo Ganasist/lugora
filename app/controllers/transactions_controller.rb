@@ -1,6 +1,6 @@
 class TransactionsController < ApplicationController
 	before_action :depleted_code_pool
-	before_action :verify_users_only, only: [:new, :create]
+	before_action :new_transaction, only: [:new, :create]
 	before_action :verify_transaction_owners, only: :show
 
 	def index
@@ -53,16 +53,26 @@ class TransactionsController < ApplicationController
 	end
 
 	private
+		rescue_from ActiveRecord::RecordNotFound do |exception|
+      if vendor_signed_in? || user_signed_in?
+        flash[:alert] = "Transaction doesn't exist."
+        redirect_to current_vendor || current_user
+      else
+        flash[:alert] = 'You need to sign in or sign up before continuing.'
+        redirect_to root_url
+      end
+    end
+
 		def verify_transaction_owners
 			@transaction = Transaction.find(params[:id])
-			unless (current_user && current_user == @transaction.user) ||
-						 (current_vendor && current_vendor == @transaction.vendor)
-				flash[:error] = 'You do not have access to that transaction record.'
-				redirect_to root_path
+			unless (user_signed_in? && current_user == @transaction.user) ||
+						   (vendor_signed_in? && current_vendor == @transaction.vendor)
+				flash[:error] = "You don't have access to that verification record."
+				redirect_to current_user || current_vendor
 			end
 		end
 
-		def verify_users_only
+		def new_transaction
 			if current_vendor
 				flash[:error] = 'You need to be logged in as a User to verify a transaction.'
 				redirect_to current_vendor
@@ -71,7 +81,7 @@ class TransactionsController < ApplicationController
 
 		def depleted_code_pool
 			if current_user && current_user.code_pool.length == 0
-				flash[:error] = 'You have no more security codes remaining. Purchases unavailable.'
+				flash[:error] = 'You have no more security codes remaining. Verifications unavailable.'
 				redirect_to current_user
 			end
 		end

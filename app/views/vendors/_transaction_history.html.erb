@@ -15,7 +15,7 @@
 	<% @transactions.each do |t| %>
 	<tr>
 		<td class="text-right"><%= link_to t.id, vendor_transaction_path(@vendor, t) %></td>
-		<td class="text-right"><%= link_to t.user.fullname, t.user unless t.user.nil? %></td>
+		<td class="text-right"><%= t.user.fullname unless t.user.nil? %></td>
 		<td class="text-right"><%= number_with_delimiter(t.amount, delimiter: ',') %></td>
 		<td class="text-right"><%= t.created_at.to_formatted_s(:long_ordinal) %></td>
 	</tr>
