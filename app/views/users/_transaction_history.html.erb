@@ -1,9 +1,9 @@
 <table class="recent-transactions">
 	<thead>
 		<% unless params[:search] && params[:search] != "" %>
-			<caption>Recent verifications</caption>
+			<caption>Recent transactions</caption>
 		<% else %>
-			<caption>Verifications before <%= @date.strftime("%A, %B %d %Y") %></caption>
+			<caption>Transactions before <%= @date.strftime("%A, %B %d %Y") %></caption>
 		<% end %>
 		 <tr>
 		 	<th class="text-center">ID</th>
