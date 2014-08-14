@@ -3,8 +3,7 @@ class TransactionsController < ApplicationController
 	before_action :verify_users_only, only: [:new, :create]
 	before_action :verify_transaction_owners, only: :show
 
-	def index		
-	
+	def index
 	end
 
 	def show
@@ -19,11 +18,9 @@ class TransactionsController < ApplicationController
 	def new
 		@vendor 		 = Vendor.find(params[:vendor_id])
 		@transaction = Transaction.new
-		# authorize @transaction
 	end
 
 	def create
-		# authorize @transaction
     @transaction 				= Transaction.new(transaction_params)
     @vendor 						= Vendor.find(params[:vendor_id])
     @transaction.vendor = @vendor

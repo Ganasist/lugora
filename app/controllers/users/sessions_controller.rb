@@ -16,6 +16,10 @@ class Users::SessionsController < Devise::SessionsController
 
 	protected
 
+		def after_sign_in_path_for(resource_or_scope)
+	    current_user
+	  end
+
 		def configure_permitted_parameters
 			devise_parameter_sanitizer.for(:sign_in) { |u| u.permit(:email, 
 																															:password, 

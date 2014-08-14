@@ -1,5 +1,4 @@
 class VendorsController < ApplicationController
-	# before_action :authenticate_vendor!
 
   def index
     if params[:search] && params[:search] != ""
@@ -16,6 +15,7 @@ class VendorsController < ApplicationController
 	private
 		rescue_from ActiveRecord::RecordNotFound do |exception|
       if vendor_signed_in? || user_signed_in?
+        flash[:alert] = "Vendor doesn't exist."
         redirect_to current_vendor || current_user
       else
         flash[:alert] = 'You need to sign in or sign up before continuing.'

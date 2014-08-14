@@ -28,11 +28,11 @@ Rails.application.routes.draw do
 	end
 
 	resources :users, only: [:show, :index] do
-		resources :transactions, only: [:show, :index]
+		resources :transactions, only: [:show]
 	end
 
 	resources :vendors, only: [:show, :index] do
-	  resources :transactions, except: :index
+	  resources :transactions, only: [:new, :create, :show]
 	end
 
 	match 'users/:id/uuid_credit' => 'users#uuid_credit', as: 'user_uuid_credit', via: :patch
