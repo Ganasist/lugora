@@ -9,9 +9,9 @@
 
 		<% if current_user == @user %>
 			<div class="columns large-6">
-				<%= render 'transaction_search' %>			
+				<%= render 'transactions/transaction_search' %>			
 				<% unless @transactions.count == 0 %>			
-					<%= render 'transaction_history' %>
+					<%= render 'transactions/transaction_history' %>
 				<% else %>
 					<h2 class="text-center">No transactions found</h2>
 				<% end %>

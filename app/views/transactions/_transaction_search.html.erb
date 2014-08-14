@@ -1,4 +1,6 @@
-<%= simple_form_for :transactions, url: user_path(@user), method: 'get' do %>
+<% @url = user_signed_in? ? user_path(@user) : vendor_path(@vendor) %>
+
+<%= simple_form_for :transactions, url: @url, method: 'get' do %>
 	<%= date_field_tag :search, params[:search], 
 															placeholder: 'Search Transactions', 
 															class: 'text-center' %>

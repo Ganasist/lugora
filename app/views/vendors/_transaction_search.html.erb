@@ -1,7 +1,0 @@
-<%= simple_form_for :transactions, url: vendor_path(@vendor), method: 'get' do %>
-	<%= date_field_tag :search, params[:search], 
-															placeholder: 'Search Transactions', 
-															class: 'text-center' %>
-	<%= submit_tag 'Search verifications by date', name: nil, 
-																								 class: 'button small radius expand' %>
-<% end %>
