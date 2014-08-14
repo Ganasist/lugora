@@ -1,14 +1,25 @@
 class TransactionsController < ApplicationController
-	before_action :authenticate_user!
 	before_action :depleted_code_pool
+	before_action :verify_users_only, only: [:new, :create]
+	before_action :verify_transaction_owners, only: :show
 
 	def index		
 	
 	end
 
+	def show
+		@transaction = Transaction.find(params[:id])
+		if user_signed_in?
+			@user = User.find(params[:user_id])
+		elsif vendor_signed_in?
+			@vendor = current_vendor			
+		end
+	end
+
 	def new
 		@vendor 		 = Vendor.find(params[:vendor_id])
 		@transaction = Transaction.new
+		# authorize @transaction
 	end
 
 	def create
@@ -23,7 +34,7 @@ class TransactionsController < ApplicationController
 		    respond_to do |format|
 		      if @transaction.save
 		        format.html { redirect_to user_transaction_path(current_user, @transaction), 
-		        													notice: 'Purchase was successful.' }
+		        													notice: 'Verification was successful.' }
 		        format.json { render action: 'show', status: :created, location: @transaction }
 		      else
 		        format.html { render action: 'new' }
@@ -40,31 +51,29 @@ class TransactionsController < ApplicationController
     end
 	end
 
-	def show
-		if user_signed_in?
-			@user = User.find(params[:user_id])
-			@transaction = Transaction.find(params[:id])
-		elsif vendor_signed_in?
-			@vendor = current_vendor					
-		end
-	end
-
-	def edit
-		
-	end
-
-	def update
-		
-	end
-
 	def destroy
 		
 	end
 
 	private
+		def verify_transaction_owners
+			@transaction = Transaction.find(params[:id])
+			unless (current_user && current_user == @transaction.user) ||
+						 (current_vendor && current_vendor == @transaction.vendor)
+				flash[:error] = 'You do not have access to that transaction record.'
+				redirect_to root_path
+			end
+		end
+
+		def verify_users_only
+			if current_vendor
+				flash[:error] = 'You need to be logged in as a User to verify a transaction.'
+				redirect_to current_vendor
+			end
+		end
 
 		def depleted_code_pool
-			if current_user.code_pool.length == 0
+			if current_user && current_user.code_pool.length == 0
 				flash[:error] = 'You have no more security codes remaining. Purchases unavailable.'
 				redirect_to current_user
 			end

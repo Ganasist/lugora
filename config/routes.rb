@@ -32,7 +32,7 @@ Rails.application.routes.draw do
 	end
 
 	resources :vendors, only: [:show, :index] do
-	  resources :transactions
+	  resources :transactions, except: :index
 	end
 
 	match 'users/:id/uuid_credit' => 'users#uuid_credit', as: 'user_uuid_credit', via: :patch

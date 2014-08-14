@@ -3,6 +3,7 @@ class UsersController < ApplicationController
 
 	def show
 		@user = User.find(params[:id])
+    authorize @user
     if params[:search] && params[:search] != ""
       @date = params[:search].to_time.end_of_day
       @transactions = Transaction.search(@user, @date).limit(10).order('created_at DESC')
@@ -19,9 +20,5 @@ class UsersController < ApplicationController
         flash[:alert] = "You need to sign in or sign up before continuing."
         redirect_to root_url
       end
-    end
-
-    def uuid_credit_params
-      params.require(:uuid_credit).permit(:user_id, :uuid)
     end
 end
