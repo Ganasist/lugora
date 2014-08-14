@@ -1,0 +1,9 @@
+<ul class="vcard">
+  <li class="business"><%= @vendor.business %></li>
+  <li class="phone">+<%= number_to_phone(@vendor.phone) %></li>
+  <li class="street-address"><%= @vendor.street_address %></li>
+  <li class="locality"><%= @vendor.city %></li>
+  <li><span class="state"><%= @vendor.state %></span> 
+  	<span class="zip"><%= @vendor.postal_code %></span></li>
+  <li class="email"><%= mail_to @vendor.email %></li>
+</ul>

@@ -8,16 +8,19 @@
 		<% end %>
 			
 		<div class="columns large-5">
-			<ul class="vcard">
-			  <li class="business"><%= @vendor.business %></li>
-			  <li class="phone">+<%= number_to_phone(@vendor.phone) %></li>
-			  <li class="street-address"><%= @vendor.street_address %></li>
-			  <li class="locality"><%= @vendor.city %></li>
-			  <li><span class="state"><%= @vendor.state %></span> 
-			  	<span class="zip"><%= @vendor.postal_code %></span></li>
-			  <li class="email"><%= mail_to @vendor.email %></li>
-			</ul>
+			<%= render 'vendor_vcard' %>
 			<hr>
 		</div>
+
+		<% if current_vendor == @vendor %>
+			<div class="columns large-6">
+					<%= render 'transaction_search' %>			
+					<% unless @transactions.count == 0 %>			
+						<%= render 'transaction_history' %>
+					<% else %>
+						<h2 class="text-center">No verifications found</h2>
+					<% end %>
+			</div>
+		<% end %>
 	</div>
 </div>

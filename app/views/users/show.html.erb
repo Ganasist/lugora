@@ -1,50 +1,22 @@
 <div class="row">
 	<div class="columns large-12">
 		<h2 class="text-center"><%= @user.fullname %></h2>
+		
 		<div class="columns large-6">
-			<ul class="vcard">					
-			  <li class="occupation"><%= @user.occupation %></li>
-			  <li class="phone">+<%= number_to_phone(@user.phone) %></li>
-			  <li class="street-address"><%= @user.street_address %></li>
-			  <li class="locality"><%= @user.city %></li>
-			  <li><span class="state"><%= @user.state %></span>
-			  	<span class="zip"><%= @user.postal_code %></span></li>
-			  <li class="email"><%= mail_to @user.email %></li>
-			</ul>
+			<%= render 'user_vcard' %>
 			<hr>
 		</div>
-		<div class="columns large-6">
-			<%= simple_form_for :transactions, url: user_path(@user), method: 'get' do %>
-				<%= date_field_tag :search, params[:search], placeholder: 'Search Transactions', class: 'text-center' %>
-				<%= submit_tag 'Search verifications by date', name: nil, class: 'button small radius expand' %>
-			<% end %>
-			<% unless @transactions.count == 0 %>
-			<table class="recent-transactions">
-				<thead>
-					<% unless params[:search] && params[:search] != "" %>
-						<caption>Recent verifications</caption>
-					<% else %>
-						<caption>Verifications before <%= @date.strftime("%A, %B %d %Y") %></caption>
-					<% end %>
-					 <tr>
-					 	<th class="text-center">ID</th>
-			      <th class="text-center">Vendor</th>
-			      <th class="text-center">Amount</th>
-			      <th class="text-center">Date</th>
-			    </tr>
-				</thead>
-				<% @transactions.each do |t| %>
-				<tr>
-					<td class="text-right"><%= link_to t.id, user_transaction_path(@user, t) %></td>
-					<td class="text-right"><%= link_to t.vendor.fullname, t.vendor unless t.vendor.nil? %></td>
-					<td class="text-right"><%= number_with_delimiter(t.amount, delimiter: ',') %></td>
-					<td class="text-right"><%= t.created_at.to_formatted_s(:long_ordinal) %></td>
-				</tr>
+
+		<% if current_user == @user %>
+			<div class="columns large-6">
+				<%= render 'transaction_search' %>			
+				<% unless @transactions.count == 0 %>			
+					<%= render 'transaction_history' %>
+				<% else %>
+					<h2 class="text-center">No verifications found</h2>
 				<% end %>
-			</table>
-			<% else %>
-			<h2 class="text-center">No verifications found</h2>
-			<% end %>
-		</div>
+			</div>
+		<% end %>
+
 	</div>
 </div>

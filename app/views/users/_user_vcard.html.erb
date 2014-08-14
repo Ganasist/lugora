@@ -1,0 +1,9 @@
+<ul class="vcard">					
+  <li class="occupation"><%= @user.occupation %></li>
+  <li class="phone">+<%= number_to_phone(@user.phone) %></li>
+  <li class="street-address"><%= @user.street_address %></li>
+  <li class="locality"><%= @user.city %></li>
+  <li><span class="state"><%= @user.state %></span>
+  	<span class="zip"><%= @user.postal_code %></span></li>
+  <li class="email"><%= mail_to @user.email %></li>
+</ul>
