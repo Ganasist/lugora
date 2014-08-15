@@ -14,7 +14,7 @@ class UsersController < ApplicationController
 	private
     def user_privacy
       @user = User.find(params[:id])
-      unless user_signed_in? && current_user == @user
+      unless (user_signed_in? && current_user == @user) || current_admin_user
         if vendor_signed_in?
           flash[:alert] = "You can't access User profiles."
           redirect_to current_vendor
