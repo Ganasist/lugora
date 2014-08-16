@@ -1,5 +1,5 @@
 ActiveAdmin.register User do
-  menu label: "TF Users"
+  menu label: 'TF Users'
 
   scope :all
   scope :not_approved
@@ -25,7 +25,7 @@ ActiveAdmin.register User do
   end
 
   batch_action :regenerate_codes_all, 
-                confirm: "Are you sure you want to regenerate codes for all of these Users?" do |selection|
+                confirm: 'Are you sure you want to regenerate codes for all of these Users?' do |selection|
     User.find(selection).each do |user|
       user.generate_security_codes
       user.save
@@ -51,7 +51,7 @@ ActiveAdmin.register User do
 
   form do |f|
     f.semantic_errors *f.object.errors.keys
-    f.inputs "Details" do
+    f.inputs 'Details' do
       f.input :email
       f.input :password
       f.input :password_confirmation
@@ -90,16 +90,20 @@ ActiveAdmin.register User do
       row :failed_attempts
       row :code_pool
     end
-    render "users/code_table" 
+    render 'users/code_table'
     active_admin_comments
   end
 
   action_item only: :show do
-    link_to "View User's page", user_path(user)
+    link_to 'User Profile', user_path(user)
   end
 
   action_item only: :show do
-    link_to "Regenerate codes", regenerate_codes_admin_user_path(user), method: :post
+    link_to 'Print Codes', admin_user_path(user, format: 'pdf') if user.approved?
+  end
+
+  action_item only: :show do
+    link_to 'Regenerate codes', regenerate_codes_admin_user_path(user), method: :post
   end
 
   member_action :regenerate_codes, method: :post do
@@ -111,7 +115,8 @@ ActiveAdmin.register User do
   end
 
   action_item only: :show do
-    link_to 'Approve User', approve_user_admin_user_path(user), method: :post if !user.approved?
+    link_to 'Approve User', approve_user_admin_user_path(user), 
+                            method: :post if !user.approved?
   end
 
   member_action :approve_user, method: :post do
@@ -124,7 +129,8 @@ ActiveAdmin.register User do
   end
 
   action_item only: :show do
-    link_to 'Disapprove User', disapprove_user_admin_user_path(user), method: :post if user.approved?
+    link_to 'Disapprove User', disapprove_user_admin_user_path(user), 
+                               method: :post if user.approved?
   end 
 
   member_action :disapprove_user, method: :post do
@@ -137,14 +143,29 @@ ActiveAdmin.register User do
   end
 
   controller do
+    def show
+      @user = User.find(params[:id])
+      respond_to do |format|
+        format.html
+        format.pdf do
+          # pdf = Prawn::Document.new
+          pdf = OrderPdf.new(@user)
+          # pdf.text 'Hello World'
+          send_data pdf.render, filename: "#{@user.fullname}_codes",
+                                    type: 'application/pdf',
+                             disposition: 'inline'
+        end
+      end
+    end
+
     def update
-      user = params["user"]
+      user = params['user']
 
       # If we haven't set a password explicitly, we don't want it reset so 
       # don't pass those fields upstream and devise will ignore them
-      if user && (user["password"] == nil || user["password"].empty?)
-        user.delete("password")
-        user.delete("password_confirmation")
+      if user && (user['password'] == nil || user['password'].empty?)
+        user.delete('password')
+        user.delete('password_confirmation')
       end
 
       update!

@@ -183,6 +183,7 @@ GEM
     prawn (1.2.1)
       pdf-core (~> 0.2.5)
       ttfunk (~> 1.2.0)
+    prawn-table (0.1.0)
     pry (0.10.0)
       coderay (~> 1.1.0)
       method_source (~> 0.8.1)
@@ -359,6 +360,7 @@ DEPENDENCIES
   newrelic_rpm
   pg
   prawn
+  prawn-table (~> 0.1.0)
   pundit
   quiet_assets
   rails (= 4.1.4)
