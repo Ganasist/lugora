@@ -7,11 +7,12 @@ class OrderPdf < Prawn::Document
     current_date
     user_name
     line_items
+    company_name
   end
 
   def user_name
   	move_down 20
-    text "Codes for #{ @user.fullname }", size: 24, style: :bold, align: :center
+    text "Codes for user ##{ @user.id }", size: 24, style: :bold, align: :center
   end
 
   def current_date
@@ -32,5 +33,12 @@ class OrderPdf < Prawn::Document
     # 		"#{ (index + 1) + (top_index * 12) }" ":" "#{ code }"
     # 	end
     # end
+  end
+
+  def company_name
+    move_down 250
+    text "<system name>", align: :center, size: 32
+    move_down 50
+    text "TR © #{ Time.now.year }", align: :center, style: :bold, size: 10
   end
 end

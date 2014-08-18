@@ -151,7 +151,7 @@ ActiveAdmin.register User do
           # pdf = Prawn::Document.new
           pdf = OrderPdf.new(@user)
           # pdf.text 'Hello World'
-          send_data pdf.render, filename: "#{@user.fullname}_codes",
+          send_data pdf.render, filename: "#{@user.fullname} codes",
                                     type: 'application/pdf',
                              disposition: 'inline'
         end
