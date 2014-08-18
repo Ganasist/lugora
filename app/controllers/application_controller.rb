@@ -14,6 +14,7 @@ class ApplicationController < ActionController::Base
 	    	current_vendor
 	    end
     end
+
 	  def after_sign_out_path_for(resource_or_scope)
       if request.path == '/vendors/logout'
 	  		new_vendor_session_path
