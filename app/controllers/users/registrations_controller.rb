@@ -33,6 +33,10 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
 	protected
 
+		def after_inactive_sign_up_path_for(resource_or_scope)
+			current_user
+		end
+
 		def configure_permitted_parameters
 			devise_parameter_sanitizer.for(:sign_up) { |u| u.permit(:first_name,
 																															:last_name,

@@ -2,9 +2,9 @@
   <ul class="title-area">
     <li class="name">
 	    <% if user_signed_in? %>
-	    	<%= link_to "TF Home - #{ current_user.fullname }", current_user %>
+	    	<%= link_to "TF Home - #{ current_user.first_name }", current_user %>
 	    <% elsif vendor_signed_in? %>
-	    	<%= link_to "TF Home - #{ current_vendor.fullname }", current_vendor %>
+	    	<%= link_to "TF Home - #{ current_vendor.first_name }", current_vendor %>
       <% else %>
         <%= link_to 'TF Home', root_path %>
 	    <% end %>

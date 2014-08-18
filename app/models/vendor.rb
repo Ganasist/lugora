@@ -10,8 +10,8 @@ class Vendor < ActiveRecord::Base
 	scope :approved, -> { where(approved: true) }
   
   # Include default devise modules. Others available are:
-  # :omniauthable, :confirmable
-  devise :database_authenticatable, :registerable, :async,
+  # :omniauthable
+  devise :database_authenticatable, :registerable, :async, :confirmable,
   			 :timeoutable, :recoverable, :rememberable, :trackable, :validatable
 
   validates :first_name, :last_name, :business, :street_address, :phone_prefix,
