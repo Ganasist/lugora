@@ -1,14 +1,39 @@
-class UnlocksController < Devise::ConfirmationsController
+class UnlocksController < Devise::PasswordsController
 
-  private
+	# def new
+	# 	super
+	# end
 
-  def after_unlock_path_for(resource)
-  	if resource.is_a?(User)
-    	root_path
-    elsif resource.is_a?(Vendor)
-    	new_vendor_session_path
-    else
-	  	super
-    end  	
-  end
+	# def edit
+	# 	super
+	# end
+
+	# def create
+	# 	super
+	# end
+
+	# def update
+	# 	super
+	# end
+
+  protected  
+		# def after_sending_unlock_instructions_path_for(resource) 
+	 #  	if request.path == '/users/unlock'
+	 #  		puts 'hello1'
+	 #    	root_path
+	 #    else
+	 #    	puts 'world1'
+	 #    	new_vendor_session_path
+	 #    end  
+	 #  end
+
+		# def after_unlock_path_for(resource)
+	 #  	if request.path == '/users/unlock'
+	 #  		puts 'hello2'
+	 #    	current_user
+	 #    else
+	 #    	puts 'world2'
+	 #    	current_vendor
+	 #    end  	
+	 #  end
 end
