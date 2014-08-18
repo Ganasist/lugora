@@ -11,7 +11,7 @@ class Vendor < ActiveRecord::Base
   
   # Include default devise modules. Others available are:
   # :omniauthable
-  devise :database_authenticatable, :registerable, :async, :confirmable,
+  devise :database_authenticatable, :registerable, :async, :confirmable, :lockable,
   			 :timeoutable, :recoverable, :rememberable, :trackable, :validatable
 
   validates :first_name, :last_name, :business, :street_address, :phone_prefix,

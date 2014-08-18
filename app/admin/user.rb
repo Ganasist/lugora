@@ -21,7 +21,26 @@ ActiveAdmin.register User do
     end
     column :email
     column :approved
+    column :locked?, sortable: :locked_at do |user|
+      user.access_locked?
+    end
     actions
+  end
+
+  batch_action :unlock_users, 
+                confirm: 'Are you sure you want to unlock all of these Users?' do |selection|
+    User.find(selection).each do |user|
+      user.unlock_access!
+    end
+    redirect_to :back
+  end
+
+  batch_action :lock_users, 
+                confirm: 'Are you sure you want to lock all of these Users?' do |selection|
+    User.find(selection).each do |user|
+      user.lock_access!
+    end
+    redirect_to :back
   end
 
   batch_action :regenerate_codes_all, 
@@ -69,6 +88,9 @@ ActiveAdmin.register User do
   show do |user|
     attributes_table do
       row :id
+      row :locked? do |user|
+        user.access_locked?.to_s
+      end
       row :approved
       row :name do |user|
         user.fullname
@@ -100,6 +122,32 @@ ActiveAdmin.register User do
 
   action_item only: :show do
     link_to 'Print Codes', admin_user_path(user, format: 'pdf') if user.approved?
+  end
+
+  action_item only: :show do
+    link_to 'Unlock User', unlock_user_admin_user_path(user), 
+                            method: :post if user.access_locked?
+  end
+
+  member_action :unlock_user, method: :post do
+    user = User.find(params[:id])
+    user.unlock_access!
+
+    flash[:notice] = "#{ user.first_name } has been unlocked."
+    redirect_to admin_user_path(id: user.id)
+  end
+
+  action_item only: :show do
+    link_to 'Lock User', lock_user_admin_user_path(user), 
+                            method: :post if !user.access_locked?
+  end
+
+  member_action :lock_user, method: :post do
+    user = User.find(params[:id])
+    user.lock_access!
+
+    flash[:notice] = "#{ user.first_name } has been locked."
+    redirect_to admin_user_path(id: user.id)
   end
 
   action_item only: :show do
