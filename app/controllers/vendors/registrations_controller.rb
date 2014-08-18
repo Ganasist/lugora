@@ -34,7 +34,7 @@ class Vendors::RegistrationsController < Devise::RegistrationsController
 	protected
 
 		def after_inactive_sign_up_path_for(resource_or_scope)
-			current_vendor
+	    new_vendor_session_path
 		end
 
 		def configure_permitted_parameters

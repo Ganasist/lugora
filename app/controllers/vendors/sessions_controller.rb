@@ -16,12 +16,12 @@ class Vendors::SessionsController < Devise::SessionsController
 
 	protected
 
-  	def after_sign_out_path_for(resource_or_scope)
-	    new_vendor_session_path
-	  end
-
 	  def after_sign_in_path_for(resource_or_scope)
 	    current_vendor
+	  end
+
+	  def after_sign_out_path_for(resource_or_scope)
+	    new_vendor_session_path
 	  end
 
 		def configure_permitted_parameters

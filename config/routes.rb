@@ -9,11 +9,13 @@ Rails.application.routes.draw do
   																									sign_out: 'logout' },
   															      controllers: { sessions: 'vendors/sessions',
 	  									 				      						registrations: 'vendors/registrations',
-			  									 				      						passwords: 'passwords' }
+			  									 				      						passwords: 'passwords',
+										 				      						  confirmations: 'confirmations' }
 
   devise_for :users, controllers: { sessions: 'users/sessions',
 										 				   registrations: 'users/registrations',
-				 				      						 passwords: 'passwords' }
+				 				      						 passwords: 'passwords',
+				 				      						 confirmations: 'confirmations' }
 
 	authenticated :user do
 	  devise_scope :user do
@@ -23,7 +25,7 @@ Rails.application.routes.draw do
 
 	authenticated :vendor do
 	  devise_scope :vendor do
-	    root to: 'vendors#show', as: :authenticated_vendor
+	    root to: 'vendors#show', as: :authenticated_vendor 
 	  end
 	end
 
