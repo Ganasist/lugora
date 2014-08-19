@@ -1,6 +1,7 @@
 <div class="authform registration columns large-4 large-centered">
 	<%= simple_form_for [@vendor, @product], html: { multipart: true } do |f| %>
 	  <h3 class="text-center">New <%= @vendor.first_name %> Product</h3>
+	  <br>
 	  <%= f.error_notification %>
 	  <div class="row">
 		  <div class="form-inputs columns large-12 large-centered">
@@ -16,7 +17,7 @@
                          	inline_label: 'Delete this image' %><br>
         <% end %>
 
-        <div class="columns large-12 large-offset-4">
+        <div class="columns large-12 large-offset-4 small-12 small-offset-4">
 	        <%= f.file_field :image %>
         </div>
 

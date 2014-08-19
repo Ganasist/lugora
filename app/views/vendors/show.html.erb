@@ -1,6 +1,10 @@
 <div class="row">
 	<div class="columns large-12">
 		<h2 class="text-center"><%= @vendor.fullname %></h2>
+		<h3 class="text-center">
+			<%= link_to "View all #{ @vendor.first_name } products", vendor_products_path(@vendor), 
+																				 class: 'button success radius' %>
+		</h3>
 		<% if user_signed_in? %>
 			<h3 class="text-center">
 				<%= link_to 'Verify', new_vendor_transaction_path(@vendor), class: 'button radius' %>
