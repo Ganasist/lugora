@@ -8,7 +8,8 @@ ActiveAdmin.register User do
   scope :unlocked
 
   permit_params :first_name, :last_name, :occupation, :email, :phone_prefix, :phone_number,
-                :street_address, :city, :state, :postal_code, :approved, :security_codes
+                :street_address, :city, :state, :postal_code, :approved, :security_codes,
+                :password, :password_confirmation
 
   filter :id
   filter :email
@@ -73,6 +74,8 @@ ActiveAdmin.register User do
   form do |f|
     f.semantic_errors *f.object.errors.keys
     f.inputs 'Details' do
+      f.input :first_name
+      f.input :last_name
       f.input :email
       f.input :password
       f.input :password_confirmation
@@ -81,6 +84,7 @@ ActiveAdmin.register User do
       f.input :city
       f.input :state
       f.input :postal_code
+      f.input :phone_prefix
       f.input :phone_number
       f.input :approved
     end
@@ -90,7 +94,7 @@ ActiveAdmin.register User do
   show do |user|
     attributes_table do
       row :id
-      row :locked? do |user|
+      row :locked do |user|
         user.access_locked?.to_s
       end
       row :approved
@@ -199,9 +203,8 @@ ActiveAdmin.register User do
         format.html
         format.pdf do
           pdf = OrderPdf.new(@user)
-          send_data pdf.render, filename: "#{ @user.fullname } codes",
-                                    type: 'application/pdf',
-                             disposition: 'inline'
+          send_data pdf.render, filename: "User $#{ @user.id } codes",
+                                    type: 'application/pdf'
         end
       end
     end
