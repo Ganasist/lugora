@@ -3,7 +3,7 @@
 		<h2 class="text-center"><%= @vendor.fullname %></h2>
 		<% if user_signed_in? %>
 			<h3 class="text-center">
-				<%= link_to 'Verify', new_vendor_transaction_path(@vendor), class: 'button success radius' %>
+				<%= link_to 'Verify', new_vendor_transaction_path(@vendor), class: 'button radius' %>
 			</h3>
 		<% end %>
 			
@@ -23,66 +23,72 @@
 		<% end %>
 	</div>
 	<hr>
+		<% if current_vendor == @vendor %>
+			<div class="columns large-4 large-offset-4">
+					<%= link_to 'Add new product', new_vendor_product_path(@vendor), 
+																				 class: 'button success large radius expand' %>
+			</div>
+		<% end %>
 		<div class="large-12 columns">
-<div class="row">
-		<div class="large-4 small-6 columns">
-			<img src="http://placehold.it/1000x1000&amp;text=Thumbnail">
-			<div class="panel">
-				<h5>Item Name</h5>
-				<h6 class="subheader">$000.00</h6>
-			</div>
-		</div>
-		<div class="large-4 small-6 columns">
-			<img src="http://placehold.it/500x500&amp;text=Thumbnail">
-			<div class="panel">
-				<h5>Item Name</h5>
-				<h6 class="subheader">$000.00</h6>
-			</div>
-		</div>
-		<div class="large-4 small-6 columns">
-			<img src="http://placehold.it/500x500&amp;text=Thumbnail">
-			<div class="panel">
-				<h5>Item Name</h5>
-				<h6 class="subheader">$000.00</h6>
-			</div>
-		</div>
-		<div class="large-4 small-6 columns">
-			<img src="http://placehold.it/500x500&amp;text=Thumbnail">
-			<div class="panel">
-				<h5>Item Name</h5>
-				<h6 class="subheader">$000.00</h6>
-			</div>
-		</div>
-		<div class="large-4 small-6 columns">
-			<img src="http://placehold.it/500x500&amp;text=Thumbnail">
-			<div class="panel">
-				<h5>Item Name</h5>
-				<h6 class="subheader">$000.00</h6>
-			</div>
-		</div>
-			<div class="large-4 small-6 columns">
-				<img src="http://placehold.it/500x500&amp;text=Thumbnail">
-				<div class="panel">
-					<h5>Item Name</h5>
-					<h6 class="subheader">$000.00</h6>
+			<div class="row">
+				<div class="large-4 small-6 columns">
+					<img src="http://placehold.it/1000x1000&amp;text=Thumbnail">
+					<div class="panel">
+						<h5>Item Name</h5>
+						<h6 class="subheader">$000.00</h6>
+					</div>
 				</div>
-			</div>
-		</div>
- 
-		<div class="row">
-			<div class="large-12 columns">
-				<div class="panel">
-					<div class="row">
-						<div class="large-2 small-6 columns"><img src="http://placehold.it/300x300&amp;text=Site%20Owner"></div>
-						<div class="large-10 small-6 columns">
-							<strong>This Site Is Managed By</strong>
-							<hr>
-							Risus ligula, aliquam nec fermentum vitae, sollicitudin eget urna. Donec dignissim nibh fermentum
-							odio ornare sagittis
+				<div class="large-4 small-6 columns">
+					<img src="http://placehold.it/500x500&amp;text=Thumbnail">
+					<div class="panel">
+						<h5>Item Name</h5>
+						<h6 class="subheader">$000.00</h6>
+					</div>
+				</div>
+				<div class="large-4 small-6 columns">
+					<img src="http://placehold.it/500x500&amp;text=Thumbnail">
+					<div class="panel">
+						<h5>Item Name</h5>
+						<h6 class="subheader">$000.00</h6>
+					</div>
+				</div>
+				<div class="large-4 small-6 columns">
+					<img src="http://placehold.it/500x500&amp;text=Thumbnail">
+					<div class="panel">
+						<h5>Item Name</h5>
+						<h6 class="subheader">$000.00</h6>
+					</div>
+				</div>
+				<div class="large-4 small-6 columns">
+					<img src="http://placehold.it/500x500&amp;text=Thumbnail">
+					<div class="panel">
+						<h5>Item Name</h5>
+						<h6 class="subheader">$000.00</h6>
+					</div>
+				</div>
+					<div class="large-4 small-6 columns">
+						<img src="http://placehold.it/500x500&amp;text=Thumbnail">
+						<div class="panel">
+							<h5>Item Name</h5>
+							<h6 class="subheader">$000.00</h6>
 						</div>
 					</div>
 				</div>
-			</div> 
-		</div>
+		 
+				<div class="row">
+					<div class="large-12 columns">
+						<div class="panel">
+							<div class="row">
+								<div class="large-2 small-6 columns"><img src="http://placehold.it/300x300&amp;text=Site%20Owner"></div>
+								<div class="large-10 small-6 columns">
+									<strong>This Site Is Managed By</strong>
+									<hr>
+									Risus ligula, aliquam nec fermentum vitae, sollicitudin eget urna. Donec dignissim nibh fermentum
+									odio ornare sagittis
+								</div>
+							</div>
+						</div>
+					</div> 
+				</div>
 	</div>
 </div>
