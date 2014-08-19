@@ -1,6 +1,7 @@
 class Vendor < ActiveRecord::Base
 	include Naming
 
+	has_many :products
 	has_many :transactions
 	has_many :users, through: :transactions
 

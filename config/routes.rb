@@ -2,6 +2,8 @@ require 'sidekiq/web'
 
 Rails.application.routes.draw do
 
+  resources :products
+
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
 
@@ -35,6 +37,7 @@ Rails.application.routes.draw do
 
 	resources :vendors, only: [:show, :index] do
 	  resources :transactions, only: [:new, :create, :show]
+	  resources :products
 	end
 
 	match 'users/:id/uuid_credit' => 'users#uuid_credit', as: 'user_uuid_credit', via: :patch
