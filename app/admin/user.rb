@@ -225,7 +225,7 @@ ActiveAdmin.register User do
     protected
       rescue_from ActiveRecord::RecordNotFound do |exception| 
         flash[:alert] = "User not found."
-        redirect_to admin_dashboard_path
+        redirect_to admin_users_path
       end 
   end
 end

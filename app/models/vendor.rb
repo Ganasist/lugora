@@ -6,11 +6,13 @@ class Vendor < ActiveRecord::Base
 
 	default_scope { order('created_at desc').limit(10) }
 
+
+	scope :not, ->(scope_name) { where(send(scope_name).where_values.reduce(:and).not) }
 	scope :not_approved, -> { where(approved: false) }
 	scope :approved, -> { where(approved: true) }
+	scope :locked, -> { Vendor.not(:unlocked) }
+	scope :unlocked, -> { where(locked_at: nil) }
   
-  # Include default devise modules. Others available are:
-  # :omniauthable
   devise :database_authenticatable, :registerable, :async, :confirmable, :lockable,
   			 :timeoutable, :recoverable, :rememberable, :trackable, :validatable
 

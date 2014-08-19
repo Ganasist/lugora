@@ -13,9 +13,6 @@ class User < ActiveRecord::Base
 	scope :locked, -> { User.not(:unlocked) }
 	scope :unlocked, -> { where(locked_at: nil) }
 
-
-  # Include default devise modules. Others available are:
-  # :omniauthable
   devise :database_authenticatable, :registerable, :async, :confirmable, :lockable,
   			 :timeoutable, :recoverable, :rememberable, :trackable, :validatable
 
