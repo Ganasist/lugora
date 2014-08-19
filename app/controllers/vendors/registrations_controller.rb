@@ -37,6 +37,10 @@ class Vendors::RegistrationsController < Devise::RegistrationsController
 	    new_vendor_session_path
 		end
 
+		def after_update_path_for(resource)
+      current_vendor
+    end
+
 		def configure_permitted_parameters
 			devise_parameter_sanitizer.for(:sign_up) { |u| u.permit(:first_name,
 																															:last_name,

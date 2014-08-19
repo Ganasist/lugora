@@ -94,10 +94,11 @@ ActiveAdmin.register User do
   show do |user|
     attributes_table do
       row :id
+      row :confirmed_at
+      row :approved    
       row :locked do |user|
         user.access_locked?.to_s
       end
-      row :approved
       row :name do |user|
         user.fullname
       end
@@ -128,6 +129,18 @@ ActiveAdmin.register User do
 
   action_item only: :show do
     link_to 'Print Codes', admin_user_path(user, format: 'pdf') if user.approved?
+  end
+
+  action_item only: :show do
+    link_to 'Confirm User', confirm_user_admin_user_path(user), method: :post if !user.confirmed?
+  end
+
+  member_action :confirm_user, method: :post do
+    user = User.find(params[:id])
+    user.confirm! if !user.confirmed?
+
+    flash[:notice] = "#{ user.fullname } has been confirmed"
+    redirect_to admin_user_path(id: user.id)
   end
 
   action_item only: :show do
@@ -203,7 +216,7 @@ ActiveAdmin.register User do
         format.html
         format.pdf do
           pdf = OrderPdf.new(@user)
-          send_data pdf.render, filename: "User $#{ @user.id } codes",
+          send_data pdf.render, filename: "User ##{ @user.id } codes",
                                     type: 'application/pdf'
         end
       end

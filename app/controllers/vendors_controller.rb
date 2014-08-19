@@ -10,6 +10,7 @@ class VendorsController < ApplicationController
 
 	def show
 		@vendor = Vendor.find(params[:id])
+    @products = @vendor.products
     if params[:search] && params[:search] != ""
       @date = params[:search].to_time.end_of_day
       @transactions = Transaction.search(@vendor, @date).limit(10).order('created_at DESC')
