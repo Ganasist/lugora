@@ -6,8 +6,13 @@ class User < ActiveRecord::Base
 	has_many :uuid_credits
 	accepts_nested_attributes_for :uuid_credits
 
+
+	scope :not, ->(scope_name) { where(send(scope_name).where_values.reduce(:and).not) }
 	scope :not_approved, -> { where(approved: false) }
 	scope :approved, -> { where(approved: true) }
+	scope :locked, -> { User.not(:unlocked) }
+	scope :unlocked, -> { where(locked_at: nil) }
+
 
   # Include default devise modules. Others available are:
   # :omniauthable

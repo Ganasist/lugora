@@ -4,6 +4,8 @@ ActiveAdmin.register User do
   scope :all
   scope :not_approved
   scope :approved
+  scope :locked
+  scope :unlocked
 
   permit_params :first_name, :last_name, :occupation, :email, :phone_prefix, :phone_number,
                 :street_address, :city, :state, :postal_code, :approved, :security_codes
@@ -196,10 +198,8 @@ ActiveAdmin.register User do
       respond_to do |format|
         format.html
         format.pdf do
-          # pdf = Prawn::Document.new
           pdf = OrderPdf.new(@user)
-          # pdf.text 'Hello World'
-          send_data pdf.render, filename: "#{@user.fullname} codes",
+          send_data pdf.render, filename: "#{ @user.fullname } codes",
                                     type: 'application/pdf',
                              disposition: 'inline'
         end
@@ -218,5 +218,11 @@ ActiveAdmin.register User do
 
       update!
     end
+
+    protected
+      rescue_from ActiveRecord::RecordNotFound do |exception| 
+        flash[:alert] = "User not found."
+        redirect_to admin_dashboard_path
+      end 
   end
 end

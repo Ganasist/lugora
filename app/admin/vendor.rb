@@ -37,4 +37,13 @@ ActiveAdmin.register Vendor do
     end
     f.actions
   end
+
+  controller do
+
+    protected
+      rescue_from ActiveRecord::RecordNotFound do |exception| 
+        flash[:alert] = "Vendor not found."
+        redirect_to admin_dashboard_path
+      end 
+  end
 end

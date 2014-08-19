@@ -4,15 +4,13 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
 
-  rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
-
-  private  
+  private 
   	def after_sign_in_path_for(resource_or_scope)
 			if resource_or_scope.is_a?(User)
 	    	current_user
 	    elsif resource_or_scope.is_a?(Vendor)
 	    	current_vendor
-	    end
+			end	    	
     end
 
 	  def after_sign_out_path_for(resource_or_scope)
