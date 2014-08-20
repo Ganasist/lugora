@@ -3,7 +3,7 @@
 		<div class="text-center columns large-4 large-centered medium-5 medium-centered small-8 small-centered">
 			<h2 >
 			<% if vendor_signed_in? && current_vendor == @vendor %>
-				<%= link_to "#{@product.name}", edit_vendor_product_path(@vendor, @product), 
+				<%= link_to "#{@product.name}", edit_product_path(@product), 
 																					 class: 'button success radius' %>
 			<% else %>
 				<%= @product.name %>

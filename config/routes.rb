@@ -37,6 +37,7 @@ Rails.application.routes.draw do
 	  resources :products do
 		  resources :transactions
 		end
+		resources :transactions
 	end
 
 	match 'users/:id/uuid_credit' => 'users#uuid_credit', as: 'user_uuid_credit', via: :patch

@@ -14,7 +14,7 @@
 							<%= link_to 'Buy', new_product_transaction_path(product), 
 																		class: 'button success small radius right' %>
 						<% elsif current_vendor == @vendor %>							
-							<%= link_to 'Edit', edit_vendor_product_path(@vendor, product), 
+							<%= link_to 'Edit', edit_product_path(product), 
 																 class: 'button success small radius right' %>
 						<% end %>
 					</h5>

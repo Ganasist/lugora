@@ -1,5 +1,5 @@
 <div class="authform registration columns large-4 large-centered">
-	<%= simple_form_for [@vendor, @product], html: { multipart: true } do |f| %>
+	<%= simple_form_for @product, html: { multipart: true } do |f| %>
 	  <%= f.error_notification %>
 	  <div class="row">
 		  <div class="form-inputs columns large-12 large-centered">
@@ -28,7 +28,7 @@
 			<div class="form-actions large-12 large-centered columns">
 			   <%= f.button :submit, 'Submit', class: 'expand success' %>
 			   <% if @product.id? %>
-			     <%= link_to ' Destroy', vendor_product_path(@vendor, @product), 
+			     <%= link_to ' Destroy', product_path(@product), 
 	                                  method: :delete %>
 	       <% end %>
 		  </div>
