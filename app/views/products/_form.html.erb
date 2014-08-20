@@ -21,11 +21,16 @@
         </div>
 
         <h5 class="text-center">or</h5>
-        <%= f.input :image_remote_url, label: 'Enter an image URL', wrapper_html: { class: "text-center"} %>
+        <%= f.input :image_remote_url, label: 'Enter an image URL', 
+        												wrapper_html: { class: "text-center"} %>
 		  </div>
 		  <hr>
 			<div class="form-actions large-12 large-centered columns">
-			    <%= f.button :submit, 'Submit', class: 'expand success' %>
+			   <%= f.button :submit, 'Submit', class: 'expand success' %>
+			   <% if @product.id? %>
+			     <%= link_to ' Destroy', vendor_product_path(@vendor, @product), 
+	                                  method: :delete %>
+	       <% end %>
 		  </div>
 		</div>	 
 	<% end %>

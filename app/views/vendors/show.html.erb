@@ -1,18 +1,20 @@
 <div class="row">
 	<div class="columns large-12">
-		<h2 class="text-center columns large-4 large-centered">
-			<%= @vendor.fullname %>
-			<% if current_vendor == @vendor %>
-						<%= link_to 'Add new product', new_vendor_product_path(@vendor), 
-																					 class: 'button success tiny radius right' %>
+		<div class="text-center columns large-4 large-centered">
+			<h2 class="text-center">
+				<%= @vendor.fullname %>
+			</h2>
+				<% if current_vendor == @vendor %>
+							<%= link_to 'Add new product', new_vendor_product_path(@vendor), 
+																						 class: 'button success tiny radius' %>
+				<% end %>
+			<% if user_signed_in? %>
+				<h3 class="text-center">
+					<%= link_to 'Verify', new_vendor_transaction_path(@vendor), class: 'button radius' %>
+				</h3>
 			<% end %>
-		</h2>
-		<% if user_signed_in? %>
-			<h3 class="text-center">
-				<%= link_to 'Verify', new_vendor_transaction_path(@vendor), class: 'button radius' %>
-			</h3>
-		<% end %>
-			
+		</div>
+		
 		<div class="columns large-5">
 			<%= render 'vendor_vcard' %>
 		</div>
@@ -40,6 +42,6 @@
 			<%= link_to "View all #{ @vendor.first_name } products", vendor_products_path(@vendor), 
 																					 class: 'button success small radius' %>
 		</div>
-		<%= render 'products/products' %>
 	</div>
+		<%= render 'products/products' %>
 </div>
