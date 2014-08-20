@@ -1,6 +1,6 @@
 class ProductsController < ApplicationController
 	before_action :set_product, only: [:show, :edit, :update, :destroy]
-	before_action :set_vendor, only: [:index, :new, :create, :show]
+	before_action :set_vendor, only: [:index, :new, :create, :show, :edit, :update]
 
 	def index
 		@products = @vendor.products.limit(10)
@@ -33,7 +33,7 @@ class ProductsController < ApplicationController
 
 	def update
     respond_to do |format|
-      if @product.update(device_params)
+      if @product.update(product_params)
         format.html { redirect_to vendor_product_path(@vendor, @product) }
         format.json { head :no_content }
       else
@@ -55,7 +55,7 @@ class ProductsController < ApplicationController
 	private
 
 		def product_params
-			params.require(:product).permit(:vendor_id, :name, :credits, :image, 
+			params.require(:product).permit(:name, :credits, :image, 
 																			:image_remote_url, :delete_image)
 		end
 

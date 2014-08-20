@@ -1,33 +1,4 @@
-<div class="authform registration columns large-4 large-centered">
-	<%= simple_form_for [@vendor, @product], html: { multipart: true } do |f| %>
-	  <h3 class="text-center">Edit <%= @product.name %></h3>
-	  <br>
-	  <%= f.error_notification %>
-	  <div class="row">
-		  <div class="form-inputs columns large-12 large-centered">
-		  	<%= f.input :name, label: 'Product name' %>
-		  	<%= f.input :credits, label: 'Cost in credits' %>
-		  	<hr>
-		  	<h5 class="text-center">Product Image</h5>
-		  	<% if @product.image? %>
-           <%= link_to @product.image_file_name, @image.pdf.url, target: '_blank' %>
-          <br><br>
-          <%= f.input :delete_image, as: :boolean, 
-                                	label: false, 
-                         	inline_label: 'Delete this image' %><br>
-        <% end %>
-
-        <div class="columns large-12 large-offset-4 medium-6 medium-offset-5 small-12 small-offset-4">
-	        <%= f.file_field :image %>
-        </div>
-
-        <h5 class="text-center">or</h5>
-        <%= f.input :image_remote_url, label: 'Enter an image URL', wrapper_html: { class: "text-center"} %>
-		  </div>
-		  <hr>
-			<div class="form-actions large-12 large-centered columns">
-			    <%= f.button :submit, 'Create new product', class: 'expand success' %>
-		  </div>
-		</div>	 
-	<% end %>
+<div class="row">
+	<h3 class="text-center">Edit <%= @product.name %></h3>
+	<%= render 'form' %>
 </div>

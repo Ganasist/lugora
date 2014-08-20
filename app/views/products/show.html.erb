@@ -1,16 +1,28 @@
 <div class="row">
 	<div class="columns large-12">
-		<h2 class="text-center"><%= @product.name %><br>
-			<%= link_to "Edit", edit_vendor_product_path(@vendor, @product), 
-																				 class: 'button success radius tiny' %></h2>
+		<div class="text-center columns large-4 large-centered medium-5 medium-centered small-8 small-centered">
+			<h2 >
+			<% if vendor_signed_in? && current_vendor == @vendor %>
+				<%= link_to "#{@product.name}", edit_vendor_product_path(@vendor, @product), 
+																					 class: 'button success radius' %>
+			<% else %>
+				<%= @product.name %>
+			<% end %>
+		</h2>
+		</div>
 		<h3 class="columns large-6 large-centered small-12 medium-8 medium-centered">
 			<% if @product.image.present? %>
 	      <% if @product.image_processing? %>
 	        <br><h4 class="text-center">Processing image...</h4><br>
-	      <% else %>
+	      <% elsif %>
           <%= image_tag(@product.image.url(:default), class: "text-center").html_safe %>
-	      <% end %>
-	    <% end %>
+	      <% else %>
+		      <img src="http://placehold.it/1000x1000&amp;text=Image not available">
+		    <% end %>
+		  <% end %>
+		</h3>
+		<h3 class="text-center columns large-4 large-centered medium-5 medium-centered small-8 small-centered">
+			<%= number_with_delimiter(@product.credits, delimiter: ",") %> credits
 		</h3>
 	</div>
 </div>

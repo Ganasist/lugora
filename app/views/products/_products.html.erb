@@ -1,14 +1,28 @@
-<% @products.each do |product| %>
-	<div class="row">
-		<div class="large-4 small-6 columns">
-			<% if product.image %>
-
-			<% else %>
-				<img src="http://placehold.it/1000x1000&amp;text=Thumbnail">
-			<% end %>
-			<div class="panel">
-				<h5>Item Name</h5>
-				<h6 class="subheader">$000.00</h6>
+<div class="row">
+	<div class="large-12 columns">
+		<% @products.each do |product| %>
+			<div class="large-4 medium-6 small-12 columns">
+				<% if product.image? %>
+					<%= image_tag(product.image.url(:default)).html_safe %>
+				<% else %>
+					<img src="http://placehold.it/500x300&amp;text=Image not available">
+				<% end %>
+				<div class="panel">
+					<h5>
+						<%= product.name %>
+						<% if user_signed_in? %>
+							<%= link_to 'Buy', new_vendor_product_path(@vendor), 
+																 class: 'button success small radius right' %>
+						<% elsif current_vendor == @vendor %>
+							<%= link_to 'Edit', edit_vendor_product_path(@vendor, product), 
+																 class: 'button success small radius right' %>
+						<% end %>
+					</h5>
+					<h6 class="subheader">
+						<%= number_with_delimiter(product.credits, delimiter: ",") %> credits
+					</h6>				
+				</div>
 			</div>
-		</div>
-<% end %>
+		<% end %>
+	</div>
+</div>
