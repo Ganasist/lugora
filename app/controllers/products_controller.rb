@@ -22,7 +22,7 @@ class ProductsController < ApplicationController
 		@product = @vendor.products.new(product_params)
 		respond_to do |format|
 			if @product.save
-				format.html { redirect_to @product }
+				format.html { redirect_to product_path(@product) }
         format.json { render action: 'show', status: :created, location: @product }
 			else
 				format.html { render action: 'new' }
