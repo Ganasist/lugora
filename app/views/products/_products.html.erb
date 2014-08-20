@@ -11,9 +11,9 @@
 					<h5>
 						<%= product.name %>
 						<% if user_signed_in? %>
-							<%= link_to 'Buy', new_vendor_product_path(@vendor), 
-																 class: 'button success small radius right' %>
-						<% elsif current_vendor == @vendor %>
+							<%= link_to 'Buy', new_product_transaction_path(product), 
+																		class: 'button success small radius right' %>
+						<% elsif current_vendor == @vendor %>							
 							<%= link_to 'Edit', edit_vendor_product_path(@vendor, product), 
 																 class: 'button success small radius right' %>
 						<% end %>

@@ -3,6 +3,8 @@ class User < ActiveRecord::Base
 
 	has_many :transactions
 	has_many :vendors, through: :transactions
+	has_many :products, through: :transations
+	
 	has_many :uuid_credits
 	
 	accepts_nested_attributes_for :uuid_credits

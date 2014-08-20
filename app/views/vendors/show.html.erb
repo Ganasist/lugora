@@ -10,16 +10,17 @@
 				<% end %>
 			<% if user_signed_in? %>
 				<h3 class="text-center">
-					<%= link_to 'Verify', new_vendor_transaction_path(@vendor), class: 'button radius' %>
+					<%#= link_to 'Verify', new_vendor_product_transaction_path(@vendor, @product), class: 'button radius' %>
 				</h3>
 			<% end %>
 		</div>
 		
-		<div class="columns large-5">
-			<%= render 'vendor_vcard' %>
-		</div>
 
 		<% if current_vendor == @vendor %>
+			<div class="columns large-5">
+				<%= render 'vendor_vcard' %>
+			</div>
+
 			<div class="columns large-7 large-uncentered medium-10 small-12 small-centered">
 					<%= render 'transactions/transaction_search' %>			
 					<% unless @transactions.count == 0 %>			

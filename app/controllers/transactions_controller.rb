@@ -16,7 +16,8 @@ class TransactionsController < ApplicationController
 	end
 
 	def new
-		@vendor 		 = Vendor.find(params[:vendor_id])
+		@product 		 = Product.find(params[:vendor_id])
+		@vendor 		 = @product.vendor
 		@transaction = Transaction.new
 	end
 

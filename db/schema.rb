@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140819160330) do
+ActiveRecord::Schema.define(version: 20140820145518) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -75,8 +75,12 @@ ActiveRecord::Schema.define(version: 20140819160330) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "code_position", default: 0, null: false
+    t.integer  "product_id",                null: false
   end
 
+  add_index "transactions", ["product_id", "user_id"], name: "index_transactions_on_product_id_and_user_id", using: :btree
+  add_index "transactions", ["product_id", "vendor_id"], name: "index_transactions_on_product_id_and_vendor_id", using: :btree
+  add_index "transactions", ["product_id"], name: "index_transactions_on_product_id", using: :btree
   add_index "transactions", ["user_id", "vendor_id"], name: "index_transactions_on_user_id_and_vendor_id", using: :btree
   add_index "transactions", ["user_id"], name: "index_transactions_on_user_id", using: :btree
   add_index "transactions", ["vendor_id"], name: "index_transactions_on_vendor_id", using: :btree

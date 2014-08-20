@@ -1,5 +1,7 @@
 class Product < ActiveRecord::Base
   belongs_to :vendor
+  has_many :transactions
+  has_many :users, through: :transactions
 
   validates :name, :credits, :vendor_id, presence: true
   validates :credits, numericality: { only_integer: true }
