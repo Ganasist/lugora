@@ -12,6 +12,8 @@ class Product < ActiveRecord::Base
   validates_attachment_file_name :image, matches: [/png\Z/, /jpe?g\Z/, /gif\Z/]
   before_validation { image.clear if delete_image == '1' }
 
+   process_in_background :image
+
   attr_accessor :delete_image
   attr_reader :image_remote_url
 

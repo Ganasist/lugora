@@ -94,10 +94,14 @@ ActiveAdmin.register User do
   show do |user|
     attributes_table do
       row :id
-      row :confirmed_at
-      row :approved    
+      row :confirmed_at do |user|
+        user.confirmed? ? user.confirmed_at : "false"
+      end
+      row :approved do |user|
+        user.approved? ? "true" : "false"
+      end 
       row :locked do |user|
-        user.access_locked?.to_s
+        user.access_locked? ? user.locked_at : "false"
       end
       row :name do |user|
         user.fullname

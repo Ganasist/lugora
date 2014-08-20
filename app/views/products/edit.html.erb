@@ -1,6 +1,6 @@
 <div class="authform registration columns large-4 large-centered">
 	<%= simple_form_for [@vendor, @product], html: { multipart: true } do |f| %>
-	  <h3 class="text-center">New <%= @vendor.first_name %> Product</h3>
+	  <h3 class="text-center">Edit <%= @product.name %></h3>
 	  <br>
 	  <%= f.error_notification %>
 	  <div class="row">
