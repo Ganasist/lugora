@@ -150,7 +150,7 @@ Devise.setup do |config|
   if Rails.env.development?
     config.timeout_in = 30.minutes
   else
-    config.timeout_in = 30.seconds
+    config.timeout_in = 3.minutes
   end
     
   # If true, expires auth token on session timeout.
