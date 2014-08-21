@@ -5,7 +5,7 @@ class Transaction < ActiveRecord::Base
 
 	default_scope { order('created_at desc').limit(10) }
 
-	validates :user, :vendor, :product, :amount, :security_code, :code_position, presence: true
+	validates :user, :vendor, :product, :amount, :quantity, :security_code, :code_position, presence: true
 	validates :amount, :security_code, :code_position, numericality: { only_integer: true }
 	validates :security_code, length: { is: 6 }
 

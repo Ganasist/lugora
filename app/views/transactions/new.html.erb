@@ -1,18 +1,18 @@
-<% @amount = %w(100 1000 10000 100000 1000000).sample %>
+<% @credits = %w(100 1000 10000 100000 1000000).sample %>
 <% @code_position = current_user.code_pool.sample %>
 
 <div class="row">
 	<div class="columns large-12 text-center">
 		<h2><%= @vendor.fullname %></h2>
-		<h3>Cost: <%= number_with_delimiter(@amount, delimiter: ',') %> credits</h3>
+		<h3>Cost: <%= number_with_delimiter(@credits, delimiter: ',') %> credits</h3>
 
 		<div class="authform registration large-4 large-centered columns">
 			<%= simple_form_for [@vendor, @transaction] do |f| %>
 			  <%= f.error_notification %>
 
 			  <div class="form-actions">
-			    <%= f.input :amount, as: :hidden, 
-			    						 input_html: { value: "#{ @amount }" } %>
+			    <%= f.input :credits, as: :hidden, 
+			    						 input_html: { value: "#{ @credits }" } %>
 			    <%= f.input :code_position, as: :hidden, 
 			    										input_html: { value: "#{ @code_position }" } %>
 			    <%= f.input :security_code, label: "Enter Security Code ##{ @code_position }",
@@ -26,18 +26,5 @@
 			  </div>
 			<% end %>
 		</div>
-
-		<!-- <div class="columns large-12">
-			<table>
-				<%# current_user.security_codes.in_groups_of(12, false).each_with_index do |codes, top_index| %>
-				<tr>
-					<%# codes.each_with_index do |code, index| %>
-						<td><%#= (index + 1) + (top_index * 12) %>: <%#= code %></td>
-					<%# end %>
-				</tr>
-				<%# end %>
-			</table>
-			<hr>
-		</div> -->	
 	</div>
 </div>
