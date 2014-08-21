@@ -7,7 +7,7 @@ class Product < ActiveRecord::Base
   validates :credits, numericality: { only_integer: true }
 
 	# General image validations
-  has_attached_file :image, styles: { default: '500x500>' }, size: { :in => 0..1.megabytes }
+  has_attached_file :image, styles: { default: '500x500>' }, size: { :in => 0..2.megabytes }
 	# Validate content type
   validates_attachment_content_type :image, content_type: /\Aimage/
   # Validate filename

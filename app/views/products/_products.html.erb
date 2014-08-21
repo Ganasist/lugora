@@ -2,7 +2,7 @@
 	<div class="large-12 columns">
 		<% @products.each do |product| %>
 			<div class="large-4 medium-6 small-12 columns">
-				<% if product.image? %>
+				<% if product.image.present? %>
 					<%= image_tag(product.image.url(:default)).html_safe %>
 				<% else %>
 					<img src="http://placehold.it/500x300&amp;text=Image not available">
