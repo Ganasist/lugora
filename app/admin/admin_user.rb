@@ -1,5 +1,20 @@
 ActiveAdmin.register AdminUser do
-  permit_params :email, :password, :password_confirmation
+  permit_params :email, :timeout, :password, :password_confirmation
+
+  controller do
+    skip_before_filter :authenticate_user!
+    def create
+      super do |format|
+        redirect_to admin_root_path and return if resource.valid?
+      end
+    end
+ 
+    def update
+      super do |format|
+        redirect_to admin_root_path and return if resource.valid?
+      end
+    end
+  end
 
   index do
     selectable_column
@@ -17,6 +32,7 @@ ActiveAdmin.register AdminUser do
   form do |f|
     f.inputs 'Admin Details' do
       f.input :email
+      f.input :timeout
       f.input :password
       f.input :password_confirmation
     end

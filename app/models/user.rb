@@ -29,4 +29,8 @@ class User < ActiveRecord::Base
  	def generate_security_codes
  		SecurityCodeWorker.perform_async(self.id)
 	end
+
+	def timeout_in
+    AdminUser.first.timeout
+  end
 end

@@ -25,4 +25,8 @@ class Vendor < ActiveRecord::Base
 	def self.search(query)
 		where("last_name @@ :q or first_name @@ :q", q: "%#{query}%")
 	end
+
+	def timeout_in
+    AdminUser.first.timeout
+  end
 end

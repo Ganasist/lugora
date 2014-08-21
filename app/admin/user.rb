@@ -169,7 +169,7 @@ ActiveAdmin.register User do
     user = User.find(params[:id])
     user.lock_access!
 
-    flash[:notice] = "#{ user.first_name } has been locked."
+    flash[:error] = "#{ user.first_name } has been locked."
     redirect_to admin_user_path(id: user.id)
   end
 

@@ -147,11 +147,11 @@ Devise.setup do |config|
   # ==> Configuration for :timeoutable
   # The time you want to timeout the user session without activity. After this
   # time the user will be asked for credentials again. Default is 30 minutes.
-  if Rails.env.development?
-    config.timeout_in = 30.minutes
-  else
-    config.timeout_in = 3.minutes
-  end
+  # if Rails.env.development?
+  #   config.timeout_in = 30.minutes
+  # else
+  #   config.timeout_in = 3.minutes
+  # end
     
   # If true, expires auth token on session timeout.
   # config.expire_auth_token_on_timeout = false
