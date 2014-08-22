@@ -4,7 +4,8 @@
 	  <div class="row">
 		  <div class="form-inputs columns large-12 large-centered">
 		  	<%= f.input :name, label: 'Product name' %>
-		  	<%= f.input :credits, label: 'Cost in credits' %>
+		  	<%= f.input :credits, label: 'Cost in credits' %>		  	
+		  	<%= f.input :amount_available %>
 		  	<hr>
 		  	<h5 class="text-center">Product Image</h5>
 		  	<% if @product.image? %>
@@ -28,8 +29,9 @@
 			<div class="form-actions large-12 large-centered columns">
 			   <%= f.button :submit, 'Submit', class: 'expand success' %>
 			   <% if @product.id? %>
-			     <%= link_to ' Destroy', product_path(@product), 
-	                                  method: :delete %>
+			     <%= link_to 'Destroy Product', product_path(@product), 
+	                                  method: :delete, 
+																					 class: 'button alert radius tiny small-centered columns' %>
 	       <% end %>
 		  </div>
 		</div>	 

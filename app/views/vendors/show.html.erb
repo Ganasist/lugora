@@ -21,7 +21,7 @@
 					<% unless @transactions.count == 0 %>			
 						<%= render 'transactions/transaction_history' %>
 					<% else %>
-						<h2 class="text-center">No verifications found</h2>
+						<h2 class="text-center">No transactions found</h2>
 					<% end %>
 			</div>
 		<% end %>
@@ -32,7 +32,7 @@
 	<div class="large-12 medium-12 small-12 columns">
 		<% if @vendor.products.present? %>
 			<h3 class="text-center">
-					Recent <%= @vendor.first_name %> Items <br>
+					Recent <%= @vendor.first_name %> Products <br>
 			</h3>
 			<div class="text-center">
 				<%= link_to "View all #{ @vendor.first_name } products", vendor_products_path(@vendor), 

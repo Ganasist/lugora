@@ -2,11 +2,13 @@
 	<div class="columns large-12">
 		<div class="text-center columns large-4 large-centered medium-5 medium-centered small-8 small-centered">
 			<h2 >
-			<% if vendor_signed_in? && current_vendor == @vendor %>
-				<%= link_to "#{@product.name}", edit_product_path(@product), 
+			<% if current_vendor == @vendor %>
+				<%= link_to "Edit #{ @product.name }", edit_product_path(@product), 
 																					 class: 'button success radius' %>
+			<% elsif @product.amount_available > 0 %>
+				<%= link_to "Buy #{ @product.name }", new_product_transaction_path(@product) %>
 			<% else %>
-				<%= @product.name %>
+				<%= link_to "#{ @product.name }", @vendor %>
 			<% end %>
 		</h2>
 		</div>
@@ -15,14 +17,24 @@
 	      <% if @product.image_processing? %>
 	        <br><h4 class="text-center">Processing image...</h4><br>
 	      <% elsif %>
-          <%= image_tag(@product.image.url(:default), class: "text-center").html_safe %>
+	      	<%= link_to image_tag(@product.image.url(:default)).html_safe, @vendor %>
 	      <% else %>
 		      <img src="http://placehold.it/1000x1000&amp;text=Image not available">
 		    <% end %>
 		  <% end %>
 		</h3>
-		<h3 class="text-center columns large-4 large-centered medium-5 medium-centered small-8 small-centered">
-			<%= number_with_delimiter(@product.credits, delimiter: ",") %> credits
-		</h3>
+		<div class="text-center columns large-4 large-centered medium-5 medium-centered small-8 small-centered">
+			<h3><%= number_with_delimiter(@product.credits, delimiter: ",") %> credits</h3>
+			<h4>
+				<% if @product.amount_available > 0 %>
+					<%= @product.amount_available %> available
+				<% else %>
+					None currently available
+				<% end %>
+			</h4>
+			<%= link_to 'Destroy Product', product_path(@product), 
+	                                  method: :delete, 
+																					 class: 'button alert radius tiny' if current_vendor == @vendor %>
+		</div>		
 	</div>
 </div>

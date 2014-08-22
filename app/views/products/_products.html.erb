@@ -3,7 +3,7 @@
 		<% @products.each do |product| %>
 			<div class="large-4 medium-6 small-12 columns">
 				<% if product.image.present? %>
-					<%= image_tag(product.image.url(:default)).html_safe %>
+					<%= link_to image_tag(product.image.url(:default)).html_safe, product %>
 				<% else %>
 					<img src="http://placehold.it/500x300&amp;text=Image not available">
 				<% end %>
@@ -12,7 +12,7 @@
 						<%= product.name %>
 						<% if user_signed_in? %>
 							<%= link_to 'Buy', new_product_transaction_path(product), 
-																		class: 'button success small radius right' %>
+																		class: 'button success small radius right' if product.amount_available > 0 %>
 						<% elsif current_vendor == @vendor %>							
 							<%= link_to 'Edit', edit_product_path(product), 
 																 class: 'button success small radius right' %>
@@ -20,7 +20,10 @@
 					</h5>
 					<h6 class="subheader">
 						<%= number_with_delimiter(product.credits, delimiter: ",") %> credits
-					</h6>			
+					</h6>
+					<h6 class="subheader">
+						<%= number_with_delimiter(product.amount_available, delimiter: ",") %> available
+					</h6>	
 				</div>
 			</div>
 		<% end %>
