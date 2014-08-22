@@ -46,7 +46,7 @@ class ProductsController < ApplicationController
   def destroy
     @product.destroy
     respond_to do |format|
-      format.html { redirect_to current_vendor }
+      format.html { redirect_to current_vendor, notice: "Product removed." }
       format.json { head :no_content }
       format.js
     end
