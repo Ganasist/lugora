@@ -1,3 +1,6 @@
-# Place all the behaviors and hooks related to the matching controller here.
-# All this logic will automatically be available in application.js.
-# You can use CoffeeScript in this file: http://coffeescript.org/
+jQuery ->
+	original = parseInt($('#purchase_cost').text())
+	$('#item_quantity').change ->
+		quantity = $('#item_quantity').val()
+		$("#purchase_cost").html quantity * original
+		# console.log original * quantity

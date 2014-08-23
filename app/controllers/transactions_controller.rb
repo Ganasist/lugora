@@ -16,19 +16,23 @@ class TransactionsController < ApplicationController
 	end
 
 	def new
-		@transaction = Transaction.new
-		@product 		 = Product.find(params[:product_id])
-		@vendor 		 = @product.vendor
+		@transaction  = Transaction.new
+		@user 				= current_user
+		@product 		  = Product.find(params[:product_id])
+		@vendor 		  = @product.vendor
 	end
 
 	def create
-    @transaction 				= Transaction.new(transaction_params)
-    @vendor 						= Vendor.find(params[:vendor_id])
-    @transaction.vendor = @vendor
-    @transaction.user 	= current_user
+    @transaction 					= Transaction.new(transaction_params)
+    @product 							= Product.find(params[:product_id])
+    @vendor 							= @product.vendor
+    @transaction.product 	= @product
+    @transaction.vendor  	= @vendor
+    @transaction.user 		= current_user
+    @transaction.credits	= @product.credits * @transaction.quantity
 
 		if TransactionCheck.new(current_user, @transaction).check?
-			if current_user.credits > @transaction.amount
+			if current_user.credits > @transaction.credits
 		    respond_to do |format|
 		      if @transaction.save
 		        format.html { redirect_to user_transaction_path(current_user, @transaction), 
@@ -40,7 +44,7 @@ class TransactionsController < ApplicationController
 		      end
 		    end
 		   else
-		   	flash[:error] = 'You have insufficient credits. Please add more here.'
+		   	flash[:error] = 'You have insufficient credits. Please add more HERE.'
 	      render action: 'new'
 		   end
 	  else
@@ -88,11 +92,6 @@ class TransactionsController < ApplicationController
 		end
 
 		def transaction_params
-			params.require(:transaction).permit(:user_id, 
-																					:vendor_id, 
-																					:security_code,
-																					:code_position,
-																					:amount, 
-																					:disputed)
+			params.require(:transaction).permit(:security_code, :code_position)
 		end
 end

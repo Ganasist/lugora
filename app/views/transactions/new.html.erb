@@ -1,6 +1,4 @@
-<%# @credits = %w(100 1000 10000 100000 1000000).sample %>
 <% @code_position = current_user.code_pool.sample %>
-
 <div class="row">
 	<div class="columns large-12 text-center">
 		<h2><%= @product.name %></h2>
@@ -15,15 +13,19 @@
 		    <% end %>
 		  <% end %>
 		</h3>
-		<h3><%= number_with_delimiter(@product.credits, delimiter: ',') %> credits</h3>
+		<h3>
+			<span id="purchase_cost">
+				<%= @product.credits %>
+			</span>
+			 credits
+		</h3>
 
 		<div class="authform registration large-4 large-centered columns">
 			<%= simple_form_for [@product, @transaction] do |f| %>
 			  <%= f.error_notification %>
 
 			  <div class="form-actions">
-			    <%= f.input :credits, as: :hidden, 
-			    						 input_html: { value: "#{ @product.credits }" } %>
+			    <%= f.input :quantity, input_html: { id: "item_quantity", min: 1 } %>
 			    <%= f.input :code_position, as: :hidden, 
 			    										input_html: { value: "#{ @code_position }" } %>
 			    <%= f.input :security_code, label: "Enter Security Code ##{ @code_position }",
@@ -31,7 +33,7 @@
 			  </div>
 
 			  <div class="form-actions">
-			    <%= f.button :submit, 'Verify Now', 
+			    <%= f.button :submit, 'Verify & Buy', 
 			    											class: 'btn-large btn-warning success radius', 
 			    												 id: 'item_submit' %>
 			  </div>
