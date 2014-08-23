@@ -220,7 +220,7 @@ ActiveAdmin.register User do
         format.html
         format.pdf do
           pdf = OrderPdf.new(@user)
-          send_data pdf.render, filename: "User ##{ @user.id } codes",
+          send_data pdf.render, filename: "User ##{ @user.id }",
                                     type: 'application/pdf'
         end
       end
