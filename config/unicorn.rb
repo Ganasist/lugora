@@ -1,4 +1,8 @@
-worker_processes Integer(ENV['WEB_CONCURRENCY'] || 1)
+if Rails.env.development?
+  worker_processes 1
+else
+  worker_processes Integer(ENV['WEB_CONCURRENCY'] || 2)
+end
 timeout 15
 preload_app true
 

@@ -19,25 +19,28 @@
 			</span>
 			 credits
 		</h3>
+		<% if @product.amount_available == 0 %>
+			<h3>Out of stock</h3>
+		<% else %>
+			<div class="authform registration large-4 large-centered columns">
+				<%= simple_form_for [@product, @transaction] do |f| %>
+				  <%= f.error_notification %>
 
-		<div class="authform registration large-4 large-centered columns">
-			<%= simple_form_for [@product, @transaction] do |f| %>
-			  <%= f.error_notification %>
+				  <div class="form-actions">
+				    <%= f.input :quantity, input_html: { id: "item_quantity", min: 1 } %>
+				    <%= f.input :code_position, as: :hidden, 
+				    										input_html: { value: "#{ @code_position }" } %>
+				    <%= f.input :security_code, label: "Enter Security Code ##{ @code_position }",
+				    											 input_html: { maxlength: 6 } %>
+				  </div>
 
-			  <div class="form-actions">
-			    <%= f.input :quantity, input_html: { id: "item_quantity", min: 1 } %>
-			    <%= f.input :code_position, as: :hidden, 
-			    										input_html: { value: "#{ @code_position }" } %>
-			    <%= f.input :security_code, label: "Enter Security Code ##{ @code_position }",
-			    											 input_html: { maxlength: 6 } %>
-			  </div>
-
-			  <div class="form-actions">
-			    <%= f.button :submit, 'Verify & Buy', 
-			    											class: 'btn-large btn-warning success radius', 
-			    												 id: 'item_submit' %>
-			  </div>
+				  <div class="form-actions">
+				    <%= f.button :submit, 'Verify & Buy', 
+				    											class: 'btn-large btn-warning success radius', 
+				    												 id: 'item_submit' %>
+				  </div>
+				<% end %>
+			</div>
 			<% end %>
-		</div>
 	</div>
 </div>

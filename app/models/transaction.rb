@@ -18,12 +18,12 @@ class Transaction < ActiveRecord::Base
 
 	after_commit :adjust_purchase_count, on: :create
 	def adjust_purchase_count
-			self.vendor.purchases += self.quantity
-			self.vendor.save!
+		self.vendor.purchases += self.quantity
+		self.vendor.save!
 
-			self.product.purchases += self.quantity
-			self.product.amount_available -= 1
-			self.product.save!
+		self.product.purchases += self.quantity
+		self.product.amount_available -= self.quantity
+		self.product.save!
 	end
 
 	def purchase

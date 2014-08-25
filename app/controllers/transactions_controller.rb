@@ -33,20 +33,25 @@ class TransactionsController < ApplicationController
 
 		if TransactionCheck.new(current_user, @transaction).check?
 			if current_user.credits > @transaction.credits
-		    respond_to do |format|
-		      if @transaction.purchase
-		        format.html { redirect_to user_transaction_path(current_user, @transaction), 
-		        													notice: "Purchase successful! You have #{current_user.code_pool.length } security codes remaining." }
-		        format.json { render action: 'show', status: :created, location: @transaction }
-		      else
-		        format.html { render action: 'new', error: 'Purchase failed. Please try again.' }
-		        format.json { render json: @transaction.errors, status: :unprocessable_entity }
-		      end
-		    end
-		   else
+				if @product.amount_available > @transaction.quantity
+			    respond_to do |format|
+			      if @transaction.purchase
+			        format.html { redirect_to user_transaction_path(current_user, @transaction), 
+			        													notice: "Purchase successful! You have #{ current_user.code_pool.length } security codes remaining." }
+			        format.json { render action: 'show', status: :created, location: @transaction }
+			      else
+			        format.html { render action: 'new', error: 'Purchase failed. Please try again.' }
+			        format.json { render json: @transaction.errors, status: :unprocessable_entity }
+			      end
+			    end 
+			  else
+			  	flash[:error] = 'Not enough product in stock. Please pick a lower quantity.'
+		      render action: 'new'
+			  end
+		  else
 		   	flash[:error] = 'Insufficient credits. Please add more LINK HERE.'
 	      render action: 'new'
-		   end
+		  end
 	  else
 	  	flash[:error] = 'You entered an incorrect security code'
       render action: 'new'
