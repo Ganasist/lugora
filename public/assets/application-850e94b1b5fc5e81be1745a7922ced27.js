@@ -25671,7 +25671,9 @@ return $.widget("ui.sortable", $.ui.mouse, {
 
 }).call(this);
 (function() {
-  jQuery(function() {
+  var purchase;
+
+  purchase = function() {
     var original;
     original = parseInt($('#purchase_cost').text());
     return $('#item_quantity').change(function() {
@@ -25679,7 +25681,11 @@ return $.widget("ui.sortable", $.ui.mouse, {
       quantity = $('#item_quantity').val();
       return $("#purchase_cost").html(quantity * original);
     });
-  });
+  };
+
+  $(document).ready(purchase);
+
+  $(document).on('page:load', purchase);
 
 }).call(this);
 (function() {

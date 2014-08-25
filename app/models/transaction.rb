@@ -5,8 +5,8 @@ class Transaction < ActiveRecord::Base
 
 	default_scope { order('created_at desc').limit(10) }
 
-	validates :user, :vendor, :product, :amount, :quantity, :security_code, :code_position, presence: true
-	validates :amount, :security_code, :code_position, numericality: { only_integer: true }
+	validates :user, :vendor, :product, :credits, :quantity, :security_code, :code_position, presence: true
+	validates :credits, :security_code, :code_position, numericality: { only_integer: true }
 	validates :security_code, length: { is: 6 }
 
 	after_commit :deplete_user_code_pool, on: :create
@@ -16,13 +16,27 @@ class Transaction < ActiveRecord::Base
 		self.user.save!
 	end
 
-	after_commit :subtract_credits, on: :create
-	def subtract_credits
-		self.user.credits -= self.amount
-		self.user.save!
+	after_commit :adjust_purchase_count, on: :create
+	def adjust_purchase_count
+			self.vendor.purchases += 1
+			self.vendor.save!
+			
+			self.product.purchases += 1
+			self.product.amount_available -= 1
+			self.product.save!
+	end
+
+	def purchase
+			self.user.credits -= self.credits
+			self.vendor.credits += self.credits
+		ActiveRecord::Base.transaction do
+			self.save!
+			self.vendor.save!
+			self.user.save!
+		end
 	end
 
 	def self.search(user, query)
-		user.transactions.where("created_at <= :q", q: "#{ query }")
+		user.transactions.where('created_at <= :q', q: '#{ query }')
 	end
 end

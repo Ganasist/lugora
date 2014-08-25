@@ -4,14 +4,18 @@
 			<li class="transaction_id">Transaction ID: <%= @transaction.id %></li>	
 			<li class="transaction_date">Date: <%= @transaction.created_at.to_formatted_s(:long_ordinal) %></li>		
 		  <li class="user_fullname">
-		  	User: <%= @transaction.user.fullname %> -
-		  	<%= mail_to @transaction.user.email %>
+		  	Member: <%= link_to @transaction.user.fullname, @transaction.user %>
 		  </li>
 		  <li class="vendor_fullname">
-		  	Vendor: <%= @transaction.vendor.fullname %> -
-		  	<%= mail_to @transaction.vendor.email %>
+		  	Vendor: <%= link_to @transaction.vendor.fullname, @transaction.vendor %>
 		  </li>
-		  <li class="transaction_amount">Amount: <%= number_with_delimiter(@transaction.amount, delimiter: ',') %> credits</li>
+		  <li class="vendor_fullname">
+		  	Product: <%= link_to @transaction.product.name, new_product_transaction_path(@transaction.product) %>
+		  </li>
+		  <li class="vendor_fullname">
+		  	Quantity: <%= @transaction.quantity %>
+		  </li>
+		  <li class="transaction_amount">Amount: <%= number_with_delimiter(@transaction.credits, delimiter: ',') %> credits</li>
 		  <li class="transaction_security_code">Verification Code: <%= @transaction.security_code %></li>
 		</ul>
 	</div>

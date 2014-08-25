@@ -15,7 +15,7 @@
 		</h3>
 		<h3>
 			<span id="purchase_cost">
-				<%= @product.credits %>
+				<%= @transaction.credits == 0 ? @transaction.credits : @product.credits %>
 			</span>
 			 credits
 		</h3>

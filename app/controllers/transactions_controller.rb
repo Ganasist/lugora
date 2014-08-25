@@ -34,21 +34,21 @@ class TransactionsController < ApplicationController
 		if TransactionCheck.new(current_user, @transaction).check?
 			if current_user.credits > @transaction.credits
 		    respond_to do |format|
-		      if @transaction.save
+		      if @transaction.purchase
 		        format.html { redirect_to user_transaction_path(current_user, @transaction), 
-		        													notice: 'Verification was successful.' }
+		        													notice: "Purchase successful! You have #{current_user.code_pool.length } security codes remaining." }
 		        format.json { render action: 'show', status: :created, location: @transaction }
 		      else
-		        format.html { render action: 'new' }
+		        format.html { render action: 'new', error: 'Purchase failed. Please try again.' }
 		        format.json { render json: @transaction.errors, status: :unprocessable_entity }
 		      end
 		    end
 		   else
-		   	flash[:error] = 'You have insufficient credits. Please add more HERE.'
+		   	flash[:error] = 'Insufficient credits. Please add more LINK HERE.'
 	      render action: 'new'
 		   end
 	  else
-	  	flash[:error] = 'You have entered an incorrect security code'
+	  	flash[:error] = 'You entered an incorrect security code'
       render action: 'new'
     end
 	end
@@ -92,6 +92,6 @@ class TransactionsController < ApplicationController
 		end
 
 		def transaction_params
-			params.require(:transaction).permit(:security_code, :code_position)
+			params.require(:transaction).permit(:security_code, :code_position, :quantity)
 		end
 end
