@@ -2,6 +2,8 @@ require 'sidekiq/web'
 
 Rails.application.routes.draw do
 
+  resources :tokens
+
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
 
@@ -40,7 +42,7 @@ Rails.application.routes.draw do
 		resources :transactions
 	end
 
-	match 'users/:id/uuid_credit' => 'users#uuid_credit', as: 'user_uuid_credit', via: :patch
+	# match 'users/:id/uuid_credit' => 'users#uuid_credit', as: 'user_uuid_credit', via: :patch
 
   mount Sidekiq::Web, at: '/sidekiq'
 

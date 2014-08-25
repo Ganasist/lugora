@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140825075040) do
+ActiveRecord::Schema.define(version: 20140825141200) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -67,6 +67,18 @@ ActiveRecord::Schema.define(version: 20140825075040) do
   end
 
   add_index "products", ["vendor_id"], name: "index_products_on_vendor_id", using: :btree
+
+  create_table "tokens", force: true do |t|
+    t.integer  "user_id"
+    t.string   "token",                      null: false
+    t.integer  "credits",                    null: false
+    t.boolean  "redeemed",   default: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "tokens", ["token"], name: "index_tokens_on_token", unique: true, using: :btree
+  add_index "tokens", ["user_id"], name: "index_tokens_on_user_id", using: :btree
 
   create_table "transactions", force: true do |t|
     t.integer  "user_id",                   null: false
@@ -128,18 +140,6 @@ ActiveRecord::Schema.define(version: 20140825075040) do
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   add_index "users", ["unlock_token"], name: "index_users_on_unlock_token", unique: true, using: :btree
-
-  create_table "uuid_credits", force: true do |t|
-    t.integer  "user_id"
-    t.uuid     "uuid",                       null: false
-    t.integer  "credit",                     null: false
-    t.boolean  "redeemed",   default: false, null: false
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "uuid_credits", ["user_id"], name: "index_uuid_credits_on_user_id", using: :btree
-  add_index "uuid_credits", ["uuid"], name: "index_uuid_credits_on_uuid", unique: true, using: :btree
 
   create_table "vendors", force: true do |t|
     t.string   "email",                  default: "",    null: false
