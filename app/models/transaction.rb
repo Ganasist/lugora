@@ -27,16 +27,31 @@ class Transaction < ActiveRecord::Base
 	end
 
 	def purchase
-			self.user.credits -= self.credits
-			self.vendor.credits += self.credits
-		ActiveRecord::Base.transaction do
-			self.save!
-			self.vendor.save!
-			self.user.save!
+		self.user.credits -= self.credits
+		self.vendor.credits += self.credits
+		begin
+			ActiveRecord::Base.transaction do
+				self.save!
+				self.vendor.save!
+				self.user.save!
+			end
+		rescue => e
+			self.errors.add(:base, "Transaction failed!")
 		end
 	end
 
 	def self.search(user, query)
 		user.transactions.where('created_at <= :q', q: '#{ query }')
 	end
+
+		private
+		after_commit :transaction_success
+	  def transaction_success
+	    Rails.logger.info "Purchase succeeded for Transaction ##{ self.to_params }"
+	  end
+
+	  after_rollback :transaction_failed
+	  def transaction_failed
+	    Rails.logger.warn "Purchase failed for Transaction ##{ self.to_params }"
+	  end 
 end

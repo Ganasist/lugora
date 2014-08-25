@@ -19,8 +19,12 @@
 			</span>
 			 credits
 		</h3>
+		<% if (1..10).include?@product.amount_available %>
+			<h4 class="alert-text">Only <%= @product.amount_available %> remaining!</h4>
+		<% end %>
+
 		<% if @product.amount_available == 0 %>
-			<h3>Out of stock</h3>
+			<h4 class="alert-text">Out of stock!</h4>
 		<% else %>
 			<div class="authform registration large-4 large-centered columns">
 				<%= simple_form_for [@product, @transaction] do |f| %>

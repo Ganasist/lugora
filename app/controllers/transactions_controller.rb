@@ -31,9 +31,9 @@ class TransactionsController < ApplicationController
     @transaction.user 		= current_user
     @transaction.credits	= @product.credits * @transaction.quantity
 
-		if TransactionCheck.new(current_user, @transaction).check?
-			if current_user.credits > @transaction.credits
-				if @product.amount_available > @transaction.quantity
+		if TransactionCheck.new(current_user, @transaction).code_check?
+			if current_user.credits >= @transaction.credits
+				if @product.amount_available >= @transaction.quantity
 			    respond_to do |format|
 			      if @transaction.purchase
 			        format.html { redirect_to user_transaction_path(current_user, @transaction), 
