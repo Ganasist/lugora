@@ -9,4 +9,6 @@ class TransactionCheck
     	 (@user.security_codes.at(@transaction.code_position - 1) == 
     	 	(@transaction.security_code))
 	end
+
+	
 end
