@@ -53,7 +53,7 @@ class TransactionsController < ApplicationController
 	      render action: 'new'
 		  end
 	  else
-	  	flash[:error] = 'You entered an incorrect security code'
+	  	flash[:error] = 'You have entered an incorrect security code'
       render action: 'new'
     end
 	end

@@ -20,7 +20,6 @@ class Transaction < ActiveRecord::Base
 	def adjust_purchase_count
 		self.vendor.purchases += self.quantity
 		self.vendor.save!
-
 		self.product.purchases += self.quantity
 		self.product.amount_available -= self.quantity
 		self.product.save!
@@ -43,15 +42,4 @@ class Transaction < ActiveRecord::Base
 	def self.search(user, query)
 		user.transactions.where('created_at <= :q', q: '#{ query }')
 	end
-
-		private
-		after_commit :transaction_success
-	  def transaction_success
-	    Rails.logger.info "Purchase succeeded for Transaction ##{ self.to_params }"
-	  end
-
-	  after_rollback :transaction_failed
-	  def transaction_failed
-	    Rails.logger.warn "Purchase failed for Transaction ##{ self.to_params }"
-	  end 
 end

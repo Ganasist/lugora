@@ -13,6 +13,7 @@ class TransactionCheck
 	end
 
 	def code_matches?
-		(@user.security_codes.at(@transaction.code_position - 1) == (@transaction.security_code))
+		(@user.security_codes.at(@transaction.code_position - 1) == 
+			(@transaction.security_code))
 	end
 end
