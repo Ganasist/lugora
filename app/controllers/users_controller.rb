@@ -3,9 +3,12 @@ class UsersController < ApplicationController
 
 	def show
 		@user = User.find(params[:id])
-    if params[:search] && params[:search] != ""
-      @date = params[:search].to_time.end_of_day
-      @transactions = Transaction.search(@user, @date).limit(10).order('created_at DESC')
+    if params[:search_date] && params[:search_date] != ""
+      @date         = params[:search_date].to_time.end_of_day
+      @transactions = Transaction.search(@user, @date)
+    elsif params[:search_vendor] && params[:search_vendor] != ""
+      @vendor       = params[:search_vendor]
+      @transactions = Transaction.search_vendor(@user, @vendor)
     else
       @transactions = @user.transactions
 	  end
