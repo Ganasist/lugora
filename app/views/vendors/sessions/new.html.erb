@@ -3,7 +3,7 @@
   <div class="authform">
     <%= simple_form_for(:vendor, as: :vendor, 
                                  url: vendor_session_path(resource), 
-                                html: { role: 'form'}) do |f| %>
+                                html: { role: 'form' }) do |f| %>
       <h3 class="text-center"><%= fa_icon 'shopping-cart' %> Vendor Log in</h3>
       <%= devise_error_messages! %>
       <div class="form-group">

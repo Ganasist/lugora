@@ -1,18 +1,16 @@
-<h2>Resend confirmation instructions</h2>
-
-<%= simple_form_for(resource, as: resource_name, 
-														 url: confirmation_path(resource_name), 
-														html: { method: :post }) do |f| %>
-  <%= f.error_notification %>
-  <%= f.full_error :confirmation_token %>
-
-  <div class="form-inputs">
-    <%= f.input :email, required: true, autofocus: true %>
+<div class="splash panel">
+  <h3 class="text-center welcome">Welcome to WuDii <%= fa_icon 'circle-o-notch' %></h3>
+  <div class="authform">
+    <%= simple_form_for(resource, as: resource_name, 
+    														 url: confirmation_path(resource_name), 
+    														html: { method: :post }) do |f| %>
+      <%= f.error_notification %>
+      <div class="form-group">
+      <%= f.full_error :confirmation_token %>
+      <%= f.input :email, required: true, autofocus: true %>
+      <%= f.button :submit, 'Resend confirmation instructions', class: 'button expand success' %>
+      </div>
+    <%= render 'vendors/shared/links' %>
+    <% end %>
   </div>
-
-  <div class="form-actions">
-    <%= f.button :submit, 'Resend confirmation instructions' %>
-  </div>
-<% end %>
-
-<%= render 'vendors/shared/links' %>
+</div>
