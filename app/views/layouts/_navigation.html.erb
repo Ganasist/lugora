@@ -2,13 +2,13 @@
   <ul class="title-area">
     <li class="name">
 	    <% if user_signed_in? %>
-	    	<%= link_to "TF Home - #{ current_user.first_name }", current_user %>
+	    	<%= link_to "WuDii - #{ current_user.first_name }", current_user %>
 	    <% elsif vendor_signed_in? %>
-	    	<%= link_to "TF Home - #{ current_vendor.first_name }", current_vendor %>
+	    	<%= link_to "WuDii - #{ current_vendor.first_name }", current_vendor %>
       <% elsif current_admin_user %>
-        <%= link_to "TF Home - #{ current_admin_user.email }", admin_users_path %>
+        <%= link_to "WuDii - #{ current_admin_user.email }", admin_users_path %>
       <% else %>
-        <%= link_to 'TF Home', root_path %>
+        <%= link_to 'WuDii', root_path %>
 	    <% end %>
      </li>
     <li class="toggle-topbar menu-icon"><a href="#"><span></span></a></li>
