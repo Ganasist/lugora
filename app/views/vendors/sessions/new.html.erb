@@ -1,5 +1,5 @@
 <div class="splash panel">
-  <h3 class="text-center welcome">Didn't receive confirmation?</h3>
+  <h3 class="text-center welcome">Welcome to WuDii</h3>
   <div class="authform">
     <%= simple_form_for(:vendor, as: :vendor, 
                                  url: vendor_session_path(resource), 
@@ -30,3 +30,6 @@
     <% end %>
   </div>
 </div>
+
+
+<%= render '/layouts/splash' %>
