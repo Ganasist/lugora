@@ -1,14 +1,23 @@
 <div class="row">
 	<div class="columns large-12">
+		<br>
 		<h2 class="text-center"><%= @user.fullname %></h2>
+		<br>
 		
-		<div class="columns large-6">
-			<%= render 'user_vcard' %>
+		<% if current_user == @user %>
+		<div class="columns large-6 large-uncentered medium-9 small-12 small-centered">
+			<h3 class="<%= @user.credits < 1000 ? 'alert-text text-center' : 'text-center'%>">Credit balance: <%= number_with_delimiter(@user.credits, delimiter: ',')%></h3>
+			<br>
+			<%= simple_form_for :users, url: user_path(@user), method: 'get' do %>
+            <div class="large-12 small-12 columns">
+              <%= text_field_tag :search, params[:search], placeholder: 'Enter code to add credits (does not work yet)' %>
+            </div>        
+          <% end %>
 			<hr>
 		</div>
 
-		<% if current_user == @user %>
-			<div class="columns large-6">
+		
+			<div class="columns large-6 large-uncentered medium-9 small-12 small-centered">
 				<%= render 'transactions/transaction_search' %>			
 				<% unless @transactions.count == 0 %>			
 					<%= render 'transactions/transaction_history' %>

@@ -2,8 +2,7 @@
 
 <%= simple_form_for :transactions, url: @url, method: 'get' do %>
 	<%= date_field_tag :search, params[:search], 
-															placeholder: 'Search Transactions', 
 															class: 'text-center' %>
-	<%= submit_tag 'Search verifications by date', name: nil, 
+	<%= submit_tag 'Search Purchases', name: nil, 
 																								 class: 'button small radius expand' %>
 <% end %>

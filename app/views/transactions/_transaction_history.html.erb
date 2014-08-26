@@ -14,7 +14,6 @@
 	    <% end %>
       <th class="text-center">Product</th>
       <th class="text-center">Credits</th>
-      <th class="text-center">Date</th>
     </tr>
 	</thead>
 	<% if user_signed_in? %>
@@ -24,7 +23,6 @@
 				<td class="text-right"><%= link_to t.vendor.fullname, t.vendor unless t.vendor.nil? %></td>
 				<td class="text-right"><%= link_to t.product.name, new_product_transaction_path(t.product) unless t.product.nil? %></td>
 				<td class="text-right"><%= number_with_delimiter(t.credits, delimiter: ',') %></td>
-				<td class="text-right"><%= t.created_at.to_formatted_s(:long_ordinal) %></td>
 			</tr>
 		<% end %>
 	<% elsif vendor_signed_in? %>		
