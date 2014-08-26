@@ -1,7 +1,7 @@
 <%= simple_form_for(:user, as: :user, 
                            url: user_session_path(resource), 
                           html: { role: 'form'}) do |f| %>
-  <h3 class="text-center">User Log in</h3>
+  <h3 class="text-center"><%= fa_icon 'users' %> User Log in</h3>
   <%= devise_error_messages! %>
   <div class="form-group">
     <%- if devise_mapping.registerable? %>
