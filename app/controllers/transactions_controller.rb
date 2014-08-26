@@ -31,10 +31,10 @@ class TransactionsController < ApplicationController
     @transaction.user 		= current_user
     @transaction.credits	= @product.credits * @transaction.quantity
 
-    tf = TransactionCheck.new(current_user, @transaction)
-		if tf.code_check?
-			if tf.credit_check? # @user.credits >= @transaction.credits
-				if tf.product_check? # @product.amount_available >= @transaction.quantity
+    tc = TransactionCheck.new(current_user, @transaction)
+		if tc.code_check?
+			if tc.credit_check? # @user.credits >= @transaction.credits
+				if tc.product_check? # @product.amount_available >= @transaction.quantity
 			    respond_to do |format|
 			      if @transaction.purchase
 			        format.html { redirect_to user_transaction_path(current_user, @transaction), 
@@ -50,7 +50,7 @@ class TransactionsController < ApplicationController
 		      render action: 'new'
 			  end
 		  else
-		   	flash[:error] = 'Insufficient credits. Please add more LINK HERE.'
+		   	flash[:error] = 'Insufficient credits. Please add more on your profile page.'
 	      render action: 'new'
 		  end
 	  else

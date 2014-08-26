@@ -1,5 +1,5 @@
 ActiveAdmin.register Vendor do
-  menu label: "TF Vendors"
+  menu label: "WuDii Vendors"
 
   scope :all
   scope :not_approved

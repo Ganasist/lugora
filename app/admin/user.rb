@@ -1,5 +1,5 @@
 ActiveAdmin.register User do
-  menu label: 'TF Users'
+  menu label: 'WuDii Users'
 
   scope :all
   scope :not_approved
