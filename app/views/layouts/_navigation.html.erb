@@ -8,7 +8,9 @@
       <% elsif current_admin_user %>
         <%= link_to "WuDii - #{ current_admin_user.email }", admin_users_path %>
       <% else %>
-        <%= link_to 'WuDii', root_path %>
+        <%= link_to root_path do %>
+          WuDii <%= fa_icon "circle-o-notch" %>
+        <% end %>
 	    <% end %>
      </li>
     <li class="toggle-topbar menu-icon"><a href="#"><span></span></a></li>
