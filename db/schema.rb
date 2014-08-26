@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140825141200) do
+ActiveRecord::Schema.define(version: 20140825143256) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -70,14 +70,14 @@ ActiveRecord::Schema.define(version: 20140825141200) do
 
   create_table "tokens", force: true do |t|
     t.integer  "user_id"
-    t.string   "token",                      null: false
-    t.integer  "credits",                    null: false
-    t.boolean  "redeemed",   default: false
+    t.string   "encrypted_token",                 null: false
+    t.integer  "credits",                         null: false
+    t.boolean  "redeemed",        default: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "tokens", ["token"], name: "index_tokens_on_token", unique: true, using: :btree
+  add_index "tokens", ["encrypted_token"], name: "index_tokens_on_encrypted_token", unique: true, using: :btree
   add_index "tokens", ["user_id"], name: "index_tokens_on_user_id", using: :btree
 
   create_table "transactions", force: true do |t|

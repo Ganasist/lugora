@@ -5,9 +5,8 @@ class User < ActiveRecord::Base
 	has_many :vendors, through: :transactions
 	has_many :products, through: :transations
 	
-	has_many :uuid_credits
-	
-	accepts_nested_attributes_for :uuid_credits
+	has_many :tokens
+	accepts_nested_attributes_for :tokens
 
 
 	scope :not, ->(scope_name) { where(send(scope_name).where_values.reduce(:and).not) }
