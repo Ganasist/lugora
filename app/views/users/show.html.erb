@@ -40,19 +40,23 @@
 					<h4 class="text-center">Recent Purchases</h4>
 					<% @recent_transactions.each do |transaction| %>
 						<div class="large-4 medium-6 small-12 columns">
-							<% if transaction.product.image.present? %>
-								<%= link_to image_tag(transaction.product.image.url(:default).html_safe, class: 'th radius'), new_product_transaction_path(transaction.product) %>
-							<% else %>
-								<img src="http://placehold.it/500x300&amp;text=Image not available">
-							<% end %>
-							<div class="panel">
-								<h5>
-									<%= transaction.product.name %>
-									<% if user_signed_in? %>
-										<%= link_to 'Buy', new_product_transaction_path(transaction.product), 
-																					class: 'button success small radius right' if transaction.product.amount_available > 0 %>
-									<% end %>
-								</h5>
+							<% if transaction.product.present? %>
+								<% if transaction.product.image.present? %>
+									<%= link_to image_tag(transaction.product.image.url(:default).html_safe, class: 'th radius'), new_product_transaction_path(transaction.product) %>
+								<% else %>
+									<img src="http://placehold.it/500x300&amp;text=Image not available">
+								<% end %>
+								<div class="panel">
+									<h5>
+										<%= transaction.product.name %>
+										<% if user_signed_in? %>
+											<%= link_to 'Buy', new_product_transaction_path(transaction.product), 
+																						class: 'button success small radius right' if transaction.product.amount_available > 0 %>
+										<% end %>
+									</h5>
+								<% else %>
+									<h5>Product no longer exists</h5>
+								<% end %>
 								<h6 class="subheader">
 									<%= number_with_delimiter(transaction.credits, delimiter: ",") %> credits
 								</h6>
