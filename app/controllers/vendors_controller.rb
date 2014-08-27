@@ -2,7 +2,7 @@ class VendorsController < ApplicationController
 
   def index
     if params[:search] && params[:search] != ""
-      @vendors = Vendor.vendor_search(params[:search]) 
+      @vendors = Vendor.date_search(params[:search]) 
     else
       @vendors = Vendor.all
     end
@@ -13,7 +13,7 @@ class VendorsController < ApplicationController
     @products = @vendor.products
     if params[:search] && params[:search] != ""
       @date = params[:search].to_time.end_of_day
-      @transactions = Transaction.vendor_search(@vendor, @date).limit(10).order('created_at DESC')
+      @transactions = Transaction.date_search(@vendor, @date).limit(10).order('created_at DESC')
     else
       @transactions = @vendor.transactions
     end

@@ -5,7 +5,7 @@ class UsersController < ApplicationController
 		@user = User.find(params[:id])
     if params[:search] && params[:search] != ""
       @date         = params[:search].to_time.end_of_day
-      @transactions = Transaction.user_search(@user, @date)
+      @transactions = Transaction.date_search(@user, @date)
     else
       @transactions = @user.transactions
 	  end
