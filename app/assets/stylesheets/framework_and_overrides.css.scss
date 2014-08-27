@@ -151,9 +151,13 @@ div.vertical-center {
   padding-top: 90px;
 }
 
-h3.welcome {
+h3.user.welcome {
   color: #008cba;
   // font-weight: 100;
+}
+
+h3.vendor.welcome {
+  color: #43ac6a;
 }
 
 fieldset legend {
