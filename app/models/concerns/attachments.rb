@@ -12,6 +12,7 @@ module Attachments
 	  validates_attachment_content_type :image, content_type: /\Aimage/
 	  # Validate filename
 	  validates_attachment_file_name :image, matches: [/png\Z/, /jpe?g\Z/, /gif\Z/]
+	  process_in_background :image
 	end
 
 	def image_remote_url=(url_value)
