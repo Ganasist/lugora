@@ -5,6 +5,8 @@ class Transaction < ActiveRecord::Base
 
 	default_scope { order('created_at desc').limit(10) }
 
+	scope :recent, -> { order('created_at desc') }
+
 	validates :user, :vendor, :product, :credits, :quantity, :security_code, :code_position, presence: true
 	validates :credits, :security_code, :code_position, numericality: { only_integer: true }
 	validates :security_code, length: { is: 6 }

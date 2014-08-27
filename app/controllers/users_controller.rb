@@ -9,6 +9,7 @@ class UsersController < ApplicationController
     else
       @transactions = @user.transactions
 	  end
+    @recent_transactions = @user.transactions.all.recent
   end
 
 	private
