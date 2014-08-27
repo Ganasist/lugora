@@ -2,7 +2,8 @@
   <div class="columns large-12">
 		<div class="authform registration">
 			<%= simple_form_for(resource, as: resource, 
-																	 url: registration_path(resource)) do |f| %>
+																	 url: registration_path(resource),
+																	html: { multipart: true } ) do |f| %>
 			  <h3 class="text-center">User Sign Up</h3>
 			  <h6 class="text-center">* Required fields</h6>
 			  <%= f.error_notification %>	
@@ -23,6 +24,13 @@
 						    													 input_html: { style: 'width:200px' } %>
 						  </li>
 				  	</ul>
+				  	<hr>
+				  	<h4 class="text-center">Image</h4>
+				  	<br>
+				  	<%= f.file_field :image, class: 'columns small small-offset-4' %>
+						<h5 class="text-center">or</h5>
+						<%= f.input :image_remote_url, label: 'Enter an image URL', 
+																		wrapper_html: { class: 'text-center' } %>
 				  </div>
 				  <div class="form-inputs columns large-6">
 				  	<fieldset>
@@ -36,7 +44,8 @@
 				  	</fieldset>    
 				    <%= f.input :password, required: true, placeholder: 'Must be 8-128 characters long' %>
 				    <%= f.input :password_confirmation, required: true %>
-				  </div>  
+				  </div>
+				  <hr>
 					<div class="form-actions large-6 large-centered columns">
 					    <%= f.button :submit, 'User Sign Up', class: 'expand' %>
 							<%= render 'users/shared/links' %>

@@ -3,7 +3,7 @@
     <div class="authform registration">
       <%= simple_form_for(resource, as: resource, 
                                    url: registration_path(resource), 
-                                  html: { method: :put }) do |f| %>
+                                  html: { method: :put, multipart: true }) do |f| %>
         <h3 class="text-center"><%= @vendor.fullname %></h3>
         <h6 class="text-center">* Required fields</h6>
         <%= f.error_notification %>
@@ -24,7 +24,14 @@
               <li><%= f.input :phone_number, required: true, 
                                           placeholder: '448355190',
                                            input_html: { style: 'width:200px' } %></li>
-            </ul>        
+            </ul>
+            <hr>
+            <h4 class="text-center">Image</h4>
+            <br>
+            <%= f.file_field :image, class: 'columns small small-offset-4' %>
+            <h5 class="text-center">or</h5>
+            <%= f.input :image_remote_url, label: 'Enter an image URL', 
+                                    wrapper_html: { class: 'text-center' } %>    
           </div>
           <div class="form-inputs large-6 columns">         
             <fieldset>
