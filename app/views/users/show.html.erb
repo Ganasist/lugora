@@ -41,7 +41,7 @@
 					<% @recent_transactions.each do |transaction| %>
 						<div class="large-4 medium-6 small-12 columns">
 							<% if transaction.product.image.present? %>
-								<%= link_to image_tag(transaction.product.image.url(:default)).html_safe, new_product_transaction_path(transaction.product) %>
+								<%= link_to image_tag(transaction.product.image.url(:default).html_safe, class: 'th radius'), new_product_transaction_path(transaction.product) %>
 							<% else %>
 								<img src="http://placehold.it/500x300&amp;text=Image not available">
 							<% end %>
