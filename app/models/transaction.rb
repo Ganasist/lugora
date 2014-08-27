@@ -39,7 +39,11 @@ class Transaction < ActiveRecord::Base
 		end
 	end
 
-	def self.search(user, query)
-		user.transactions.where('created_at <= :q', q: '#{ query }')
+	def self.user_search(user, query)
+		user.transactions.where("created_at <= :q", q: "#{ query }")
 	end
+
+	def self.vendor_search(vendor, query)
+		vendor.transactions.where("created_at <= :q", q: "#{ query }")
+	end			
 end

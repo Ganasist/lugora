@@ -17,9 +17,9 @@
 
 			<div class="columns large-6 large-uncentered medium-9 small-12 small-centered">
 				<%= render 'transactions/transaction_search' %>			
-				<% unless @transactions.count == 0 %>			
+				<% if @transactions.count != 0 && params[:search] %>			
 					<%= render 'transactions/transaction_history' %>
-				<% else %>
+				<% elsif @transactions.count == 0 && params[:search] %>
 					<h2 class="text-center">No transactions found</h2>
 				<% end %>
 			</div>

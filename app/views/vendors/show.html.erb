@@ -12,15 +12,16 @@
 		
 
 		<% if current_vendor == @vendor %>
-			<div class="columns large-5">
-				<%= render 'vendor_vcard' %>
+			<div class="columns large-6 large-uncentered medium-9 small-12 small-centered">
+				<h3>Credit balance: <%= number_with_delimiter(@vendor.credits, delimiter: ',')%></h3>
+				<br>
 			</div>
 
-			<div class="columns large-7 large-uncentered medium-10 small-12 small-centered">
+			<div class="columns large-6 large-uncentered medium-9 small-12 small-centered">
 					<%= render 'transactions/transaction_search' %>			
-					<% unless @transactions.count == 0 %>			
+					<% if @transactions.count != 0 && params[:search] %>			
 						<%= render 'transactions/transaction_history' %>
-					<% else %>
+					<% elsif @transactions.count == 0 && params[:search] %>
 						<h2 class="text-center">No transactions found</h2>
 					<% end %>
 			</div>

@@ -23,7 +23,7 @@ class Vendor < ActiveRecord::Base
 	validates_numericality_of :phone_prefix, :phone_number
 
 	def self.search(query)
-		where("last_name @@ :q or first_name @@ :q", q: "%#{query}%")
+		where("last_name @@ :q or first_name @@ :q", q: "%#{ query }%")
 	end
 
 	def timeout_in
