@@ -1,58 +1,62 @@
-<div class="authform registration">
-  <%= simple_form_for(resource, as: resource, 
-                               url: registration_path(resource), 
-                              html: { method: :put }) do |f| %>
-    <h3 class="text-center"><%= @user.fullname %></h3>
-    <h6 class="text-center">* Required fields</h6>
-    <%= f.error_notification %>
-    <div class="row">
-      <div class="form-inputs large-6 columns">
-        <%= f.input :first_name, required: true, autofocus: true %>
-        <%= f.input :last_name, required: true %>
-        <%= f.input :occupation, required: true %>
-        <%= f.input :email, required: true %>
-        <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-          <p>Currently waiting confirmation for: <%= resource.unconfirmed_email %></p>
-        <% end %>
-        <ul class="inline-list">
-          <li><%= f.input :phone_prefix, required: true, 
-                                            label: 'Country code', 
-                                      placeholder: '0043',
-                                       input_html: { style: 'width:95px', maxlength: 4 } %></li>
-          <li><%= f.input :phone_number, required: true, 
-                                      placeholder: '448355190',
-                                       input_html: { style: 'width:200px' } %></li>
-        </ul>
-      </div>
-      <div class="form-inputs large-6 columns">
-        <fieldset>
-          <legend>Address</legend>
-          <%= f.input :street_address, required: true, 
-                                          label: 'Street' %>
-          <ul class="inline-list">
-            <li><%= f.input :city, required: true %></li>
-            <li><%= f.input :state %></li>
-            <li><%= f.input :postal_code, required: true %></li>
-          </ul>
-        </fieldset>
-        <%= f.input :password, label: 'New password (optional)', 
-                         placeholder: 'Must be 8-128 characters long' %>
-        <%= f.input :password_confirmation, label: 'Repeat new password' %>
-      </div>
-      <hr>
-      <div class="form-actions large-6 large-centered columns">
-        <%= f.input :current_password, placeholder: "Enter current password to confirm changes", 
-                                          required: true %>
-        <%= f.button :submit, 'Update', class: 'expand' %>
+<div class="row">
+  <div class="columns large-12">
+    <div class="authform registration">
+      <%= simple_form_for(resource, as: resource, 
+                                   url: registration_path(resource), 
+                                  html: { method: :put }) do |f| %>
+        <h3 class="text-center"><%= @user.fullname %></h3>
+        <h6 class="text-center">* Required fields</h6>
+        <%= f.error_notification %>
+        <div class="row">
+          <div class="form-inputs large-6 columns">
+            <%= f.input :first_name, required: true, autofocus: true %>
+            <%= f.input :last_name, required: true %>
+            <%= f.input :occupation, required: true %>
+            <%= f.input :email, required: true %>
+            <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+              <p>Currently waiting confirmation for: <%= resource.unconfirmed_email %></p>
+            <% end %>
+            <ul class="inline-list">
+              <li><%= f.input :phone_prefix, required: true, 
+                                                label: 'Country code', 
+                                          placeholder: '0043',
+                                           input_html: { style: 'width:95px', maxlength: 4 } %></li>
+              <li><%= f.input :phone_number, required: true, 
+                                          placeholder: '448355190',
+                                           input_html: { style: 'width:200px' } %></li>
+            </ul>
+          </div>
+          <div class="form-inputs large-6 columns">
+            <fieldset>
+              <legend>Address</legend>
+              <%= f.input :street_address, required: true, 
+                                              label: 'Street' %>
+              <ul class="inline-list">
+                <li><%= f.input :city, required: true %></li>
+                <li><%= f.input :state %></li>
+                <li><%= f.input :postal_code, required: true %></li>
+              </ul>
+            </fieldset>
+            <%= f.input :password, label: 'New password (optional)', 
+                             placeholder: 'Must be 8-128 characters long' %>
+            <%= f.input :password_confirmation, label: 'Repeat new password' %>
+          </div>
+          <hr>
+          <div class="form-actions large-6 large-centered columns">
+            <%= f.input :current_password, placeholder: "Enter current password to confirm changes", 
+                                              required: true %>
+            <%= f.button :submit, 'Update', class: 'expand' %>
+          </div>
+        </div>
+      <% end %>
+      <div class="columns large-6 text-left">
+        <h3>Unhappy? <%= link_to 'Cancel my account', 
+                                 registration_path(resource_name), 
+                                 data: { confirm: 'Are you sure?' }, 
+                                 method: :delete %>
+                               </h3>
+        <p><%= link_to 'Back', :back %></p>
       </div>
     </div>
-  <% end %>
-  <div class="columns large-6 text-left">
-    <h3>Unhappy? <%= link_to 'Cancel my account', 
-                             registration_path(resource_name), 
-                             data: { confirm: 'Are you sure?' }, 
-                             method: :delete %>
-                           </h3>
-    <p><%= link_to 'Back', :back %></p>
   </div>
 </div>
