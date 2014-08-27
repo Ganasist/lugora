@@ -25671,6 +25671,10 @@ return $.widget("ui.sortable", $.ui.mouse, {
 
 }).call(this);
 (function() {
+
+
+}).call(this);
+(function() {
   var purchase;
 
   purchase = function() {

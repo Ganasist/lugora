@@ -134,10 +134,17 @@ div.splash.panel {
   top: 0px;
   height: 500px;
   width: 100%;
-  background: image-url('trees.jpg') no-repeat center center;
   border: none;
   margin: 0px;
   background-color: #eee;
+}
+
+div.user.splash.panel {  
+  background: image-url('users.jpg') no-repeat center center;
+}
+
+div.vendor.splash.panel {  
+  background: image-url('vendors.jpg') no-repeat center center;
 }
 
 div.vertical-center {
@@ -145,8 +152,8 @@ div.vertical-center {
 }
 
 h3.welcome {
-  color: white;
-  font-weight: 100;
+  color: #008cba;
+  // font-weight: 100;
 }
 
 fieldset legend {
