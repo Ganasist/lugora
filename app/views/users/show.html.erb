@@ -19,7 +19,7 @@
 				<br>
 				<%= simple_form_for :users, url: user_path(@user), method: 'get' do %>
 	            <div class="large-12 small-12 columns">
-	              <%= text_field_tag :search, params[:search], placeholder: 'Enter code to add credits (does not work yet)' %>
+	              <%= text_field_tag :transaction_search, params[:transaction_search], placeholder: 'Enter code to add credits (does not work yet)' %>
 	            </div>        
 	          <% end %>
 				<hr>

@@ -20,7 +20,7 @@
 		<% @transactions.each do |t| %>
 			<tr>
 				<td class="text-right"><%= link_to t.id, user_transaction_path(@user, t) %></td>
-				<td class="text-right"><%= link_to t.vendor.fullname, t.vendor unless t.vendor.nil? %></td>
+				<td class="text-right"><%= link_to t.vendor.business, t.vendor unless t.vendor.nil? %></td>
 				<td class="text-right"><%= link_to t.product.name, new_product_transaction_path(t.product) unless t.product.nil? %></td>
 				<td class="text-right"><%= number_with_delimiter(t.credits, delimiter: ',') %></td>
 			</tr>

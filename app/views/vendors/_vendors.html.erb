@@ -1,10 +1,15 @@
 <tbody>
 	<% @vendors.each do |v| %>
 	<tr>
-		<td><%= link_to v.fullname, v %></td>
-		<td><%= v.email %></td>
-		<td><%= link_to 'Verify', new_vendor_transaction_path(v), 
-															class: 'button tiny success radius index_buttons' %></td>
+		<td>
+			<% if v.image.present? %>
+				<%= link_to v do %>
+					<%= image_tag(v.image(:thumb)).html_safe %> <%= " #{ v.business }" %>
+				<% end %>
+			<% else %>
+			<%= link_to v.business, v %>
+			<% end %>
+		</td>
 	</tr>
 	<% end %>
 </tbody>

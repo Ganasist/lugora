@@ -1,8 +1,8 @@
 class VendorsController < ApplicationController
 
   def index
-    if params[:search] && params[:search] != ""
-      @vendors = Vendor.date_search(params[:search]) 
+    if params[:vendor_search] && params[:vendor_search] != ""
+      @vendors = Vendor.search(params[:vendor_search]) 
     else
       @vendors = Vendor.all
     end
