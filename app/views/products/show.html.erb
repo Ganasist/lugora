@@ -15,7 +15,7 @@
 		<h3 class="columns large-6 large-centered small-12 medium-8 medium-centered">
 			<% if @product.image.present? %>
 	      <% if @product.image_processing? %>
-	        <br><h4 class="text-center">Processing image...</h4><br>
+	        <%= fa_icon 'circle-o-notch spin' %>
 	      <% elsif %>
 	      	<%= link_to image_tag(@product.image.url(:default)).html_safe, @vendor %>
 	      <% else %>
