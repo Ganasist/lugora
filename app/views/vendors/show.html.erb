@@ -5,7 +5,7 @@
 			<h2 class="text-center">
 				<% if @vendor.image.present? %>
 		      <% if @vendor.image_processing? %>
-		        <br><h4 class="text-center">Processing image...</h4><br>
+		      	<%= fa_icon 'circle-o-notch spin' %>
 		      <% elsif %>
 		      	<%= link_to image_tag(@vendor.image.url(:thumb)).html_safe, "#", class: 'th radius' %>
 		      <% else %>
