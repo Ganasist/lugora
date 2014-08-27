@@ -1,6 +1,12 @@
 // import the CSS framework
 @import "foundation";
 
+@mixin box-shadow($v, $h, $blur, $size, $color) {
+      -webkit-box-shadow:$v $h $blur $size $color;
+      -moz-box-shadow:$v $h $blur $size $color;
+      box-shadow:$v $h $blur $size $color;
+    }
+
 table {
   margin: 5px;
   margin-bottom: 30px;
@@ -74,6 +80,7 @@ section {
   }
 }
 .authform form {
+  @include box-shadow(0px, 0px, 5px, 1px, #808080);
   @include panel();
   padding-bottom: 30px;
 }
