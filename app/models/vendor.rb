@@ -1,5 +1,6 @@
 class Vendor < ActiveRecord::Base
 	include Naming
+  include Attachments
 
 	has_many :products
 	has_many :transactions

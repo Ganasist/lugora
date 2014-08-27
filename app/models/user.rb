@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
 	include Naming
+  include Attachments
 
 	has_many :transactions
 	has_many :vendors, through: :transactions
