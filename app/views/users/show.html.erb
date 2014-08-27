@@ -54,17 +54,18 @@
 																						class: 'button success small radius right' if transaction.product.amount_available > 0 %>
 										<% end %>
 									</h5>
-								<% else %>
-									<img src="http://placehold.it/500x300&amp;text=Image not available">
+							<% else %>
+								<img src="http://placehold.it/500x300&amp;text=Image not available">
+								<div class="panel">									
 									<h5>Product no longer exists</h5>
-								<% end %>
-								<h6 class="subheader">
-									<%= number_with_delimiter(transaction.credits, delimiter: ",") %> credits
-								</h6>
-								<h6 class="subheader">
-									<%= time_ago_in_words(transaction.created_at) %> ago
-								</h6>
-							</div>
+							<% end %>
+									<h6 class="subheader">
+										<%= number_with_delimiter(transaction.credits, delimiter: ",") %> credits
+									</h6>
+									<h6 class="subheader">
+										<%= time_ago_in_words(transaction.created_at) %> ago
+									</h6>
+								</div>
 						</div>
 					<% end %>
 				<% end %>
