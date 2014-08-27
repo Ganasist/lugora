@@ -44,7 +44,7 @@
 	<div class="large-12 medium-12 small-12 columns">
 		<% if @vendor.products.present? %>
 			<h3 class="text-center">
-					Recent <%= @vendor.first_name %> Products <br>
+					Popular <%= @vendor.business %> Products <br>
 			</h3>
 			<div class="text-center">
 				<%= link_to "View all #{ @vendor.first_name } products", vendor_products_path(@vendor), 

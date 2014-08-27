@@ -9,7 +9,7 @@
 		  	<hr>
 		  	<h5 class="text-center">Product Image</h5>
 		  	<% if @product.image? %>
-           <%= link_to image_tag(@product.image.url(:default)), @product.image.url, target: '_blank' %>
+           <%= link_to image_tag(@product.image.url), @product.image.url, target: '_blank' %>
           <br><br>
           <%= f.input :delete_image, as: :boolean, 
                                 	label: false, 
