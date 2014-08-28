@@ -1,5 +1,9 @@
-<p>Welcome <%= @email %>!</p>
-
-<p>You can confirm your account email through the link below:</p>
+<p>Thanks <%= @resource.business %> for signing up with WuDii! You must follow this link to activate your account.</p>
 
 <p><%= link_to 'Confirm my account', confirmation_url(@resource, confirmation_token: @token) %></p>
+
+<p>We hope you enjoy using WuDii as we enjoyed making it for you.</p>
+
+<p class="strong">The WuDii Team</p>
+
+<p><%= link_to 'https://www.wudii.com', 'https://wudii.herokuapp.com/' %></p>
