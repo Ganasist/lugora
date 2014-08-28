@@ -17,7 +17,7 @@
       <% @user.security_codes[48..95].in_groups_of(12, false).each_with_index do |codes, top_index| %>
       <tr>
         <% codes.each_with_index do |code, index| %>
-          <td><%= (index + 48) + (top_index * 12) %>. <%= code %></td>
+          <td><%= (index + 49) + (top_index * 12) %>. <%= code %></td>
         <% end %>
       </tr>
       <% end %>
@@ -27,7 +27,7 @@
       <% @user.security_codes[96..144].in_groups_of(12, false).each_with_index do |codes, top_index| %>
       <tr>
         <% codes.each_with_index do |code, index| %>
-          <td><%= (index + 96) + (top_index * 12) %>. <%= code %></td>
+          <td><%= (index + 97) + (top_index * 12) %>. <%= code %></td>
         <% end %>
       </tr>
       <% end %>
