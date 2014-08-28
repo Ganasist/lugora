@@ -234,9 +234,10 @@ ActiveAdmin.register User do
       respond_to do |format|
         format.html
         format.pdf do
-          render pdf: 'test',
+          render pdf: "User ##{ @user.id }",
                 file: "#{Rails.root}/app/admin/pdfs/pdf.html.erb",
               layout: 'codes.html',
+         disposition: 'attachment',
               margin: {  top: 8,
                       bottom: 8,
                         left: 10,
