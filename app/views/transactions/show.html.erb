@@ -7,7 +7,7 @@
 		  	User: <%= link_to @transaction.user.fullname, @transaction.user %>
 		  </li>
 		  <li class="vendor_fullname">
-		  	Vendor: <%= link_to @transaction.vendor.fullname, @transaction.vendor %>
+		  	Vendor: <%= link_to @transaction.vendor.business, @transaction.vendor %>
 		  </li>
 		  <li class="vendor_fullname">
 		  	Product: <%= link_to @transaction.product.name, new_product_transaction_path(@transaction.product) %>
@@ -16,7 +16,6 @@
 		  	Quantity: <%= @transaction.quantity %>
 		  </li>
 		  <li class="transaction_amount">Amount: <%= number_with_delimiter(@transaction.credits, delimiter: ',') %> credits</li>
-		  <li class="transaction_security_code">Verification Code: <%= @transaction.security_code %></li>
 		</ul>
 	</div>
 	<div class="columns large-6 large-uncentered small-12 medium-8 small-12 small-centered">

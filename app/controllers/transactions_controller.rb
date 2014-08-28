@@ -38,7 +38,7 @@ class TransactionsController < ApplicationController
 			    respond_to do |format|
 			      if @transaction.purchase
 			        format.html { redirect_to user_transaction_path(current_user, @transaction), 
-			        													notice: "Purchase successful! You have #{ current_user.code_pool.length } security codes remaining." }
+			        													notice: "Thank you #{ current_user.first_name } for buying from #{ @vendor.business }. We hope you enjoy it! Feel free to make another purchase from #{ @vendor.business } or other Vendor sites here on WuDii" }
 			        format.json { render action: 'show', status: :created, location: @transaction }
 			      else
 			        format.html { render action: 'new', error: 'Purchase failed. Please try again.' }
