@@ -2,8 +2,10 @@ ActiveAdmin.register User do
   menu label: 'WuDii Users'
 
   scope :all
-  scope :not_approved
+  scope :confirmed
+  scope :unconfirmed
   scope :approved
+  scope :not_approved
   scope :locked
   scope :unlocked
 
@@ -24,21 +26,24 @@ ActiveAdmin.register User do
     end
     column :email
     column :approved
+    column :confirmed?, sortable: :confirmed_at do |user|
+      user.confirmed?
+    end
     column :locked?, sortable: :locked_at do |user|
       user.access_locked?
     end
     actions
   end
 
-  batch_action :unlock_users, 
-                confirm: 'Are you sure you want to unlock all of these Users?' do |selection|
+  batch_action :confirm, 
+                confirm: 'Are you sure you want to confirm all of these Users?' do |selection|
     User.find(selection).each do |user|
-      user.unlock_access!
+      user.confirm!
     end
     redirect_to :back
   end
 
-  batch_action :lock_users, 
+  batch_action :lock, 
                 confirm: 'Are you sure you want to lock all of these Users?' do |selection|
     User.find(selection).each do |user|
       user.lock_access!
@@ -46,16 +51,25 @@ ActiveAdmin.register User do
     redirect_to :back
   end
 
-  batch_action :regenerate_codes_all, 
-                confirm: 'Are you sure you want to regenerate codes for all of these Users?' do |selection|
+  batch_action :unlock, 
+                confirm: 'Are you sure you want to unlock all of these Users?' do |selection|
     User.find(selection).each do |user|
-      user.generate_security_codes
+      user.unlock_access!
+    end
+    redirect_to :back
+  end
+
+  batch_action :approve, 
+                confirm: 'Are you sure you want to approve all of these Users?' do |selection|
+    User.find(selection).each do |user|
+      user.approved = true
       user.save
     end
     redirect_to :back
   end
 
-  batch_action :disapprove_all do |selection|
+  batch_action :disapprove, 
+                confirm: 'Are you sure you want to disapprove all of these Users?' do |selection|
     User.find(selection).each do |user|
       user.approved = false
       user.save
@@ -63,9 +77,10 @@ ActiveAdmin.register User do
     redirect_to :back
   end
 
-  batch_action :approve_all do |selection|
+  batch_action :regenerate_codes, 
+                confirm: 'Are you sure you want to regenerate codes for all of these Users?' do |selection|
     User.find(selection).each do |user|
-      user.approved = true
+      user.generate_security_codes
       user.save
     end
     redirect_to :back
@@ -243,6 +258,6 @@ ActiveAdmin.register User do
       rescue_from ActiveRecord::RecordNotFound do |exception| 
         flash[:alert] = "User not found."
         redirect_to admin_users_path
-      end 
+      end
   end
 end

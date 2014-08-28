@@ -29,10 +29,10 @@ class UsersController < ApplicationController
 		rescue_from ActiveRecord::RecordNotFound do |exception|      
       if user_signed_in?
         flash[:alert] = "You don't have access to other User profiles."
-        redirect_to current_user
+        redirect_to current_user || root_url
       elsif  vendor_signed_in?
         flash[:alert] = "You can't access User profiles."
-        redirect_to current_vendor        
+        redirect_to current_vendor || root_url        
       else
         flash[:alert] = "You need to sign in first."
         redirect_to root_url
