@@ -14,7 +14,11 @@
     <header>
       <%= render 'layouts/navigation' %>
     </header>
-    <main role="main">
+    <% if (request.fullpath).include?('/vendors') %>
+      <main role="main" class="vendor_color">
+    <% else %>
+      <main role="main" class="user_color">
+    <% end %>
        <%= render 'layouts/messages' %>
        <%= yield %>
     </main>

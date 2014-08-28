@@ -45,7 +45,7 @@ table {
 // to make views framework-neutral
 main {
   @include twelve-columns;
-  background-color: #eee;
+  // background-color: #F8F8FF;
   min-height: 100%;
   padding: 0px;
   }
@@ -66,6 +66,14 @@ section {
       height: 190px;
       transition: height .33s ease;
   }
+}
+
+main.vendor_color {
+  background-color: #F5F5F5;
+}
+
+main.user_color {
+  background-color: #F8F8FF;
 }
 
 // Styles for form views
@@ -143,14 +151,6 @@ div.splash.panel {
   border: none;
   margin: 0px;
   background-color: #eee;
-}
-
-div.user.splash.panel {  
-  background: image-url('users.jpg') no-repeat center center;
-}
-
-div.vendor.splash.panel {  
-  background: image-url('vendors.jpg') no-repeat center center;
 }
 
 div.vertical-center {

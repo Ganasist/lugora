@@ -1,24 +1,22 @@
-<div class="splash panel">
-  <div class="authform">
-    <h3 class="text-center welcome">Forgot your password?</h3>
+<div class="authform">
+  <h3 class="text-center welcome">Forgot your password?</h3>
 
-    <%= simple_form_for(resource, as: resource_name, 
-                                 url: password_path(resource_name), 
-                                html: { method: :put }) do |f| %>
-      <%= f.error_notification %>
+  <%= simple_form_for(resource, as: resource_name, 
+                               url: password_path(resource_name), 
+                              html: { method: :put }) do |f| %>
+    <%= f.error_notification %>
 
-      <%= f.input :reset_password_token, as: :hidden %>
-      <%= f.full_error :reset_password_token %>
+    <%= f.input :reset_password_token, as: :hidden %>
+    <%= f.full_error :reset_password_token %>
 
-      <%= f.input :password, label: 'New password', 
-                          required: true, 
-                         autofocus: true %>
-      <%= f.input :password_confirmation, label: 'Confirm your new password',
-                                       required: true,
-                                          class: 'button expand' %>
+    <%= f.input :password, label: 'New password', 
+                        required: true, 
+                       autofocus: true %>
+    <%= f.input :password_confirmation, label: 'Confirm your new password',
+                                     required: true,
+                                        class: 'button expand' %>
 
-      <%= f.button :submit, 'Change my password', class: 'button expand success' %>
-      <%= render 'vendors/shared/links' %>
-    <% end %>
-  </div>
+    <%= f.button :submit, 'Change my password', class: 'button expand success' %>
+    <%= render 'vendors/shared/links' %>
+  <% end %>
 </div>

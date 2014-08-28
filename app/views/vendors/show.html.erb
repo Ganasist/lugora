@@ -20,11 +20,10 @@
 																						 class: 'button success tiny radius' %>
 				<% end %>
 		</div>
-		
 
 		<% if current_vendor == @vendor %>
 			<div class="columns large-6 large-uncentered medium-9 small-12 small-centered">
-				<h3>Credit balance: <%= number_with_delimiter(@vendor.credits, delimiter: ',')%></h3>
+				<h3>Your amount: <%= number_with_delimiter(@vendor.credits, delimiter: ',')%></h3>
 				<br>
 			</div>
 

@@ -4,7 +4,7 @@ class VendorsController < ApplicationController
     if params[:vendor_search] && params[:vendor_search] != ""
       @vendors = Vendor.search(params[:vendor_search]) 
     else
-      @vendors = Vendor.all
+      @vendors = Vendor.recent.limit(10)
     end
   end
 

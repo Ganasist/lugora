@@ -1,19 +1,17 @@
-<div class="splash panel">
-  <h3 class="text-center welcome">Forgot your password?</h3>
-  <div class="authform">
-    <%= simple_form_for(resource, as: resource_name, 
-                                 url: password_path(resource_name), 
-                                html: { method: :post }) do |f| %>
-      <%= f.error_notification %>
+<h3 class="text-center welcome">Forgot your password?</h3>
+<div class="authform">
+  <%= simple_form_for(resource, as: resource_name, 
+                               url: password_path(resource_name), 
+                              html: { method: :post }) do |f| %>
+    <%= f.error_notification %>
 
-      <%= f.input :email, required: true, 
-                         autofocus: true %>
-                         
-      <%= f.button :submit, 'Send password reset instructions',
-                             required: true,
-                                class: 'button expand' %>
+    <%= f.input :email, required: true, 
+                       autofocus: true %>
+                       
+    <%= f.button :submit, 'Send password reset instructions',
+                           required: true,
+                              class: 'button expand' %>
 
-    <%= render 'users/shared/links' %>
-    <% end %>
-  </div>
+  <%= render 'users/shared/links' %>
+  <% end %>
 </div>
