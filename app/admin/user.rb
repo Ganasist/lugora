@@ -147,7 +147,7 @@ ActiveAdmin.register User do
   end
 
   action_item only: :show do
-    link_to 'Print Codes', admin_user_path(user, format: 'pdf') if user.approved?
+    link_to 'Print Codes', admin_user_path(user, format: 'pdf') # if user.approved?
   end
 
   action_item only: :show do
@@ -234,9 +234,13 @@ ActiveAdmin.register User do
       respond_to do |format|
         format.html
         format.pdf do
-          pdf = OrderPdf.new(@user)
-          send_data pdf.render, filename: "User ##{ @user.id }",
-                                    type: 'application/pdf'
+          render pdf: 'test',
+                file: "#{Rails.root}/app/admin/pdfs/pdf.html.erb",
+              layout: 'codes.html',
+              margin: {  top: 8,
+                      bottom: 8,
+                        left: 10,
+                       right: 10 }
         end
       end
     end

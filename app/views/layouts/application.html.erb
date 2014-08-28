@@ -5,6 +5,7 @@
     <title><%= content_for?(:title) ? yield(:title) : 'WuDii' %></title>
     <meta name="description" content="<%= content_for?(:description) ? yield(:description) : "Lugora" %>">
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
+    <%= wicked_pdf_stylesheet_link_tag "pdf" -%>
     <%# Modernizr is required for Zurb Foundation %>
     <%= javascript_include_tag 'vendor/modernizr' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
