@@ -237,11 +237,12 @@ ActiveAdmin.register User do
           render pdf: "User ##{ @user.id }",
                 file: "#{Rails.root}/app/admin/pdfs/pdf.html.erb",
               layout: 'codes.html',
-         disposition: 'inline',
               margin: {  top: 8,
                       bottom: 8,
                         left: 10,
-                       right: 10 }
+                       right: 10 },
+         disposition: 'attachment',
+  disable_javascript: true
         end
       end
     end
