@@ -11,7 +11,7 @@
         <% end %>
       <% elsif current_admin_user %>
         <%= link_to current_vendor do %>
-          WuDii <%= fa_icon 'circle-o-notch' %> - <%= current_admin_user.first_name %>
+          WuDii <%= fa_icon 'circle-o-notch' %> - <%= current_admin_user.email %>
         <% end %>
       <% else %>
         <%= link_to root_path do %>

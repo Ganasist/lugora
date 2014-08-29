@@ -122,6 +122,7 @@ ActiveAdmin.register User do
         user.fullname
       end
       row :email
+      row :credits
       row :occupation
       row :phone_prefix
       row :phone_number
