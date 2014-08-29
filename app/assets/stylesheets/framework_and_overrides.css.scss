@@ -69,11 +69,15 @@ section {
 }
 
 main.vendor_color {
-  background-color: #F5F5F5;
+  background-image: url('grunge_wall.png');
+  background-repeat: repeat;
+  background-position: left top;
 }
 
 main.user_color {
-  background-color: #F8F8FF;
+  background-image: url('old_moon.png');
+  background-repeat: repeat;
+  background-position: left top;
 }
 
 // Styles for form views

@@ -2,11 +2,17 @@
   <ul class="title-area">
     <li class="name">
 	    <% if user_signed_in? %>
-	    	<%= link_to "WuDii - #{ current_user.first_name }", current_user %>
+	    	<%= link_to current_user do %>
+          WuDii <%= fa_icon 'circle-o-notch' %> - <%= current_user.first_name %>
+        <% end %>
 	    <% elsif vendor_signed_in? %>
-	    	<%= link_to "WuDii - #{ current_vendor.first_name }", current_vendor %>
+	    	<%= link_to current_vendor do %>
+          WuDii <%= fa_icon 'circle-o-notch' %> - <%= current_vendor.business %>
+        <% end %>
       <% elsif current_admin_user %>
-        <%= link_to "WuDii - #{ current_admin_user.email }", admin_users_path %>
+        <%= link_to current_vendor do %>
+          WuDii <%= fa_icon 'circle-o-notch' %> - <%= current_admin_user.first_name %>
+        <% end %>
       <% else %>
         <%= link_to root_path do %>
           WuDii <%= fa_icon 'circle-o-notch' %>
