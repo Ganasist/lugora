@@ -3,6 +3,7 @@ class UsersController < ApplicationController
 
 	def show
 		@user = User.find(params[:id])
+    @token = Token.new
     if params[:search] && params[:search] != ""
       @date         = params[:search].to_time.end_of_day
       if @date > Date.today + 1

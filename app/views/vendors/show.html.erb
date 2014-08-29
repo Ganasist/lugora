@@ -20,14 +20,14 @@
 																						 class: 'button success tiny radius' %>
 				<% end %>
 		</div>
-
+		<br>
 		<% if current_vendor == @vendor %>
-			<div class="columns large-6 large-uncentered medium-9 small-12 small-centered">
-				<h3>Your amount: <%= number_with_delimiter(@vendor.credits, delimiter: ',')%></h3>
+			<div class="columns large-6 large-uncentered">
+				<h3 class="text-center">Your amount: <%= number_with_delimiter(@vendor.credits, delimiter: ',')%></h3>
 				<br>
 			</div>
 
-			<div class="columns large-6 large-uncentered medium-9 small-12 small-centered">
+			<div class="columns large-6 large-uncentered">
 					<%= render 'transactions/transaction_search' %>			
 					<% if @transactions.count != 0 && params[:search] %>			
 						<%= render 'transactions/transaction_history' %>

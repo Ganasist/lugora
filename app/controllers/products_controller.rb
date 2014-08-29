@@ -53,7 +53,6 @@ class ProductsController < ApplicationController
   end
 
 	private
-
 		def product_params
 			params.require(:product).permit(:name, :credits, :amount_available, :image, 
 																			:image_remote_url, :delete_image)

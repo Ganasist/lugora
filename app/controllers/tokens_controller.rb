@@ -1,7 +1,10 @@
 class TokensController < ApplicationController
-	before_action :user_verify
+	before_action :authenticate_user!
+	before_action :user_verify, on: :update
 
 	def update
+		# @token = Token.new
+		@user = User.find(params[:id])
 		if params[:token] == ""
 			flash[:notice] = "Hello"
 		else
@@ -16,5 +19,9 @@ class TokensController < ApplicationController
 				flash[:alert] = "You aren't authorized to do that!"
 				redirect_to current_user
 			end
+		end
+
+		def token_params
+			params.require(:token).permit(:user, :token)
 		end
 end

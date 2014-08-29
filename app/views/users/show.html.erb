@@ -17,9 +17,9 @@
 			<div class="columns large-6 large-uncentered medium-9 small-12 small-centered">
 				<h3 class="<%= @user.credits < 1000 ? 'alert-text text-center' : 'text-center'%>">Credit balance: <%= number_with_delimiter(@user.credits, delimiter: ',')%></h3>
 				<br>
-				<%= simple_form_for :tokens, url: user_token_path(@user), method: 'patch' do %>
+				<%= simple_form_for @token, url: user_token_path, method: 'patch' do %>
 	            <div class="large-12 small-12 columns">
-	              <%= text_field_tag :token, params[:token], placeholder: 'Enter code to add credits (does not work yet)' %>
+	              <%= text_field_tag :token_code, params[:token_code], placeholder: "Enter valid token code to increase credits" %>
 	            </div>        
 	          <% end %>
 				<hr>
