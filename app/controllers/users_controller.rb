@@ -5,7 +5,12 @@ class UsersController < ApplicationController
 		@user = User.find(params[:id])
     if params[:search] && params[:search] != ""
       @date         = params[:search].to_time.end_of_day
-      @transactions = Transaction.date_search(@user, @date)
+      if @date > Date.today + 1
+        flash[:alert] = "You can't search for future transactions."
+        redirect_to current_user
+      else
+        @transactions = Transaction.date_search(@user, @date)
+      end
     else
       @transactions = @user.transactions
 	  end
