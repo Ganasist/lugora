@@ -3,42 +3,43 @@
     <h4 class="text-right"><%= Time.now.strftime("%B %d, %Y %R") %></h4>
     <br>
     <h2 class="text-center"><%= "#{ @user.id }#{  SecureRandom.hex(4).upcase }" %></h2>
-    <table>
+    <br>
+    <table class="code_table">
       <% @user.security_codes[0..47].in_groups_of(12, false).each_with_index do |codes, top_index| %>
       <tr>
         <% codes.each_with_index do |code, index| %>
-          <td><%= (index + 1) + (top_index * 12) %>. <%= code %></td>
+          <td class="codes"><%= (index + 1) + (top_index * 12) %>. <%= code %></td>
         <% end %>
       </tr>
       <% end %>
     </table>
     <br>
-    <table>
+    <table class="code_table">
       <% @user.security_codes[48..95].in_groups_of(12, false).each_with_index do |codes, top_index| %>
       <tr>
         <% codes.each_with_index do |code, index| %>
-          <td><%= (index + 49) + (top_index * 12) %>. <%= code %></td>
+          <td class="codes"><%= (index + 49) + (top_index * 12) %>. <%= code %></td>
         <% end %>
       </tr>
       <% end %>
     </table>
     <br>
-    <table>
+    <table class="code_table">
       <% @user.security_codes[96..144].in_groups_of(12, false).each_with_index do |codes, top_index| %>
       <tr>
         <% codes.each_with_index do |code, index| %>
-          <td><%= (index + 97) + (top_index * 12) %>. <%= code %></td>
+          <td class="codes"><%= (index + 97) + (top_index * 12) %>. <%= code %></td>
         <% end %>
       </tr>
       <% end %>
     </table>
 
     <div class="text-center">
-      <br><br><br>
+      <br><br><br><br><br><br><br>
       <h1>WuDii</h1>
       <h3>Sid Ideas</h3>
       <h4>www.sidideas.com</h4>
-      <br><br><br><br><br><br><br>
+      <br><br><br><br><br><br><br><br><br>
       <p><%= "WuDii © #{ Time.now.year }" %></p>
     </span>
   </div>
