@@ -9,7 +9,7 @@ class UsersController < ApplicationController
         flash[:alert] = "You can't search for future transactions."
         redirect_to current_user
       else
-        @transactions = Transaction.date_search(@user, @date)
+        @transactions = Transaction.date_search(@user, @date).recent
       end
     else
       @transactions = @user.transactions
