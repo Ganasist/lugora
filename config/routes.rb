@@ -42,7 +42,7 @@ Rails.application.routes.draw do
 
   # resources :tokens
 
-	match 'users/:id/token' => 'tokens#update', as: 'user_token', via: :patch
+	match 'users/:id/token' => 'tokens#update', as: 'token_user', via: :patch
 
   mount Sidekiq::Web, at: '/sidekiq'
 

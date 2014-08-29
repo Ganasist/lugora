@@ -1,27 +1,40 @@
 class TokensController < ApplicationController
-	before_action :authenticate_user!
-	before_action :user_verify, on: :update
+	before_filter :authenticate_user!
+	before_filter :user_verify, only: :update
 
 	def update
-		# @token = Token.new
-		@user = User.find(params[:id])
-		if params[:token] == ""
-			flash[:notice] = "Hello"
-		else
-			flash[:alert] = "World"
-		end
-		redirect_to current_user		
+		@token = Token.find_by(encrypted_token_code: params[:token_code])
+		# if @token && !@token.redeemed
+		# 	puts @token.encrypted_token_code
+		# 	@token.user_id = current_user.id
+		# 	@token.redeemed = true
+		# 	current_user.credits += @token.credits
+		# 	current_user.save!
+		if @token && !@token.redeemed
+			respond_to do |format|
+	      if Token.verify(@token, current_user)
+	        format.html { redirect_to current_user, notice: "#{ @token.credits } credits were added to your account!" }
+	        format.json { head :no_content }
+	      else
+	        format.html { redirect_to current_user, alert: 'Transaction failed!' }
+	        format.json { render json: @token.errors, status: :unprocessable_entity }
+	      end
+	    end
+	   else
+	     flash[:alert] = 'Invalid token code!'
+	     redirect_to current_user
+	   end
 	end
 
 	private
 		def user_verify
-			unless current_user == @user
+			unless current_user.id.to_s == params[:id]
 				flash[:alert] = "You aren't authorized to do that!"
 				redirect_to current_user
 			end
 		end
 
-		def token_params
-			params.require(:token).permit(:user, :token)
-		end
+		# def token_params
+		# 	params.require(:token).permit(:token_code)
+		# end
 end
