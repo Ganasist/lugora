@@ -4,12 +4,6 @@ class TokensController < ApplicationController
 
 	def update
 		@token = Token.find_by(encrypted_token_code: params[:token_code])
-		# if @token && !@token.redeemed
-		# 	puts @token.encrypted_token_code
-		# 	@token.user_id = current_user.id
-		# 	@token.redeemed = true
-		# 	current_user.credits += @token.credits
-		# 	current_user.save!
 		if @token && !@token.redeemed
 			respond_to do |format|
 	      if Token.verify(@token, current_user)
@@ -33,8 +27,4 @@ class TokensController < ApplicationController
 				redirect_to current_user
 			end
 		end
-
-		# def token_params
-		# 	params.require(:token).permit(:token_code)
-		# end
 end

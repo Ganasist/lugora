@@ -3,10 +3,10 @@ require 'faker'
 Fabricator(:token) do
   user_id                   { nil }
   encrypted_token_code      { SecureRandom.hex(8) }
-  credits                   { %w(100 250 500 1000 2000 5000 10000).sample }
+  credits                   { %w(100 250 500 1000 2000 5000 10000 25000 50000 100000).sample }
   redeemed                  { false }
 end
-100.times { Fabricate(:token) }
+1000.times { Fabricate(:token) }
 
 # Fabricator(:user) do
 #   first_name 								{ Faker::Name.first_name }
