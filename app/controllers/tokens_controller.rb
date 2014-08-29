@@ -4,7 +4,7 @@ class TokensController < ApplicationController
 
 	def update
 		@token = Token.find_by(encrypted_token_code: params[:token_code])
-		if @token && !@token.redeemed
+		if @token && !@token.redeemed?
 			respond_to do |format|
 	      if Token.verify(@token, current_user)
 	        format.html { redirect_to current_user, notice: "#{ @token.credits } credits were added to your account!" }
@@ -14,7 +14,12 @@ class TokensController < ApplicationController
 	        format.json { render json: @token.errors, status: :unprocessable_entity }
 	      end
 	    end
-	   else
+	  else
+	    if @token && @token.redeemed?
+	   		puts 'Token already redeemed'
+     	elsif !@token
+     		puts 'Token does not exist'
+     	end
 	     flash[:alert] = 'Invalid token code!'
 	     redirect_to current_user
 	   end
