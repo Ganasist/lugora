@@ -6,7 +6,7 @@ class TokensController < ApplicationController
 		@token = Token.find_by(encrypted_token_code: params[:token_code])
 		if @token && !@token.redeemed?
 			respond_to do |format|
-	      if Token.verify(@token, current_user)
+	      if Token.process(@token, current_user)
 	        format.html { redirect_to current_user, notice: "#{ @token.credits } credits were added to your account!" }
 	        format.json { head :no_content }
 	      else
@@ -20,7 +20,7 @@ class TokensController < ApplicationController
      	elsif !@token
      		puts 'Token does not exist'
      	end
-	     flash[:alert] = 'Invalid token code!'
+	     flash[:alert] = 'Invalid token!'
 	     redirect_to current_user
 	   end
 	end

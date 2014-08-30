@@ -11,7 +11,7 @@ class Token < ActiveRecord::Base
   validates :credits, numericality: { only: :integer, greater_than: 0, message: 'Invalid token quantity' }
   validates_uniqueness_of :encrypted_token_code
 
-  def self.verify(token, user)
+  def self.process(token, user)
 		puts 'Token accepted!'
 		token.user_id 	= user.id
 		token.redeemed 	= true

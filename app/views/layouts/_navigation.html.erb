@@ -1,27 +1,8 @@
 <nav class="top-bar" data-topbar>
   <ul class="title-area">
-    <li class="name">
-	    <% if user_signed_in? %>
-	    	<%= link_to current_user do %>
-          WuDii <%= fa_icon 'circle-o-notch' %> - <%= current_user.first_name %>
-        <% end %>
-	    <% elsif vendor_signed_in? %>
-	    	<%= link_to current_vendor do %>
-          WuDii <%= fa_icon 'circle-o-notch' %> - <%= current_vendor.business %>
-        <% end %>
-      <% elsif current_admin_user %>
-        <%= link_to current_vendor do %>
-          WuDii <%= fa_icon 'circle-o-notch' %> - <%= current_admin_user.email %>
-        <% end %>
-      <% else %>
-        <%= link_to root_path do %>
-          WuDii <%= fa_icon 'circle-o-notch' %>
-        <% end %>
-	    <% end %>
-     </li>
+    <%= render 'layouts/names' %>
     <li class="toggle-topbar menu-icon"><a href="#"><span></span></a></li>
   </ul>
-
   <div class="top-bar-section right">
     <ul>
       <%= render 'layouts/navigation_links' %>

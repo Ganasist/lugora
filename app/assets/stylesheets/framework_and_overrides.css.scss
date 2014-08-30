@@ -54,7 +54,26 @@ section {
   margin-top: 20px;
   }
 
-@media only screen and (max-width: 40em) { 
+li#narrow {
+  display: none;
+}
+
+@media only screen and (max-width: 48em) {
+  li#wide {
+    display: none;
+  }
+  li#narrow {
+    display: inline;
+  }
+}
+
+@media only screen and (max-width: 40em) {
+  li#wide {
+    display: none;
+  }
+  li#narrow {
+    display: inline;
+  }
   .top-bar-section {
     width: 100%;
     text-align: center;

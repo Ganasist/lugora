@@ -28,6 +28,11 @@
             <hr>
             <h4 class="text-center">Image</h4>
             <br>
+            <% if @user.image.present? %>
+              <%= image_tag(@user.image.url).html_safe %>
+              <br><br>
+              <%= f.input :delete_image, as: :boolean, label: false, inline_label: " Delete image", wrapper_html: { class: "text-center" } %><br>
+            <% end %>
             <%= f.file_field :image, class: 'columns small small-offset-4' %>
             <h5 class="text-center">or</h5>
             <%= f.input :image_remote_url, label: 'Enter an image URL', 
