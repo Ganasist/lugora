@@ -20,10 +20,18 @@
 				</h3>
 				<br>
 				<%= simple_form_for @token, url: token_user_path, method: 'patch' do %>
-          <div class="large-12 small-12 columns">
-            <%= text_field_tag :token_code, params[:token], 
-            																placeholder: "Enter credit token (e.g. #{ SecureRandom.hex(8) })" %>
-          </div>        
+          <div class="row collapse">
+          	<div class="large-9 small-9 columns">
+	            <%= text_field_tag :token_code, params[:token], maxlength: 19,
+	            																placeholder: "Enter token (e.g. #{ SecureRandom.hex(8).scan(/.{4}|.+/).join('-') })" %>
+	          </div>
+	          <div class="large-3 small-3 columns">
+	          	<%= button_tag 'Add Credits', { controller: :tokens,
+																						      action: 'update', 
+																						      		id: @user.id, 
+																						       class: 'button postfix' } %>
+	          </div>
+          </div>               
         <% end %>
 				<hr>
 			</div>

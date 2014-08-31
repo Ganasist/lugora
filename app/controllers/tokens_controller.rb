@@ -3,7 +3,8 @@ class TokensController < ApplicationController
 	before_filter :user_verify, only: :update
 
 	def update
-		@token = Token.find_by(encrypted_token_code: params[:token_code])
+		@submitted_token = params[:token_code].delete('-')
+		@token = Token.find_by(encrypted_token_code: @submitted_token)
 		if @token && !@token.redeemed?
 			respond_to do |format|
 	      if Token.process(@token, current_user)

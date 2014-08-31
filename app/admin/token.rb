@@ -14,7 +14,9 @@ ActiveAdmin.register Token do
     selectable_column
     column :id, sortable: true
     column :user
-    column :encrypted_token_code, sortable: false
+    column :encrypted_token_code, sortable: false do |token|
+      token.encrypted_token_code.scan(/.{4}|.+/).join('-')
+    end
     column :credits, sortable: :credits
     column :redeemed, sortable: true
     actions
