@@ -22,9 +22,11 @@ ActiveAdmin.register User do
     selectable_column
     column :id
     column :name, sortable: :last_name do |user|
-      user.fullname
+      link_to(user.fullname, user)
     end
-    column :email
+    column :email do |user|
+      mail_to(user.email, user.email)
+    end
     column :approved
     column :confirmed?, sortable: :confirmed_at do |user|
       user.confirmed?
@@ -119,9 +121,11 @@ ActiveAdmin.register User do
         user.access_locked? ? user.locked_at : "false"
       end
       row :name do |user|
-        user.fullname
+        link_to(user.fullname, user)
       end
-      row :email
+      row :email do |user|
+        mail_to(user.email, user.email)
+      end
       row :credits
       row :occupation
       row :phone_prefix

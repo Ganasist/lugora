@@ -8,7 +8,7 @@
       WuDii <%= fa_icon 'circle-o-notch' %> - <%= current_vendor.business %>
     <% end %>
   <% elsif current_admin_user %>
-    <%= link_to current_vendor do %>
+    <%= link_to admin_root_path do %>
       WuDii <%= fa_icon 'circle-o-notch' %> - <%= current_admin_user.email %>
     <% end %>
   <% else %>

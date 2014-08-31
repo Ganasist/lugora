@@ -22,9 +22,11 @@ ActiveAdmin.register Vendor do
     selectable_column
     column :id
     column :business do |vendor|
-      vendor.business
+      link_to(vendor.business, vendor)
     end
-    column :email
+    column :email do |vendor|
+      mail_to(vendor.email, vendor.email)
+    end
     column :approved
     column :confirmed?, sortable: :confirmed_at do |vendor|
       vendor.confirmed?
@@ -110,9 +112,11 @@ ActiveAdmin.register Vendor do
         vendor.access_locked? ? vendor.locked_at : "false"
       end
       row :vendor do |vendor|
-        vendor.business
+        link_to(vendor.business, vendor)
       end
-      row :email
+      row :email do |vendor|
+        mail_to(vendor.email, vendor.email)
+      end
       row :business
       row :phone_prefix
       row :phone_number
