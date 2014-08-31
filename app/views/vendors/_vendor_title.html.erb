@@ -1,0 +1,20 @@
+<h2 class="text-center">
+	<% if @vendor.image.present? %>
+    <% if @vendor.image_processing? %>
+    	<%= fa_icon 'circle-o-notch spin' %>
+    <% elsif @vendor.url.present? %>
+    	<%= link_to image_tag(@vendor.image.url(:thumb)).html_safe, 
+    												@vendor.url_address, 
+    												class: 'th radius', target: "_blank" %>
+    <% else %>
+    	<%= link_to image_tag(@vendor.image.url(:thumb)).html_safe, "#",
+    												class: 'th radius' %>
+    <% end %>
+  <% end %>
+
+  <% if @vendor.url.present? %>
+		<%= link_to @vendor.business, @vendor.url_address, target: '_blank' %>
+	<% else %>
+		<%= link_to @vendor.business, "#" %>
+	<% end %>
+</h2>

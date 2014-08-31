@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140829180420) do
+ActiveRecord::Schema.define(version: 20140831130158) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -184,6 +184,7 @@ ActiveRecord::Schema.define(version: 20140829180420) do
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
     t.boolean  "image_processing",       default: false
+    t.string   "url"
   end
 
   add_index "vendors", ["confirmation_token"], name: "index_vendors_on_confirmation_token", unique: true, using: :btree

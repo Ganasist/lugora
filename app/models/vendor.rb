@@ -17,6 +17,8 @@ class Vendor < ActiveRecord::Base
 
 	validates_numericality_of :phone_prefix, :phone_number
 
+	validates :url, url: { allow_blank: true, message: 'Please enter a correct URL including http://' }
+
 	def self.search(query)
 		where("business @@ :q", q: "%#{ query }%")
 	end

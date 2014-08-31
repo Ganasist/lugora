@@ -1,24 +1,13 @@
 <div class="row">
 	<div class="columns large-12">
 		<br>
-		<div class="text-center columns large-4 large-centered">
-			<h2 class="text-center">
-				<% if @vendor.image.present? %>
-		      <% if @vendor.image_processing? %>
-		      	<%= fa_icon 'circle-o-notch spin' %>
-		      <% elsif %>
-		      	<%= link_to image_tag(@vendor.image.url(:thumb)).html_safe, "#", class: 'th radius' %>
-		      <% else %>
-			      <img src="http://placehold.it/75&amp;text=Image not available">
-			    <% end %>
-			  <% end %>
-				<%= @vendor.business %>
-			</h2>
-				<% if current_vendor == @vendor %>
-				<br>
-							<%= link_to 'Add new product', new_vendor_product_path(@vendor), 
-																						 class: 'button success tiny radius' %>
-				<% end %>
+		<div class="text-center columns large-12 large-centered">
+			<%= render 'vendor_title' %>			
+			<% if current_vendor == @vendor %>
+			<br>
+				<%= link_to 'Add new product', new_vendor_product_path(@vendor), 
+																			 class: 'button success tiny radius' %>
+			<% end %>
 		</div>
 		<br>
 		<% if current_vendor == @vendor %>

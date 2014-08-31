@@ -6,6 +6,6 @@ module ApplicationHelper
 		elsif item.kind_of?(Vendor)
 			name = item.business
 		end
-		name.truncate(15, separator: /\:print:/)
+		name.truncate(14, separator: /\:print:/)
 	end
 end
