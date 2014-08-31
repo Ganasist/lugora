@@ -8228,71 +8228,83 @@ li#narrow {
   display: none;
 }
 
-@media only screen and (max-width: 48em) {
-  /* line 62, /Users/johntrichereau/Desktop/Dropbox/web_apps/lugora/app/assets/stylesheets/framework_and_overrides.css.scss */
+/* line 61, /Users/johntrichereau/Desktop/Dropbox/web_apps/lugora/app/assets/stylesheets/framework_and_overrides.css.scss */
+a#edit_account {
+  padding-left: 1px;
+  margin-left: 0px;
+}
+
+@media only screen and (max-width: 47em) {
+  /* line 67, /Users/johntrichereau/Desktop/Dropbox/web_apps/lugora/app/assets/stylesheets/framework_and_overrides.css.scss */
   li#wide {
     display: none;
   }
 
-  /* line 65, /Users/johntrichereau/Desktop/Dropbox/web_apps/lugora/app/assets/stylesheets/framework_and_overrides.css.scss */
+  /* line 70, /Users/johntrichereau/Desktop/Dropbox/web_apps/lugora/app/assets/stylesheets/framework_and_overrides.css.scss */
   li#narrow {
     display: inline;
+    margin-right: 0px;
+  }
+  /* line 73, /Users/johntrichereau/Desktop/Dropbox/web_apps/lugora/app/assets/stylesheets/framework_and_overrides.css.scss */
+  li#narrow a {
+    margin-right: 0px;
+    padding-right: 0px;
   }
 }
 @media only screen and (max-width: 40em) {
-  /* line 71, /Users/johntrichereau/Desktop/Dropbox/web_apps/lugora/app/assets/stylesheets/framework_and_overrides.css.scss */
+  /* line 81, /Users/johntrichereau/Desktop/Dropbox/web_apps/lugora/app/assets/stylesheets/framework_and_overrides.css.scss */
   li#wide {
     display: none;
   }
 
-  /* line 74, /Users/johntrichereau/Desktop/Dropbox/web_apps/lugora/app/assets/stylesheets/framework_and_overrides.css.scss */
+  /* line 84, /Users/johntrichereau/Desktop/Dropbox/web_apps/lugora/app/assets/stylesheets/framework_and_overrides.css.scss */
   li#narrow {
     display: inline;
   }
 
-  /* line 77, /Users/johntrichereau/Desktop/Dropbox/web_apps/lugora/app/assets/stylesheets/framework_and_overrides.css.scss */
+  /* line 87, /Users/johntrichereau/Desktop/Dropbox/web_apps/lugora/app/assets/stylesheets/framework_and_overrides.css.scss */
   .top-bar-section {
     width: 100%;
     text-align: center;
   }
 
-  /* line 81, /Users/johntrichereau/Desktop/Dropbox/web_apps/lugora/app/assets/stylesheets/framework_and_overrides.css.scss */
+  /* line 92, /Users/johntrichereau/Desktop/Dropbox/web_apps/lugora/app/assets/stylesheets/framework_and_overrides.css.scss */
   nav.top-bar {
     transition: height .33s ease;
   }
 
-  /* line 84, /Users/johntrichereau/Desktop/Dropbox/web_apps/lugora/app/assets/stylesheets/framework_and_overrides.css.scss */
+  /* line 95, /Users/johntrichereau/Desktop/Dropbox/web_apps/lugora/app/assets/stylesheets/framework_and_overrides.css.scss */
   .top-bar.expanded {
     height: 190px;
     transition: height .33s ease;
   }
 }
-/* line 90, /Users/johntrichereau/Desktop/Dropbox/web_apps/lugora/app/assets/stylesheets/framework_and_overrides.css.scss */
+/* line 101, /Users/johntrichereau/Desktop/Dropbox/web_apps/lugora/app/assets/stylesheets/framework_and_overrides.css.scss */
 main.vendor_color {
   background-image: url("grunge_wall.png");
   background-repeat: repeat;
   background-position: left top;
 }
 
-/* line 96, /Users/johntrichereau/Desktop/Dropbox/web_apps/lugora/app/assets/stylesheets/framework_and_overrides.css.scss */
+/* line 107, /Users/johntrichereau/Desktop/Dropbox/web_apps/lugora/app/assets/stylesheets/framework_and_overrides.css.scss */
 main.user_color {
   background-image: url("old_moon.png");
   background-repeat: repeat;
   background-position: left top;
 }
 
-/* line 105, /Users/johntrichereau/Desktop/Dropbox/web_apps/lugora/app/assets/stylesheets/framework_and_overrides.css.scss */
+/* line 116, /Users/johntrichereau/Desktop/Dropbox/web_apps/lugora/app/assets/stylesheets/framework_and_overrides.css.scss */
 .authform {
   padding-top: 15px;
   max-width: 320px;
   margin: 0 auto;
 }
-/* line 109, /Users/johntrichereau/Desktop/Dropbox/web_apps/lugora/app/assets/stylesheets/framework_and_overrides.css.scss */
+/* line 120, /Users/johntrichereau/Desktop/Dropbox/web_apps/lugora/app/assets/stylesheets/framework_and_overrides.css.scss */
 .authform.registration {
   max-width: 1024px;
 }
 
-/* line 113, /Users/johntrichereau/Desktop/Dropbox/web_apps/lugora/app/assets/stylesheets/framework_and_overrides.css.scss */
+/* line 124, /Users/johntrichereau/Desktop/Dropbox/web_apps/lugora/app/assets/stylesheets/framework_and_overrides.css.scss */
 .authform form {
   -webkit-box-shadow: 0px 0px 5px 1px gray;
   -moz-box-shadow: 0px 0px 5px 1px gray;
@@ -8327,17 +8339,17 @@ main.user_color {
   line-height: 1.4;
 }
 
-/* line 118, /Users/johntrichereau/Desktop/Dropbox/web_apps/lugora/app/assets/stylesheets/framework_and_overrides.css.scss */
+/* line 129, /Users/johntrichereau/Desktop/Dropbox/web_apps/lugora/app/assets/stylesheets/framework_and_overrides.css.scss */
 .authform form a {
   font-size: 0.8125rem;
 }
 
-/* line 121, /Users/johntrichereau/Desktop/Dropbox/web_apps/lugora/app/assets/stylesheets/framework_and_overrides.css.scss */
+/* line 132, /Users/johntrichereau/Desktop/Dropbox/web_apps/lugora/app/assets/stylesheets/framework_and_overrides.css.scss */
 .authform form p {
   font-size: 0.8125rem;
 }
 
-/* line 133, /Users/johntrichereau/Desktop/Dropbox/web_apps/lugora/app/assets/stylesheets/framework_and_overrides.css.scss */
+/* line 144, /Users/johntrichereau/Desktop/Dropbox/web_apps/lugora/app/assets/stylesheets/framework_and_overrides.css.scss */
 .authform fieldset {
   border-style: solid;
   border-width: 1px;
@@ -8368,36 +8380,36 @@ main.user_color {
   line-height: 1.4;
 }
 
-/* line 140, /Users/johntrichereau/Desktop/Dropbox/web_apps/lugora/app/assets/stylesheets/framework_and_overrides.css.scss */
+/* line 151, /Users/johntrichereau/Desktop/Dropbox/web_apps/lugora/app/assets/stylesheets/framework_and_overrides.css.scss */
 .authform #error_explanation h2 {
   font-size: 1rem;
   color: white;
 }
 
 @media only screen and (max_width 710px) {
-  /* line 151, /Users/johntrichereau/Desktop/Dropbox/web_apps/lugora/app/assets/stylesheets/framework_and_overrides.css.scss */
+  /* line 162, /Users/johntrichereau/Desktop/Dropbox/web_apps/lugora/app/assets/stylesheets/framework_and_overrides.css.scss */
   .authform {
     color: red;
   }
 }
-/* line 157, /Users/johntrichereau/Desktop/Dropbox/web_apps/lugora/app/assets/stylesheets/framework_and_overrides.css.scss */
+/* line 168, /Users/johntrichereau/Desktop/Dropbox/web_apps/lugora/app/assets/stylesheets/framework_and_overrides.css.scss */
 .top-bar .name {
   font-size: 1.25rem;
   line-height: 45px;
 }
 
-/* line 160, /Users/johntrichereau/Desktop/Dropbox/web_apps/lugora/app/assets/stylesheets/framework_and_overrides.css.scss */
+/* line 171, /Users/johntrichereau/Desktop/Dropbox/web_apps/lugora/app/assets/stylesheets/framework_and_overrides.css.scss */
 .top-bar .name a {
   font-weight: lighter;
   color: white;
   padding: 0 15px;
 }
-/* line 164, /Users/johntrichereau/Desktop/Dropbox/web_apps/lugora/app/assets/stylesheets/framework_and_overrides.css.scss */
+/* line 175, /Users/johntrichereau/Desktop/Dropbox/web_apps/lugora/app/assets/stylesheets/framework_and_overrides.css.scss */
 .top-bar .name a:hover {
   color: #008cba;
 }
 
-/* line 169, /Users/johntrichereau/Desktop/Dropbox/web_apps/lugora/app/assets/stylesheets/framework_and_overrides.css.scss */
+/* line 180, /Users/johntrichereau/Desktop/Dropbox/web_apps/lugora/app/assets/stylesheets/framework_and_overrides.css.scss */
 div.splash.panel {
   position: relative;
   top: 0px;
@@ -8408,40 +8420,40 @@ div.splash.panel {
   background-color: #eee;
 }
 
-/* line 179, /Users/johntrichereau/Desktop/Dropbox/web_apps/lugora/app/assets/stylesheets/framework_and_overrides.css.scss */
+/* line 190, /Users/johntrichereau/Desktop/Dropbox/web_apps/lugora/app/assets/stylesheets/framework_and_overrides.css.scss */
 div.vertical-center {
   padding-top: 90px;
 }
 
-/* line 183, /Users/johntrichereau/Desktop/Dropbox/web_apps/lugora/app/assets/stylesheets/framework_and_overrides.css.scss */
+/* line 194, /Users/johntrichereau/Desktop/Dropbox/web_apps/lugora/app/assets/stylesheets/framework_and_overrides.css.scss */
 h3.user.welcome {
   color: #008cba;
 }
 
-/* line 187, /Users/johntrichereau/Desktop/Dropbox/web_apps/lugora/app/assets/stylesheets/framework_and_overrides.css.scss */
+/* line 198, /Users/johntrichereau/Desktop/Dropbox/web_apps/lugora/app/assets/stylesheets/framework_and_overrides.css.scss */
 h3.vendor.welcome {
   color: #43ac6a;
 }
 
-/* line 191, /Users/johntrichereau/Desktop/Dropbox/web_apps/lugora/app/assets/stylesheets/framework_and_overrides.css.scss */
+/* line 202, /Users/johntrichereau/Desktop/Dropbox/web_apps/lugora/app/assets/stylesheets/framework_and_overrides.css.scss */
 fieldset legend {
   background-color: #eee;
   border: none;
 }
 
-/* line 196, /Users/johntrichereau/Desktop/Dropbox/web_apps/lugora/app/assets/stylesheets/framework_and_overrides.css.scss */
+/* line 207, /Users/johntrichereau/Desktop/Dropbox/web_apps/lugora/app/assets/stylesheets/framework_and_overrides.css.scss */
 .vcard {
   padding-top: 20px;
   border: none;
   font-size: 1.5em;
 }
 
-/* line 202, /Users/johntrichereau/Desktop/Dropbox/web_apps/lugora/app/assets/stylesheets/framework_and_overrides.css.scss */
+/* line 213, /Users/johntrichereau/Desktop/Dropbox/web_apps/lugora/app/assets/stylesheets/framework_and_overrides.css.scss */
 .index_buttons {
   margin: 2px;
 }
 
-/* line 206, /Users/johntrichereau/Desktop/Dropbox/web_apps/lugora/app/assets/stylesheets/framework_and_overrides.css.scss */
+/* line 217, /Users/johntrichereau/Desktop/Dropbox/web_apps/lugora/app/assets/stylesheets/framework_and_overrides.css.scss */
 .alert-text {
   color: red !important;
 }
