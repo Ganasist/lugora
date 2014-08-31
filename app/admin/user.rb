@@ -1,5 +1,5 @@
 ActiveAdmin.register User do
-  menu label: 'WuDii Users'
+  menu label: 'Users'
 
   scope :all
   scope :confirmed

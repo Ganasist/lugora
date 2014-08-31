@@ -1,5 +1,5 @@
 ActiveAdmin.register Token do
-  menu label: 'WuDii Tokens'
+  menu label: 'Tokens'
 
   scope :all
   scope :redeemed

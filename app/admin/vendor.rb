@@ -1,5 +1,5 @@
 ActiveAdmin.register Vendor do
-  menu label: "WuDii Vendors"
+  menu label: "Vendors"
 
   scope :all
   scope :confirmed
