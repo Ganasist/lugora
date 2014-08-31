@@ -3,13 +3,8 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
   rescue_from ActionController::InvalidAuthenticityToken, with: :invalid_authenticity_redirect
-  before_action :admin_global_access
 
   private
-  	def admin_global_access
-  		current_admin_user
-  	end
-
   	def invalid_authenticity_redirect
       redirect_to root_path
   	end
@@ -19,7 +14,7 @@ class ApplicationController < ActionController::Base
 	    	current_user
 	    elsif resource_or_scope.is_a?(Vendor)
 	    	current_vendor
-			end	    	
+      end
     end
 
 	  def after_sign_out_path_for(resource_or_scope)
