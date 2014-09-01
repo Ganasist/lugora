@@ -22,12 +22,11 @@
 						<%= number_with_delimiter(product.credits, delimiter: ",") %> credits
 					</h6>
 					<h6 class="subheader">
-						<% if product.amount_available > 0 %>
-							<%= number_with_delimiter(product.amount_available, delimiter: ",") %> 
-						<% else %>
-							None
+						<% if product.amount_available.between?(1, 10) %>
+							<strong>Few in stock</strong>
+						<% elsif product.amount_available == 0 %>
+							<strong class="alert-text">Out of stock</strong>
 						<% end %>
-							available
 					</h6>	
 				</div>
 			</div>

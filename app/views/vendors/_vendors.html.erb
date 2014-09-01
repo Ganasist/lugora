@@ -4,7 +4,7 @@
 		<td>
 			<% if v.image.present? %>
 				<%= link_to v do %>
-					<%= image_tag(v.image(:thumb)).html_safe %> &nbsp; <%= " #{ v.business }" %>
+					<%= image_tag(v.image(:thumb)).html_safe %> &nbsp;&nbsp; <%= " #{ v.business }" %>
 				<% end %>
 			<% else %>
 			<%= link_to v.business, v %>
