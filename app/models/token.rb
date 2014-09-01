@@ -28,4 +28,8 @@ class Token < ActiveRecord::Base
 			# token.errors.add(:base, 'Token transaction failuress!!')
 		end
   end
+
+  def self.generator_check?(quantity, value)
+  	quantity.to_i.between?(100, 5000) && value.to_i >= 1000
+  end
 end

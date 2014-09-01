@@ -42,17 +42,12 @@ ActiveAdmin.register Token do
   controller do
     before_action :authenticate_admin_user!
     def batch_token_create
-      if params[:token_quantity] != "" && params[:token_value] != ""
-        if params[:token_quantity].to_i.between?(100, 5000) && params[:token_value].to_i >= 1000
-          BatchTokenCreator.perform_async(params[:token_quantity], params[:token_value])
-          flash[:notice] = "#{params[:token_quantity]} tokens worth #{params[:token_value]} credits are being generated."
-          redirect_to admin_tokens_path
-        else
-          flash[:error] = "You must enter a token quantity between 100 - 5000 and value of at least 1000."
-          redirect_to admin_tokens_path
-        end
+      if Token.generator_check?(params[:token_quantity], params[:token_value])
+        BatchTokenCreator.perform_async(params[:token_quantity], params[:token_value])
+        flash[:notice] = "#{params[:token_quantity]} tokens worth #{params[:token_value]} credits are being generated."
+        redirect_to admin_tokens_path
       else
-        flash[:error] = "You entered must enter only integer values for Tokens."
+        flash[:error] = "You must enter a token quantity between 100 - 5000 and value of at least 1000."
         redirect_to admin_tokens_path
       end
     end
