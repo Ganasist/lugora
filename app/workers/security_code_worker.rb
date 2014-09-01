@@ -13,9 +13,6 @@ class SecurityCodeWorker
     end
     user.security_codes = codes
     user.code_pool = (1..144).to_a
-
-    # REMOVE THIS LINE BEFORE PRODUCTION!!!
-    user.credits = 100000
     
     user.save!
   end

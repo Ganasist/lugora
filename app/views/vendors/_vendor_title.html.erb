@@ -4,7 +4,7 @@
     	<%= fa_icon 'circle-o-notch spin' %>
     <% elsif @vendor.url.present? %>
     	<%= link_to image_tag(@vendor.image.url(:thumb)).html_safe, 
-    												@vendor.url_address, 
+    												@vendor.url, 
     												class: 'th radius', target: "_blank" %>
     <% else %>
     	<%= link_to image_tag(@vendor.image.url(:thumb)).html_safe, "#",
@@ -13,7 +13,7 @@
   <% end %>
 
   <% if @vendor.url.present? %>
-		<%= link_to @vendor.business, @vendor.url_address, target: '_blank' %>
+		<%= link_to @vendor.business, @vendor.url, target: '_blank' %>
 	<% else %>
 		<%= link_to @vendor.business, "#" %>
 	<% end %>
