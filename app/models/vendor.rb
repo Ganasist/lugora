@@ -2,6 +2,7 @@ class Vendor < ActiveRecord::Base
 	include Naming
   include Attachments
   include Scopes
+  include Approval
 
 	has_many :products
 	has_many :transactions

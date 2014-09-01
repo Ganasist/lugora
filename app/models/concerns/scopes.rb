@@ -8,6 +8,6 @@ module Scopes
 		scope :confirmed, lambda { where !({confirmed_at: nil}) }
 		scope :unconfirmed, lambda { where ({confirmed_at: nil}) }
 		scope :unlocked, -> { where(locked_at: nil) }
-		scope :recent, -> { order(created_at: :desc)}
+		scope :recent, -> { order(created_at: :desc) }
 	end
 end

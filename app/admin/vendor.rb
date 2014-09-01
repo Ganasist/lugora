@@ -37,32 +37,28 @@ ActiveAdmin.register Vendor do
     actions
   end
 
-  batch_action :confirm, 
-                confirm: 'Are you sure you want to confirm all of these Vendor?' do |selection|
+  batch_action :confirm do |selection|
     Vendor.find(selection).each do |vendor|
       vendor.confirm!
     end
     redirect_to :back
   end
 
-  batch_action :lock, 
-                confirm: 'Are you sure you want to lock all of these vendors?' do |selection|
+  batch_action :lock do |selection|
     Vendor.find(selection).each do |vendor|
       vendor.lock_access!
     end
     redirect_to :back
   end
 
-  batch_action :unlock, 
-                confirm: 'Are you sure you want to unlock all of these vendors?' do |selection|
+  batch_action :unlock do |selection|
     Vendor.find(selection).each do |vendor|
       vendor.unlock_access!
     end
     redirect_to :back
   end
 
-  batch_action :approve, 
-                confirm: 'Are you sure you want to approve all of these vendors?' do |selection|
+  batch_action :approve do |selection|
     Vendor.find(selection).each do |vendor|
       vendor.approved = true
       vendor.save
@@ -70,8 +66,7 @@ ActiveAdmin.register Vendor do
     redirect_to :back
   end
 
-  batch_action :disapprove, 
-                confirm: 'Are you sure you want to disapprove all of these vendors?' do |selection|
+  batch_action :disapprove  do |selection|
     Vendor.find(selection).each do |vendor|
       vendor.approved = false
       vendor.save

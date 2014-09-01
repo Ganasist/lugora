@@ -1,13 +1,22 @@
 class ApplicationController < ActionController::Base
-  # Prevent CSRF attacks by raising an exception.
-  # For APIs, you may want to use :null_session instead.
+
   protect_from_forgery with: :exception
   rescue_from ActionController::InvalidAuthenticityToken, with: :invalid_authenticity_redirect
+  before_action :check_approval, except: [:edit, :update, :destroy]
 
   private
   	def invalid_authenticity_redirect
       redirect_to root_path
   	end
+
+    def check_approval
+      if user_signed_in? || vendor_signed_in?
+        if !current_user.approved? || !current_vendor.approved?
+          redirect_to edit_user_registration_path || edit_vendor_registration_path
+          flash[:alert] = "You need to be Approved by an administrator before using WuDii."
+        end
+      end
+    end
 
   	def after_sign_in_path_for(resource_or_scope)
 			if resource_or_scope.is_a?(User)

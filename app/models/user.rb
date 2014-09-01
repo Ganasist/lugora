@@ -2,6 +2,7 @@ class User < ActiveRecord::Base
 	include Naming
   include Attachments
   include Scopes
+  include Approval
 
 	has_many :transactions
 	has_many :vendors, through: :transactions

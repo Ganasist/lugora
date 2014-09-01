@@ -1,6 +1,8 @@
 ActiveAdmin.register User do
   menu label: 'Users'
 
+  config.per_page = 100
+
   scope :all
   scope :confirmed
   scope :unconfirmed
@@ -17,6 +19,7 @@ ActiveAdmin.register User do
   filter :email
   filter :last_name
   filter :phone_number
+  filter :created_at, label: 'Joined between'
 
   index do
     selectable_column
@@ -37,32 +40,28 @@ ActiveAdmin.register User do
     actions
   end
 
-  batch_action :confirm, 
-                confirm: 'Are you sure you want to confirm all of these Users?' do |selection|
+  batch_action :confirm do |selection|
     User.find(selection).each do |user|
       user.confirm!
     end
     redirect_to :back
   end
 
-  batch_action :lock, 
-                confirm: 'Are you sure you want to lock all of these Users?' do |selection|
+  batch_action :lock do |selection|
     User.find(selection).each do |user|
       user.lock_access!
     end
     redirect_to :back
   end
 
-  batch_action :unlock, 
-                confirm: 'Are you sure you want to unlock all of these Users?' do |selection|
+  batch_action :unlock do |selection|
     User.find(selection).each do |user|
       user.unlock_access!
     end
     redirect_to :back
   end
 
-  batch_action :approve, 
-                confirm: 'Are you sure you want to approve all of these Users?' do |selection|
+  batch_action :approve do |selection|
     User.find(selection).each do |user|
       user.approved = true
       user.save
@@ -70,8 +69,7 @@ ActiveAdmin.register User do
     redirect_to :back
   end
 
-  batch_action :disapprove, 
-                confirm: 'Are you sure you want to disapprove all of these Users?' do |selection|
+  batch_action :disapprove do |selection|
     User.find(selection).each do |user|
       user.approved = false
       user.save
@@ -79,8 +77,7 @@ ActiveAdmin.register User do
     redirect_to :back
   end
 
-  batch_action :regenerate_codes, 
-                confirm: 'Are you sure you want to regenerate codes for all of these Users?' do |selection|
+  batch_action :regenerate_codes do |selection|
     User.find(selection).each do |user|
       user.generate_security_codes
       user.save
