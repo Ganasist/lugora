@@ -9,5 +9,10 @@ class StaleConfirmRemoval
 	  users.each do |user|
 	    user.destroy
 	  end
+
+	  vendors = Vendor.where('confirmed_at is ? AND confirmation_sent_at <= ?', nil, 1.day.ago)
+	  vendors.each do |vendor|
+	    vendor.destroy
+	  end
   end
 end
