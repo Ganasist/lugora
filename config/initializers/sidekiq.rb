@@ -18,7 +18,7 @@ Sidekiq.configure_server do |config|
   config.redis = { url: url,
   								size: 2,
   					 namespace: "TF_#{ Rails.env }" }
-  config.poll_interval = 5
+  config.poll_interval = 15
 end
 
 Sidekiq.configure_client do |config|

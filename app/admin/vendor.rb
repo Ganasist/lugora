@@ -1,5 +1,7 @@
 ActiveAdmin.register Vendor do
-  menu label: "Vendors"
+  menu label: 'Vendors'
+
+  config.per_page = 100
 
   scope :all
   scope :confirmed
@@ -17,6 +19,7 @@ ActiveAdmin.register Vendor do
   filter :email
   filter :business
   filter :phone_number
+  filter :created_at, label: 'Joined between'
 
   index do
     selectable_column

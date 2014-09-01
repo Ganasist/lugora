@@ -33,6 +33,7 @@ gem 'unicorn'
 gem 'unicorn-rails'
 gem 'redis'
 gem 'sidekiq'
+gem 'sidetiq'
 gem 'sinatra', '>= 1.3.0', require: nil
 gem 'devise-async'
 gem 'rails_12factor', group: :production
