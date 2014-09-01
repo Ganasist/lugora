@@ -2,17 +2,27 @@ class ApplicationController < ActionController::Base
 
   protect_from_forgery with: :exception
   rescue_from ActionController::InvalidAuthenticityToken, with: :invalid_authenticity_redirect
-  before_action :check_approval, except: [:edit, :update, :destroy]
+  before_action :check_user_approval, except: [:edit, :update, :destroy]
+  before_action :check_vendor_approval, except: [:edit, :update, :destroy]
 
   private
   	def invalid_authenticity_redirect
       redirect_to root_path
   	end
 
-    def check_approval
-      if user_signed_in? || vendor_signed_in?
-        if !current_user.approved? || !current_vendor.approved?
-          redirect_to edit_user_registration_path || edit_vendor_registration_path
+    def check_user_approval
+      if user_signed_in?
+        if !current_user.approved?
+          redirect_to edit_user_registration_path
+          flash[:alert] = "You need to be Approved by an administrator before using WuDii."
+        end
+      end
+    end
+
+    def check_vendor_approval
+      if vendor_signed_in?
+        if !current_vendor.approved?
+          redirect_to edit_vendor_registration_path
           flash[:alert] = "You need to be Approved by an administrator before using WuDii."
         end
       end
