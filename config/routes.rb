@@ -43,6 +43,7 @@ Rails.application.routes.draw do
 
   # resources :tokens
 
+  match 'admins/tokens' => 'admin/tokens#batch_token_create', as: 'batch_token_create', via: :post
 	match 'users/:id/token' => 'tokens#update', as: 'token_user', via: :patch
 
   mount Sidekiq::Web, at: '/sidekiq'

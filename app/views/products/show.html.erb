@@ -24,14 +24,17 @@
 		  <% end %>
 		</h3>
 		<div class="text-center columns large-4 large-centered medium-5 medium-centered small-8 small-centered">
+			<br>
 			<h3><%= number_with_delimiter(@product.credits, delimiter: ",") %> credits</h3>
+			<br>
 			<h4>
-				<% if @product.amount_available > 0 %>
-					<%= @product.amount_available %> available
-				<% else %>
-					None currently available
+				<% if @product.amount_available.between?(1, 10) %>
+					<strong>Few in stock</strong>
+				<% elsif @product.amount_available == 0 %>
+					<strong class="alert-text">Out of stock</strong>
 				<% end %>
 			</h4>
+			<br>
 			<%= link_to 'Destroy Product', product_path(@product), 
 	                                  method: :delete, 
 																					 class: 'button alert radius tiny' if current_vendor == @vendor %>

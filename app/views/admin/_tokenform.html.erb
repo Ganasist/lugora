@@ -1,0 +1,13 @@
+<%= simple_form_for :token, url: batch_token_create_path, method: 'post' do %>
+  <div class="row collapse">
+  	<div class="large-9 small-9 columns">
+      <%= number_field_tag :token_quantity, params[:token_quantity], min: 100, max: 5000, placeholder: 'Token Quantity' %>
+      <br><br>
+      <%= number_field_tag :token_value, params[:token_value], min: 1000, placeholder: 'Token Value' %>
+	    <br><br>
+    	<%= button_tag 'Add Credits', { controller: :tokens,
+																		      action: 'batch_token_create', 
+																		       class: 'button' } %>
+    </div>
+  </div>               
+<% end %>
