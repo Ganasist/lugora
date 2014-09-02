@@ -20,7 +20,7 @@ class VendorsController < ApplicationController
         @transactions = Transaction.search(@vendor, @date).recent
       end      
     else
-      @transactions = @vendor.transactions
+      @transactions = @vendor.transactions.includes(:product)
     end
 	end
 

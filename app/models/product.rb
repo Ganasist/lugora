@@ -3,6 +3,8 @@ class Product < ActiveRecord::Base
   
   acts_as_voteable
 
+  default_scope -> { includes(:votes) }
+
   belongs_to :vendor
   has_many :transactions
   has_many :users, through: :transactions

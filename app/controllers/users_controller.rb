@@ -12,10 +12,8 @@ class UsersController < ApplicationController
       else
         @transactions = Transaction.search(@user, @date).recent
       end
-    else
-      @transactions = @user.transactions
 	  end
-    @recent_transactions = @user.transactions.all.recent
+    @recent_transactions = @user.transactions.all.recent.includes(product: :votes)
   end
 
 	private
