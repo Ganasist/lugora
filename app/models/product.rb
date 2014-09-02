@@ -15,9 +15,9 @@ class Product < ActiveRecord::Base
   def self.vote(product, user, vote)
   	if user.products.include?(product) && !user.voted_on?(product)
 			if vote == "up"
-				user.vote_for(@product)
+				user.vote_for(product)
 			elsif vote == "down"
-				user.vote_against(@product)
+				user.vote_against(product)
 			end					
 		else
 			return false
