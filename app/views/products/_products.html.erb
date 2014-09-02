@@ -3,7 +3,7 @@
 		<% @products.each do |product| %>
 			<div class="large-4 medium-6 small-12 columns">
 				<% if product.image.present? %>
-					<%= link_to image_tag(product.image.url).html_safe, product %>
+					<%= link_to image_tag(product.image.url).html_safe, new_product_transaction_path(product) %>
 				<% else %>
 					<img src="http://placehold.it/500x300&amp;text=Image not available">
 				<% end %>

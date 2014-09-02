@@ -7,18 +7,23 @@
 	      <% if @product.image_processing? %>
 	        <br><h4 class="text-center">Processing image...</h4><br>
 	      <% elsif %>
-          <%= image_tag(@product.image.url(:default), class: "text-center").html_safe %>
+          <%= image_tag(@product.image.url, class: "text-center").html_safe %>
 	      <% else %>
 		      <img src="http://placehold.it/1000x1000&amp;text=Image not available">
 		    <% end %>
 		  <% end %>
 		</h3>
-		<h3>
+		<h4>
+			<%= number_with_delimiter(@product.votes_against, delimiter: ',') %>		
+			<%= fa_icon('thumbs-o-down')%>&nbsp;&nbsp;&nbsp;
 			<span id="purchase_cost">
 				<%= @transaction.credits == 0 ? @transaction.credits : @product.credits %>
 			</span>
 			 credits
-		</h3>
+			 &nbsp;&nbsp;&nbsp;
+			<%= fa_icon('thumbs-o-up') %>
+			<%= number_with_delimiter(@product.votes_for, delimiter: ',') %>
+		</h4>
 		<% if @product.amount_available.between?(1, 10) %>
 			<h4><strong>Few in stock!</strong></h4>
 		<% end %>
@@ -28,7 +33,6 @@
 			<div class="authform registration large-4 large-centered columns">
 				<%= simple_form_for [@product, @transaction] do |f| %>
 				  <%= f.error_notification %>
-
 				  <div class="form-actions">
 				    <%= f.input :quantity, input_html: { id: "item_quantity", min: 1 } %>
 				    <%= f.input :code_position, as: :hidden, 
@@ -36,7 +40,6 @@
 				    <%= f.input :security_code, label: "Enter Security Code ##{ @code_position }",
 				    											 input_html: { maxlength: 6 } %>
 				  </div>
-
 				  <div class="form-actions">
 				    <%= f.button :submit, 'Verify & Buy', 
 				    											class: 'btn-large btn-warning success radius', 
