@@ -29,7 +29,7 @@
 	      <% if @transaction.product.image_processing? %>
 	        <br><h4 class="text-center">Processing image...</h4><br>
 	      <% elsif %>
-	      	<%= link_to image_tag(@transaction.product.image.url(:default)).html_safe, @vendor %>
+	      	<%= link_to image_tag(@transaction.product.image.url).html_safe, @vendor %>
 	      <% else %>
 		      <img src="http://placehold.it/1000x1000&amp;text=Image not available">
 		    <% end %>

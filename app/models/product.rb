@@ -11,4 +11,16 @@ class Product < ActiveRecord::Base
   validates :credits, :amount_available, numericality: { only_integer: true }
 
   validates :amount_available, numericality: { greater_than_or_equal_to: 0, message: 'Product is no longer available!' }
+
+  def self.vote(product, user, vote)
+  	if user.products.include?(product) && !user.voted_on?(product)
+			if vote == "up"
+				user.vote_for(@product)
+			elsif vote == "down"
+				user.vote_against(@product)
+			end					
+		else
+			return false
+		end
+  end
 end

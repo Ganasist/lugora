@@ -20,8 +20,7 @@ class ProductsController < ApplicationController
 
 	def upvote
 		@product = Product.find(params[:id])
-		if current_user.products.include?(@product) && !current_user.voted_on?(@product)
-			current_user.vote_for(@product)
+		if Product.vote(@product, current_user, "up")
 			flash[:notice] = "You upvoted #{ @product.name }!"
 			redirect_to current_user
 		else
@@ -32,8 +31,7 @@ class ProductsController < ApplicationController
 
 	def downvote
 		@product = Product.find(params[:id])
-		if current_user.products.include?(@product) && !current_user.voted_on?(@product)
-			current_user.vote_against(@product)
+		if Product.vote(@product, current_user, "down")
 			flash[:notice] = "You downvoted #{ @product.name }!"
 			redirect_to current_user
 		else
