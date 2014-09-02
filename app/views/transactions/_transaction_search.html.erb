@@ -1,7 +1,6 @@
 <% @url = user_signed_in? ? user_path(@user) : vendor_path(@vendor) %>
 
 <%= simple_form_for :transactions, url: @url, method: 'get' do %>
-	<%= date_field_tag :transaction_search, params[:transaction_search], placeholder: 'dd/mm/yy',
-															class: 'text-center' %>
+	<%= date_field_tag :transaction_search, params[:transaction_search], class: 'text-center' %>
 	<%= submit_tag 'Search Purchases', name: nil, class: 'button small radius expand' %>
 <% end %>

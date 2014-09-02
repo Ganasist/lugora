@@ -1,16 +1,19 @@
 <li class="name" id="wide">
   <% if user_signed_in? %>
   	<%= link_to current_user do %>
-      WuDii <%= fa_icon 'circle-o-notch' %> - <%= current_user.first_name %>
+      WuDii <%= fa_icon 'circle-o-notch' %> - 
+      <%= (request.fullpath).include?('/transactions') ? 'Receipt' : current_user.first_name %>
     <% end %>
   <% elsif vendor_signed_in? %>
-  	<%= link_to current_vendor do %>
-      WuDii <%= fa_icon 'circle-o-notch' %> - <%= current_vendor.business %>
+    <%= link_to current_vendor do %>
+      WuDii <%= fa_icon 'circle-o-notch' %> - 
+      <%= (request.fullpath).include?('/transactions') ? 'Receipt' : current_vendor.business %>
     <% end %>
   <% elsif current_admin_user %>
     <%= link_to admin_root_path do %>
-      WuDii <%= fa_icon 'circle-o-notch' %> - <%= current_admin_user.email %>
-    <% end %>
+      WuDii <%= fa_icon 'circle-o-notch' %> - 
+      <%= (request.fullpath).include?('/transactions') ? 'Receipt' : current_admin_user.email %>
+    <% end %>    
   <% else %>
     <%= link_to root_path do %>
       WuDii <%= fa_icon 'circle-o-notch' %>
@@ -20,15 +23,18 @@
 <li class="name" id="narrow">
   <% if user_signed_in? %>
     <%= link_to current_user do %>
-      WuDii <%= fa_icon 'circle-o-notch' %> - <%= name_truncate(current_user) %>
-    <% end %>
+      WuDii <%= fa_icon 'circle-o-notch' %> - 
+      <%= (request.fullpath).include?('/transactions') ? 'Receipt' : name_truncate(current_user) %>
+    <% end %>    
   <% elsif vendor_signed_in? %>
     <%= link_to current_vendor do %>
-      WuDii <%= fa_icon 'circle-o-notch' %> - <%= name_truncate(current_vendor) %>
+      WuDii <%= fa_icon 'circle-o-notch' %> - 
+      <%= (request.fullpath).include?('/transactions') ? 'Receipt' : name_truncate(current_vendor) %>
     <% end %>
   <% elsif current_admin_user %>
     <%= link_to current_vendor do %>
-      WuDii <%= fa_icon 'circle-o-notch' %> - <%= current_admin_user.email %>
+      WuDii <%= fa_icon 'circle-o-notch' %> - 
+      <%= (request.fullpath).include?('/transactions') ? 'Receipt' : current_admin_user.email %>
     <% end %>
   <% else %>
     <%= link_to root_path do %>
