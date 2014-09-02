@@ -1,5 +1,7 @@
 class Product < ActiveRecord::Base
   include Attachments
+  
+  acts_as_voteable
 
   belongs_to :vendor
   has_many :transactions

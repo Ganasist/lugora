@@ -15,6 +15,31 @@ class ProductsController < ApplicationController
 	end
 
 	def edit
+
+	end
+
+	def upvote
+		@product = Product.find(params[:id])
+		if current_user.products.include?(@product) && !current_user.voted_on?(@product)
+			current_user.vote_for(@product)
+			flash[:notice] = "You upvoted #{ @product.name }!"
+			redirect_to current_user
+		else
+			flash[:alert] = "You can only vote once for Products you have purchased!"
+			redirect_to current_user
+		end
+	end
+
+	def downvote
+		@product = Product.find(params[:id])
+		if current_user.products.include?(@product) && !current_user.voted_on?(@product)
+			current_user.vote_against(@product)
+			flash[:notice] = "You downvoted #{ @product.name }!"
+			redirect_to current_user
+		else
+			flash[:alert] = "You can only vote once for Products you have purchased!"
+			redirect_to current_user
+		end
 	end
 
 	def create

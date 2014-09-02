@@ -41,8 +41,8 @@ Rails.application.routes.draw do
 		resources :transactions
 	end
 
-  # resources :tokens
-
+	match 'products/:id/upvote' => 'products#upvote', as: 'product_upvote', via: :post
+	match 'products/:id/downvote' => 'products#downvote', as: 'product_downvote', via: :post
   match 'admins/tokens' => 'admin/tokens#batch_token_create', as: 'batch_token_create', via: :post
 	match 'users/:id/token' => 'tokens#update', as: 'token_user', via: :patch
 

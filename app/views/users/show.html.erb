@@ -59,7 +59,25 @@
 								<% end %>
 								<div class="panel">
 									<h5>
+										<% unless @user.voted_on?(transaction.product) %>
+					       		  <%= link_to product_downvote_path(transaction.product), method: :post do %>
+					       		  	<%= fa_icon 'thumbs-o-down 2x' %>
+					       		  <% end %>
+
+					       		  <%= link_to product_upvote_path(transaction.product), method: :post do %>
+					       		  	<%= fa_icon 'thumbs-o-up 2x', class: 'right' %>
+					       		  <% end %>
+					       		  <br><br>
+					       		<% else %>
+						       		<div class="text-center">
+						       		 	<%= @user.voted_how?(transaction.product) ? fa_icon('thumbs-o-up 2x') : 
+						       		 																							fa_icon('thumbs-o-down 2x') %>
+						       		 </div>					       		 
+							      		<br>       		 		
+					       		<% end %>
+
 										<%= transaction.product.name %>
+										
 										<% if user_signed_in? %>
 											<%= link_to 'Buy', new_product_transaction_path(transaction.product), 
 																						class: 'button success small radius right' if transaction.product.amount_available > 0 %>

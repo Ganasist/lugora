@@ -3,10 +3,12 @@ class User < ActiveRecord::Base
   include Attachments
   include Scopes
   include Approval
+  
+  acts_as_voter
 
 	has_many :transactions
 	has_many :vendors, through: :transactions
-	has_many :products, through: :transations
+	has_many :products, through: :transactions
 	
 	has_many :tokens
 	accepts_nested_attributes_for :tokens
