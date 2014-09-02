@@ -26,7 +26,10 @@
                                            input_html: { style: 'width:200px' } %></li>
             </ul>
             <hr>
-            <h4 class="text-center">Image</h4>
+            <div class="text-center">
+              <h5>Product Image</h5>
+              <p>Images must be under 2 MB and either .jpeg, .png or .gif</p>
+            </div>
             <br>
             <% if @user.image.present? %>
               <%= image_tag(@user.image.url).html_safe %>

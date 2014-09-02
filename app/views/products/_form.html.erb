@@ -7,7 +7,10 @@
 		  	<%= f.input :credits, label: 'Cost in credits' %>		  	
 		  	<%= f.input :amount_available %>
 		  	<hr>
-		  	<h5 class="text-center">Product Image</h5>
+		  	<div class="text-center">
+		  		<h5>Product Image</h5>
+			  	<p>Images must be under 2 MB and either .jpeg, .png or .gif</p>
+		  	</div>		  	
 		  	<% if @product.image? %>
            <%= link_to image_tag(@product.image.url), @product.image.url, target: '_blank' %>
           <br><br>
