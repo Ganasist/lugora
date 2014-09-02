@@ -41,7 +41,7 @@ class Transaction < ActiveRecord::Base
 		end
 	end
 
-	def self.date_search(input, query)
+	def self.search(input, query)
 		input.transactions.where("created_at <= :q", q: "#{ query }")
 	end	
 end

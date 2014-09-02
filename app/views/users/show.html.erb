@@ -38,15 +38,15 @@
 
 			<div class="columns large-6 large-uncentered medium-9 small-12 small-centered">
 				<%= render 'transactions/transaction_search' %>			
-				<% if @transactions.count != 0 && params[:search] %>			
+				<% if @transactions.count != 0 && params[:transaction_search] %>			
 					<%= render 'transactions/transaction_history' %>
-				<% elsif @transactions.count == 0 && params[:search] %>
+				<% elsif @transactions.count == 0 && params[:transaction_search] %>
 					<h2 class="text-center">No transactions found</h2>
 				<% end %>
 				<hr>
 			</div>
 
-			<div class="large-12 columns">
+			<div class="large-12 columns <%= 'show-for-medium-up' if @transactions.count != 0 && params[:transaction_search] %>">
 				<% if !@recent_transactions.nil? %>
 					<h4 class="text-center">Recent Purchases</h4>
 					<% @recent_transactions.each do |transaction| %>

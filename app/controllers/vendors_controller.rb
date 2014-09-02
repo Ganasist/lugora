@@ -11,13 +11,13 @@ class VendorsController < ApplicationController
 	def show
 		@vendor = Vendor.find(params[:id])
     @products = @vendor.products
-    if params[:search] && params[:search] != ""
-      @date = params[:search].to_time.end_of_day
+    if params[:transaction_search] && params[:transaction_search] != ""
+      @date = params[:transaction_search].to_time.end_of_day
       if @date > Date.today + 1
         flash[:alert] = "You can't search for future transactions."
         redirect_to current_user
       else
-        @transactions = Transaction.date_search(@vendor, @date).recent
+        @transactions = Transaction.search(@vendor, @date).recent
       end      
     else
       @transactions = @vendor.transactions

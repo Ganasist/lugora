@@ -5,9 +5,7 @@
       <br><br>
       <%= number_field_tag :token_value, params[:token_value], min: 1000, placeholder: 'Token Value' %>
 	    <br><br>
-    	<%= button_tag 'Add Credits', { controller: :tokens,
-																		      action: 'batch_token_create', 
-																		       class: 'button' } %>
+    	<%= button_tag 'Add Credits', { class: 'button' } %>
     </div>
   </div>               
 <% end %>

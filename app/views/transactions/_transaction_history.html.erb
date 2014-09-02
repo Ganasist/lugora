@@ -1,6 +1,6 @@
 <table class="recent-transactions medium-12 small-12 small-centered columns">
 	<thead>
-		<% unless params[:search] && params[:search] != "" %>
+		<% unless params[:transaction_search] && params[:transaction_search] != "" %>
 			<caption>Recent transactions</caption>
 		<% else %>
 			<caption>Transactions on or before <%= @date.strftime("%B %d %Y") %></caption>
@@ -12,8 +12,7 @@
 	    <% elsif vendor_signed_in? %>	    	
 	      <th class="text-center">User</th>
 	    <% end %>
-      <th class="text-center">Product</th>
-      <th class="text-center">Credits</th>
+      <th class="text-center">Date</th>
     </tr>
 	</thead>
 	<% if user_signed_in? %>
@@ -21,8 +20,7 @@
 			<tr>
 				<td class="text-right"><%= link_to t.id, user_transaction_path(@user, t) %></td>
 				<td class="text-right"><%= link_to t.vendor.business, t.vendor unless t.vendor.nil? %></td>
-				<td class="text-right"><%= link_to t.product.name, new_product_transaction_path(t.product) unless t.product.nil? %></td>
-				<td class="text-right"><%= number_with_delimiter(t.credits, delimiter: ',') %></td>
+				<td class="text-right"><%= t.created_at.to_formatted_s(:long_ordinal) %></td>
 			</tr>
 		<% end %>
 	<% elsif vendor_signed_in? %>		
@@ -30,8 +28,7 @@
 		<tr>
 			<td class="text-right"><%= link_to t.id, transaction_path(t) %></td>
 			<td class="text-right"><%= t.user.fullname unless t.user.nil? %></td>
-			<td class="text-right"><%= link_to t.product.name, new_product_transaction_path(t.product) unless t.product.nil? %></td>
-			<td class="text-right"><%= number_with_delimiter(t.credits, delimiter: ',') %></td>
+			<td class="text-right"><%= t.created_at.to_formatted_s(:long_ordinal) %></td>
 		</tr>
 		<% end %>
 	<% end %>
