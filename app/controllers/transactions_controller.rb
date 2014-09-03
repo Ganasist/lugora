@@ -98,7 +98,7 @@ class TransactionsController < ApplicationController
 		end
 
 		def new_transaction
-			if current_vendor
+			if vendor_signed_in?
 				flash[:error] = 'You need to be logged in as a User to verify a transaction.'
 				redirect_to current_vendor
 			end

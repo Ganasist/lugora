@@ -1,4 +1,5 @@
 class ProductsController < ApplicationController
+	before_action :authenticate_vendor!, only: [:new, :create, :edit, :update]
 	before_action :set_product, only: [:show, :edit, :update, :destroy]
 	before_action :set_vendor, only: [:index, :new]
 

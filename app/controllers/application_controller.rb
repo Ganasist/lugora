@@ -2,7 +2,7 @@ class ApplicationController < ActionController::Base
 
   protect_from_forgery with: :exception
   rescue_from ActionController::InvalidAuthenticityToken, with: :invalid_authenticity_redirect
-  rescue_from ActionController::RoutingError, with: :page_does_not_exist
+
   before_action :check_user_approval, except: [:edit, :update, :destroy]
   before_action :check_vendor_approval, except: [:edit, :update, :destroy]
 
@@ -10,11 +10,6 @@ class ApplicationController < ActionController::Base
   	def invalid_authenticity_redirect
       redirect_to root_path
   	end
-
-    def page_does_not_exist
-      flash[:error] = "Page does not exist!"
-      redirect_to root_path
-    end
 
     def check_user_approval
       if user_signed_in?

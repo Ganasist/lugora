@@ -50,7 +50,7 @@
 																															 @transactions.count != 0 && 
 																															 params[:transaction_search] %>">
 				<% if !@recent_transactions.nil? %>
-					<h4 class="text-center">Recent Purchases</h4>
+					<h4 class="text-center">Recent Purchases</h4><br>
 					<% @recent_transactions.each do |transaction| %>
 						<div class="large-4 medium-6 small-12 columns">
 							<% if transaction.product.present? %>
