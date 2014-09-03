@@ -4,21 +4,16 @@
 			<li class="fn">Transaction ID: <%= @transaction.id %></li>	
 			<li class="fn">Date: <%= @transaction.created_at.to_formatted_s(:long_ordinal) %></li>
 			<% if vendor_signed_in? %>
-			  <li class="fn">
-			  	User: <%= link_to @transaction.user.fullname, @transaction.user %>
-			  </li>
+			  <li class="fn">User: <%= link_to @transaction.user.fullname, @transaction.user %></li>
 		  <% end %>
 		  <% if user_signed_in? %>
-			  <li class="fn">
-			  	Vendor: <%= link_to @transaction.vendor.business, @transaction.vendor %>
-			  </li>
+			  <li class="fn">Vendor: <%= link_to @transaction.vendor.business, @transaction.vendor %></li>
 		  <% end %>
 		  <li class="fn">
-		  	Product: <%= link_to @transaction.product.name, new_product_transaction_path(@transaction.product) %>
+		  	Product: <%= link_to @transaction.product.name, 
+		  											 new_product_transaction_path(@transaction.product) %>
 		  </li>
-		  <li class="fn">
-		  	Quantity: <%= @transaction.quantity %>
-		  </li>
+		  <li class="fn">Quantity: <%= @transaction.quantity %></li>
 		  <li class="fn">Amount: <%= number_with_delimiter(@transaction.credits, delimiter: ',') %> credits</li>
 		</ul>
 	</div>

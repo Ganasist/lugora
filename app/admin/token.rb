@@ -58,7 +58,7 @@ ActiveAdmin.register Token do
                       bottom: 8,
                         left: 10,
                        right: 10 },
-         disposition: 'inline',
+         disposition: 'attachment',
   disable_javascript: true,
       enable_plugins: false
         end
