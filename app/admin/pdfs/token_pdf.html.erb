@@ -1,0 +1,14 @@
+<div class="row">
+  <div class="columns large-12">
+    <br>
+    <div class="barcode"><br><br><br><br><br><br><br></div>
+    <h3><%= @token.encrypted_token_code.scan(/.{4}|.+/).join('-') %></h3>
+    <div class="columns large-2">
+      <br>
+      <h4>WuDii</h1>
+      <h5>Sid Ideas</h5>
+      <h5>www.sidideas.com</h5>
+      <br>
+      <p><%= "WuDii © #{ Time.now.year }" %></p>
+    </div>
+</div>

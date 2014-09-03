@@ -15,3 +15,8 @@ div.watermark {
   background-repeat: no-repeat;
   background-position: 100% 100%;
 }
+
+div.barcode {
+	background-image:url('<%= "file://#{Rails.root.join('app','assets','images','barcode.jpg')}" %>');
+  background-repeat: no-repeat;
+}

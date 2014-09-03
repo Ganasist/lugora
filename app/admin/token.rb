@@ -39,8 +39,32 @@ ActiveAdmin.register Token do
     active_admin_comments
   end
 
+  action_item only: :show do
+    link_to 'Print Token', admin_token_path(token, format: 'pdf') # if user.approved?
+  end
+
   controller do
     before_action :authenticate_admin_user!
+
+    def show
+      @token = Token.find(params[:id])
+      respond_to do |format|
+        format.html
+        format.pdf do
+          render pdf: "Token ##{ @token.id }",
+                file: "#{ Rails.root }/app/admin/pdfs/token_pdf.html.erb",
+              layout: 'codes.html',
+              margin: {  top: 8,
+                      bottom: 8,
+                        left: 10,
+                       right: 10 },
+         disposition: 'inline',
+  disable_javascript: true,
+      enable_plugins: false
+        end
+      end
+    end
+
     def batch_token_create
       if Token.generator_check?(params[:token_quantity], params[:token_value])
         BatchTokenCreator.perform_async(params[:token_quantity], params[:token_value])
