@@ -130,7 +130,6 @@ ActiveAdmin.register User do
       row :street_address
       row :city
       row :state
-      row :phone_number
       row :postal_code
       row :create_at
       row :updated_at
@@ -243,8 +242,9 @@ ActiveAdmin.register User do
                       bottom: 8,
                         left: 10,
                        right: 10 },
-         disposition: 'attachment',
-  disable_javascript: true
+         disposition: 'inline',
+  disable_javascript: true,
+      enable_plugins: false
         end
       end
     end
