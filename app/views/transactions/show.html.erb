@@ -1,48 +1,51 @@
 <div class="row">
+	<% unless @transaction.product.nil? %>
 	<div class="columns large-6 large-uncentered medium-8 medium-centered">
-		<% unless @transaction.product.nil? %>
-			<ul class="vcard">
-				<li class="fn">Transaction ID: <%= @transaction.id %></li>	
-				<li class="fn">Date: <%= @transaction.created_at.to_formatted_s(:long_ordinal) %></li>
-				<% if vendor_signed_in? %>
-				  <li class="fn">User: <%= link_to @transaction.user.fullname, @transaction.user %></li>
-			  <% end %>
-			  <% if user_signed_in? %>
-				  <li class="fn">Vendor: <%= link_to @transaction.vendor.business, @transaction.vendor %></li>
-			  <% end %>
-			  <li class="fn">
-			  	Product: <%= link_to @transaction.product.name, 
-			  											 new_product_transaction_path(@transaction.product) %>
-			  </li>
-			  <li class="fn">Quantity: <%= @transaction.quantity %></li>
-			  <li class="fn">Amount: <%= number_with_delimiter(@transaction.credits, delimiter: ',') %> credits</li>
-			  <li class="fn">Status: <%= @transaction.pending? ? 'Pending' : 'Cleared' %></li>
-			  <% if @transaction.pending %>
-			  <br>
-			  <li class="fn text-center">
-				  <%= link_to authorize_transaction_path(@user, @transaction), method: :post do %>
-		 		  	<%= fa_icon 'lock 4x' %><br>
-		 		  	Authorize Now 
-		 		  <% end %>
+		<ul class="vcard">
+			<li class="fn">Transaction ID: <%= @transaction.id %></li>	
+			<li class="fn">Date: <%= @transaction.created_at.to_formatted_s(:long_ordinal) %></li>
+			<% if vendor_signed_in? %>
+			  <li class="fn">User: <%= link_to @transaction.user.fullname, @transaction.user %></li>
+		  <% end %>
+		  <% if user_signed_in? %>
+			  <li class="fn">Vendor: <%= link_to @transaction.vendor.business, @transaction.vendor %></li>
+		  <% end %>
+		  <li class="fn">
+		  	Product: <%= link_to @transaction.product.name, 
+		  											 new_product_transaction_path(@transaction.product) %>
+		  </li>
+		  <li class="fn">Quantity: <%= @transaction.quantity %></li>
+		  <li class="fn">Amount: <%= number_with_delimiter(@transaction.credits, delimiter: ',') %> credits</li>
+		  <li class="fn">Status: <%= @transaction.pending? ? 'Pending' : 'Cleared' %></li>
+		  <% if @transaction.pending %>
+		  <br>
+		  <li class="fn text-center">
+			  <%= link_to authorize_transaction_path(@user, @transaction), method: :post do %>
+	 		  	<%= fa_icon 'lock 4x' %><br>
+	 		  	Authorize Now 
 	 		  <% end %>
-			  </li>
-			</ul>
-		</div>
-		<div class="columns large-6 large-uncentered small-12 medium-8 small-12 small-centered">
-			<br>
-			<h3>
-				<% if @transaction.product.image.present? %>
-		      <% if @transaction.product.image_processing? %>
-		        <br><h4 class="text-center">Processing image...</h4><br>
-		      <% elsif %>
-		      	<%= link_to image_tag(@transaction.product.image.url).html_safe, @vendor %>
-		      <% else %>
-			      <img src="http://placehold.it/1000x1000&amp;text=Image not available">
-			    <% end %>
-			  <% end %>
-			</h3>
-			<% else %>
-			<h3>Product no longer exists!</h3>
-			<% end %>
+ 		  <% end %>
+		  </li>
+		</ul>
 	</div>
+	<div class="columns large-6 large-uncentered small-12 medium-8 small-12 small-centered">
+		<br>
+		<h3>
+			<% if @transaction.product.image.present? %>
+	      <% if @transaction.product.image_processing? %>
+	        <br><h4 class="text-center">Processing image...</h4><br>
+	      <% elsif %>
+	      	<%= link_to image_tag(@transaction.product.image.url).html_safe, @vendor %>
+	      <% else %>
+		      <img src="http://placehold.it/1000x1000&amp;text=Image not available">
+		    <% end %>
+		  <% end %>
+		</h3>
+	</div>
+	<% else %>
+	<div class="columns large-12 small-centered">
+			<br><br>
+			<h3>Product no longer exists!</h3>
+	</div>
+	<% end %>
 </div>
