@@ -21,7 +21,7 @@ class ProductsController < ApplicationController
 	def vote
 		@product = Product.find(params[:id])
 		if Product.vote(@product, current_user, request.fullpath.split('/').last)
-			flash[:notice] = "You #{ request.fullpath.split('/').last }ed #{ @product.name }!"
+			flash[:notice] = "You #{ request.fullpath.split('/').last }d #{ @product.name }!"
 		else
 			flash[:alert] = "You can only vote once for Products you have purchased!"
 		end		

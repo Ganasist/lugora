@@ -21,6 +21,7 @@ class Product < ActiveRecord::Base
 				user.vote_against(product)
 			end					
 		else
+      self.errors[:base] << "You can't vote on this Product!"
 			return false
 		end
   end
