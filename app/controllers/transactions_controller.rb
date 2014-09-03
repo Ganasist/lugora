@@ -1,6 +1,7 @@
 class TransactionsController < ApplicationController
 	before_action :depleted_code_pool
-	before_action :new_transaction, only: [:new, :create]
+	before_action :authenticate_user!, only: [:new, :create]
+	# before_action :new_transaction, only: [:new, :create]
 	before_action :verify_transaction_owners, only: :show
 
 	def index
@@ -97,12 +98,12 @@ class TransactionsController < ApplicationController
 			end
 		end
 
-		def new_transaction
-			if vendor_signed_in?
-				flash[:error] = 'You need to be logged in as a User to verify a transaction.'
-				redirect_to current_vendor
-			end
-		end
+		# def new_transaction
+		# 	if vendor_signed_in?
+		# 		flash[:error] = 'You need to be logged in as a User to verify a transaction.'
+		# 		redirect_to current_vendor
+		# 	end
+		# end
 
 		def depleted_code_pool
 			if current_user && current_user.code_pool.length == 0
