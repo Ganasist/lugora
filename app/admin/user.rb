@@ -236,7 +236,7 @@ ActiveAdmin.register User do
         format.html
         format.pdf do
           render pdf: "User ##{ @user.id }",
-                file: "#{Rails.root}/app/admin/pdfs/pdf.html.erb",
+                file: "#{ Rails.root }/app/admin/pdfs/pdf.html.erb",
               layout: 'codes.html',
               margin: {  top: 8,
                       bottom: 8,

@@ -21,3 +21,8 @@
 
 en:
   hello: "Hello world"
+  vote:
+    unit:
+      one: ""
+      thousand: "K"
+      million: "M"
