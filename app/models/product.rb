@@ -3,8 +3,6 @@ class Product < ActiveRecord::Base
   
   acts_as_voteable
 
-  default_scope -> { includes(:votes) }
-
   belongs_to :vendor
   has_many :transactions
   has_many :users, through: :transactions
@@ -12,13 +10,14 @@ class Product < ActiveRecord::Base
   validates :name, :credits, :amount_available, :vendor_id, presence: true
   validates :credits, :amount_available, numericality: { only_integer: true }
 
-  validates :amount_available, numericality: { greater_than_or_equal_to: 0, message: 'Product is no longer available!' }
+  validates :amount_available, numericality: { greater_than_or_equal_to: 0, 
+                                                                message: 'Product is no longer available!' }
 
   def self.vote(product, user, vote)
   	if user.products.include?(product) && !user.voted_on?(product)
-			if vote == "up"
+			if vote == "upvote"
 				user.vote_for(product)
-			elsif vote == "down"
+			elsif vote == "downvote"
 				user.vote_against(product)
 			end					
 		else

@@ -18,26 +18,14 @@ class ProductsController < ApplicationController
 
 	end
 
-	def upvote
+	def vote
 		@product = Product.find(params[:id])
-		if Product.vote(@product, current_user, "up")
-			flash[:notice] = "You upvoted #{ @product.name }!"
-			redirect_to current_user
+		if Product.vote(@product, current_user, request.fullpath.split('/').last)
+			flash[:notice] = "You #{ request.fullpath.split('/').last }ed #{ @product.name }!"
 		else
 			flash[:alert] = "You can only vote once for Products you have purchased!"
-			redirect_to current_user
-		end
-	end
-
-	def downvote
-		@product = Product.find(params[:id])
-		if Product.vote(@product, current_user, "down")
-			flash[:notice] = "You downvoted #{ @product.name }!"
-			redirect_to current_user
-		else
-			flash[:alert] = "You can only vote once for Products you have purchased!"
-			redirect_to current_user
-		end
+		end		
+		redirect_to current_user
 	end
 
 	def create
