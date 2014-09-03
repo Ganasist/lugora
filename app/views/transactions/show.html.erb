@@ -15,6 +15,16 @@
 		  </li>
 		  <li class="fn">Quantity: <%= @transaction.quantity %></li>
 		  <li class="fn">Amount: <%= number_with_delimiter(@transaction.credits, delimiter: ',') %> credits</li>
+		  <li class="fn">Status: <%= @transaction.pending? ? 'Pending' : 'Cleared' %></li>
+		  <% if @transaction.pending %>
+		  <br>
+		  <li class="fn text-center">
+			  <%= link_to authorize_transaction_path(@user, @transaction), method: :post do %>
+	 		  	<%= fa_icon 'lock 4x' %><br>
+	 		  	Authorize Now 
+	 		  <% end %>
+ 		  <% end %>
+		  </li>
 		</ul>
 	</div>
 	<div class="columns large-6 large-uncentered small-12 medium-8 small-12 small-centered">

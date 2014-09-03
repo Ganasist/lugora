@@ -59,6 +59,20 @@ class TransactionsController < ApplicationController
     end
 	end
 
+	def authorize
+		@user = User.find(params[:id])
+		@transaction = Transaction.find(params[:transaction_id])
+		if current_user == @user && @transaction.user == @user
+			@transaction.pending = false
+			@transaction.save
+			flash[:notice] = "You have authorized this purchase from #{@transaction.vendor.business}"
+			redirect_to :back
+		else
+			flash[:error] = "You cannot authorize that transaction!"
+			redirect_to :back
+		end
+	end
+
 	def destroy
 		
 	end
@@ -98,6 +112,6 @@ class TransactionsController < ApplicationController
 		end
 
 		def transaction_params
-			params.require(:transaction).permit(:security_code, :code_position, :quantity)
+			params.require(:transaction).permit(:security_code, :code_position, :quantity, :pending)
 		end
 end

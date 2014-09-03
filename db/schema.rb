@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140903121320) do
+ActiveRecord::Schema.define(version: 20140903143110) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -82,16 +82,17 @@ ActiveRecord::Schema.define(version: 20140903121320) do
   add_index "tokens", ["user_id"], name: "index_tokens_on_user_id", using: :btree
 
   create_table "transactions", force: true do |t|
-    t.integer  "user_id",                   null: false
-    t.integer  "vendor_id",                 null: false
-    t.integer  "security_code",             null: false
-    t.integer  "credits",                   null: false
+    t.integer  "user_id",                      null: false
+    t.integer  "vendor_id",                    null: false
+    t.integer  "security_code",                null: false
+    t.integer  "credits",                      null: false
     t.boolean  "disputed"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "code_position", default: 0, null: false
-    t.integer  "product_id",                null: false
+    t.integer  "code_position", default: 0,    null: false
+    t.integer  "product_id",                   null: false
     t.integer  "quantity",      default: 1
+    t.boolean  "pending",       default: true, null: false
   end
 
   add_index "transactions", ["product_id", "user_id"], name: "index_transactions_on_product_id_and_user_id", using: :btree
