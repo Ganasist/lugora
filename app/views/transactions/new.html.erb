@@ -30,6 +30,9 @@
 		<% if @product.amount_available == 0 %>
 			<h4 class="alert-text"><strong>Out of stock!</strong></h4>
 		<% else %>
+			<div class="columns medium-6 small-centered">
+				<p class="text-left"><%= @product.description %></p>
+			</div>
 			<div class="authform registration large-4 large-centered columns">
 				<%= simple_form_for [@product, @transaction] do |f| %>
 				  <%= f.error_notification %>
