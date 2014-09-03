@@ -39,7 +39,7 @@ class UsersController < ApplicationController
         redirect_to current_vendor || root_url        
       else
         flash[:alert] = "You need to sign in first."
-        redirect_to root_url
+        redirect_to root_path
       end
     end    
 end
