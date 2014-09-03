@@ -1,6 +1,6 @@
 <div class="row">
 	<div class="columns large-6 large-uncentered medium-8 medium-centered">
-		<% if @transaction.product.exists? %>
+		<% unless @transaction.product.nil? %>
 			<ul class="vcard">
 				<li class="fn">Transaction ID: <%= @transaction.id %></li>	
 				<li class="fn">Date: <%= @transaction.created_at.to_formatted_s(:long_ordinal) %></li>
