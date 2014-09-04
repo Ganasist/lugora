@@ -17,7 +17,8 @@
 			<%= number_with_delimiter(@product.votes_against, delimiter: ',') %>		
 			<%= fa_icon('thumbs-o-down')%>&nbsp;&nbsp;&nbsp;
 			<span id="purchase_cost">
-				<%= @transaction.credits == 0 ? @transaction.credits : @product.credits %>
+				<%= @transaction.credits == 0 ? @transaction.credits : 
+																				number_with_delimiter(@product.credits, delimiter: ',') %>
 			</span>
 			 credits
 			 &nbsp;&nbsp;&nbsp;
