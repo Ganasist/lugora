@@ -27,6 +27,10 @@ class Transaction < ActiveRecord::Base
 		self.product.save!
 	end
 
+	def unit_price
+		credits / quantity
+	end
+
 	def purchase
 		self.user.credits 	-= self.credits
 		self.vendor.credits += self.credits

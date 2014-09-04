@@ -1,15 +1,11 @@
-<tbody>
 	<% @vendors.each do |v| %>
-	<tr>
-		<td>
-			<% if v.image.present? %>
-				<%= link_to v do %>
-					<%= image_tag(v.image(:thumb)).html_safe %> &nbsp;&nbsp; <%= " #{ v.business }" %>
+		<li>
+			<%= link_to v do %>
+				<% if v.image.present? %>
+					<%= image_tag(v.image(:thumb)).html_safe %> <br> <%= v.business %>
+				<% else %>
+					<img src="http://placehold.it/75&amp;text=Image not available"> <br> <%= v.business %>
 				<% end %>
-			<% else %>
-			<%= link_to v.business, v %>
 			<% end %>
-		</td>
-	</tr>
+		</li>			
 	<% end %>
-</tbody>

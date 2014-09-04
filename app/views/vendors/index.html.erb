@@ -1,16 +1,14 @@
 <div class="row">
-	<div class="columns large-12">
+	<div class="columns large-12 text-center">
+		<br><br>
+		<h2>WuDii Vendors</h2>
+		<br><br>
 		<% unless @vendors.empty? %>
-			<table>
-			  <thead>
-			    <tr>
-			      <th width="400">Vendor</th>
-			    </tr>
-			  </thead>
+			<ul class="small-block-grid-2 medium-block-grid-4 large-block-grid-6">
 			  <%= render 'vendors' %>
-			</table>
+			</ul>
 		<% else %>
-			<h2 class="text-center">Vendor not found</h2>
+			<h2>Vendor not found</h2>
 		<% end %>
 	</div>
 </div>

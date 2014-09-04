@@ -91,9 +91,6 @@
 									<h5>Product no longer exists</h5>
 							<% end %>
 									<h6 class="subheader">
-										<%= number_with_delimiter(transaction.credits, delimiter: ",") %> credits
-									</h6>
-									<h6 class="subheader">
 										<%= time_ago_in_words(transaction.created_at) %> ago
 									</h6>
 								</div>
