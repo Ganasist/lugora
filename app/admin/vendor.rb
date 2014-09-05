@@ -13,7 +13,7 @@ ActiveAdmin.register Vendor do
 
   permit_params :first_name, :last_name, :business, :email, :phone_prefix, :phone_number,
                 :street_address, :city, :state, :postal_code, :approved,
-                :password, :password_confirmation
+                :password, :password_confirmation, :paid
 
   filter :id
   filter :email
@@ -116,6 +116,12 @@ ActiveAdmin.register Vendor do
         mail_to(vendor.email, vendor.email)
       end
       row :business
+      row :total_credits do |vendor|
+        number_with_delimiter(vendor.credits, delimiter: ',')
+      end
+      row :cleared_credits do |vendor|
+        number_with_delimiter(vendor.cleared_credits, delimiter: ',')
+      end
       row :phone_prefix
       row :phone_number
       row :street_address
@@ -135,6 +141,23 @@ ActiveAdmin.register Vendor do
 
   action_item only: :show do
     link_to 'Vendor Profile', vendor_path(vendor)
+  end
+
+  action_item only: :show do
+    link_to 'Pay Vendor', pay_vendor_admin_vendor_path(vendor), method: :post if vendor.cleared_credits > 0
+  end
+
+  member_action :pay_vendor, method: :post do
+    vendor = Vendor.find(params[:id])
+    transactions = vendor.transactions.where('pending = ? AND paid = ?', nil, nil)
+    transactions.each do |t|
+      t.paid = true
+      t.save!
+    end
+    vendor.credits -= vendor.cleared_credits
+    flash[:notice] = "#{ vendor.business } has been paid #{ vendor.cleared_credits } credits."
+    vendor.save!
+    redirect_to admin_vendor_path(id: vendor.id)
   end
 
   action_item only: :show do

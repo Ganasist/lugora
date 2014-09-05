@@ -49,10 +49,14 @@
 			<div class="large-12 columns <%= 'show-for-medium-up' if @transactions && 
 																															 @transactions.count != 0 && 
 																															 params[:transaction_search] %>">
+			
 				<% if !@recent_transactions.nil? %>
+
 					<h4 class="text-center">Recent Purchases</h4><br>
+
+					<ul class="small-block-grid-1 medium-block-grid-2 large-block-grid-3">
 					<% @recent_transactions.each do |transaction| %>
-						<div class="large-4 medium-6 small-12 columns">
+						<li>
 							<% if transaction.product.present? %>
 								<% if transaction.product.image.present? %>
 									<%= link_to image_tag(transaction.product.image.url.html_safe, class: 'th radius'), new_product_transaction_path(transaction.product) %>
@@ -94,8 +98,9 @@
 										<%= time_ago_in_words(transaction.created_at) %> ago
 									</h6>
 								</div>
-						</div>
+							</li>
 					<% end %>
+					</ul>
 				<% end %>
 			</div>
 

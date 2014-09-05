@@ -21,10 +21,10 @@ class User < ActiveRecord::Base
  	validates :first_name, :last_name,:occupation, :street_address, :phone_prefix,
  						:phone_number, :city, presence: true
 
- 	validates_numericality_of :phone_prefix, :phone_number, :credits
+ 	validates :phone_prefix, :phone_number, :credits, numericality: { only_integer: true }
 
- 	validates :credits, numericality: { greater_than_or_equal_to: 0, 
- 																											 message: 'Your credits cannot be less than zero!' }
+ 	validates :credits, numericality: {	greater_than_or_equal_to: 0, 
+ 																					 						 message: 'Users cannot have negative credits!' }
 
  	# Security codes generated in SecurityCodesWorker
  	after_commit :generate_security_codes, on: :create
