@@ -33,7 +33,19 @@ class Vendor < ActiveRecord::Base
     AdminUser.first.timeout
   end
 
-  def cleared_credits
-  	transactions.where('pending = ? AND paid = ?', nil, true).sum(:credits)
+  def pending_unpaid_transactions
+  	transactions.where('pending = ? AND paid = ?', true, false)
+  end
+
+  def pending_unpaid_transaction_credits
+  	transactions.where('pending = ? AND paid = ?', true, false).sum(:credits)
+  end
+
+  def not_pending_unpaid_transactions
+  	transactions.where('pending = ? AND paid = ?', false, false)
+  end
+
+  def not_pending_unpaid_transaction_credits
+  	transactions.where('pending = ? AND paid = ?', false, false).sum(:credits)
   end
 end

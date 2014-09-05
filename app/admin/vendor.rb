@@ -13,7 +13,7 @@ ActiveAdmin.register Vendor do
 
   permit_params :first_name, :last_name, :business, :email, :phone_prefix, :phone_number,
                 :street_address, :city, :state, :postal_code, :approved,
-                :password, :password_confirmation, :paid
+                :password, :password_confirmation, transactions_attributes: [:paid]
 
   filter :id
   filter :email
@@ -120,7 +120,7 @@ ActiveAdmin.register Vendor do
         number_with_delimiter(vendor.credits, delimiter: ',')
       end
       row :cleared_credits do |vendor|
-        number_with_delimiter(vendor.cleared_credits, delimiter: ',')
+        number_with_delimiter(vendor.not_pending_unpaid_transaction_credits, delimiter: ',')
       end
       row :phone_prefix
       row :phone_number
@@ -144,19 +144,19 @@ ActiveAdmin.register Vendor do
   end
 
   action_item only: :show do
-    link_to 'Pay Vendor', pay_vendor_admin_vendor_path(vendor), method: :post if vendor.cleared_credits > 0
+    link_to 'Pay Vendor', pay_vendor_admin_vendor_path(vendor), method: :post if vendor.not_pending_unpaid_transaction_credits > 0
   end
 
   member_action :pay_vendor, method: :post do
     vendor = Vendor.find(params[:id])
-    transactions = vendor.transactions.where('pending = ? AND paid = ?', nil, nil)
+    transactions = vendor.not_pending_unpaid_transactions
+    vendor.credits = vendor.pending_unpaid_transaction_credits
+    vendor.save!
     transactions.each do |t|
       t.paid = true
       t.save!
     end
-    vendor.credits -= vendor.cleared_credits
-    flash[:notice] = "#{ vendor.business } has been paid #{ vendor.cleared_credits } credits."
-    vendor.save!
+    flash[:notice] = "#{ vendor.business } has been paid!"
     redirect_to admin_vendor_path(id: vendor.id)
   end
 

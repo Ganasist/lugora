@@ -113,6 +113,6 @@ class TransactionsController < ApplicationController
 		end
 
 		def transaction_params
-			params.require(:transaction).permit(:security_code, :code_position, :quantity, :pending)
+			params.require(:transaction).permit(:security_code, :code_position, :quantity, :pending, :paid)
 		end
 end
