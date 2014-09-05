@@ -25,7 +25,7 @@ ActiveAdmin.register User do
     selectable_column
     column :id
     column :name, sortable: :last_name do |user|
-      link_to(user.fullname, user)
+      link_to(user.fullname, admin_user_path(user))
     end
     column :email do |user|
       mail_to(user.email, user.email)
@@ -141,10 +141,6 @@ ActiveAdmin.register User do
     end
     render 'users/code_table'
     active_admin_comments
-  end
-
-  action_item only: :show do
-    link_to 'User Profile', user_path(user)
   end
 
   action_item only: :show do

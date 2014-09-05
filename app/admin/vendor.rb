@@ -25,7 +25,7 @@ ActiveAdmin.register Vendor do
     selectable_column
     column :id
     column :business do |vendor|
-      link_to(vendor.business, vendor)
+      link_to(vendor.business, admin_vendor_path(vendor))
     end
     column :email do |vendor|
       mail_to(vendor.email, vendor.email)
@@ -140,10 +140,6 @@ ActiveAdmin.register Vendor do
       row :failed_attempts
     end
     active_admin_comments
-  end
-
-  action_item only: :show do
-    link_to 'Vendor Profile', vendor_path(vendor)
   end
 
   action_item only: :show do
