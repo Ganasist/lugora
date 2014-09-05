@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140905083730) do
+ActiveRecord::Schema.define(version: 20140905144157) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -76,6 +76,7 @@ ActiveRecord::Schema.define(version: 20140905083730) do
     t.boolean  "redeemed",             default: false, null: false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "printed",              default: false, null: false
   end
 
   add_index "tokens", ["encrypted_token_code"], name: "index_tokens_on_encrypted_token_code", unique: true, using: :btree

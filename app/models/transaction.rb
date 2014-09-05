@@ -8,6 +8,8 @@ class Transaction < ActiveRecord::Base
 	scope :recent, -> { order('created_at desc').limit(10) }
 	scope :pending, -> { where(pending: true) }
 	scope :not_pending, -> { where(pending: false) }
+	scope :paid, -> { where(paid: true) }
+	scope :not_paid, -> { where(paid: false) }
 
 	validates :user, :vendor, :product, :credits, :quantity, :security_code, :code_position, presence: true
 	validates :credits, :security_code, :code_position, numericality: { only_integer: true }

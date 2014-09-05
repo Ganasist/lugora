@@ -1,11 +1,12 @@
 class Token < ActiveRecord::Base
-	attr_readonly :credits, :encrypted_token_code
+	attr_readonly :credits, :encrypted_token_code, key: ENV['TOKEN_KEY']
 
   belongs_to :user
   attr_encrypted :token_code
 
   scope :redeemed, -> { where(redeemed: true) }
 	scope :not_redeemed, -> { where(redeemed: false) }
+	scope :not_redeemed_not_printed, -> { where(redeemed: false, printed: false)}
 
   validates :encrypted_token_code, :credits, presence: true
   validates :credits, numericality: { only: :integer,

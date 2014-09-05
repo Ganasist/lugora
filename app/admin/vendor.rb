@@ -119,6 +119,9 @@ ActiveAdmin.register Vendor do
       row :total_credits do |vendor|
         number_with_delimiter(vendor.credits, delimiter: ',')
       end
+      row :pending_credits do |vendor|
+        number_with_delimiter(vendor.pending_unpaid_transaction_credits, delimiter: ',')
+      end
       row :cleared_credits do |vendor|
         number_with_delimiter(vendor.not_pending_unpaid_transaction_credits, delimiter: ',')
       end

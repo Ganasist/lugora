@@ -45,6 +45,7 @@ Rails.application.routes.draw do
 	match 'products/:id/upvote' => 'products#vote', as: 'product_upvote', via: :post
 	match 'products/:id/downvote' => 'products#vote', as: 'product_downvote', via: :post
   match 'admins/tokens' => 'admin/tokens#batch_token_create', as: 'batch_token_create', via: :post
+	match 'admins/tokens/:id' => 'admin/tokens#print_token', as: 'print_token', via: :get
 	match 'users/:id/token' => 'tokens#update', as: 'token_user', via: :patch
 
   mount Sidekiq::Web, at: '/sidekiq'

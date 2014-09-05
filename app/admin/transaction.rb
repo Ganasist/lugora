@@ -4,6 +4,8 @@ ActiveAdmin.register Transaction do
   scope :all
   scope :pending
   scope :not_pending
+  scope :paid
+  scope :not_paid
 
   permit_params :paid
 
@@ -43,24 +45,6 @@ ActiveAdmin.register Transaction do
     end
     active_admin_comments
   end
-
-  # action_item only: :show do
-  #   link_to 'Pay Vendor', pay_vendor_admin_transaction_path(vendor), method: :post if !transaction.paid?
-  # end
-
-  # member_action :pay_vendor, method: :post do
-  #   transaction = Transaction.find(params[:id])
-  #   vendor = transaction.vendor
-  #   transactions = vendor.transactions.where('pending = ? AND paid = ?', nil, nil)
-  #   transactions.each do |t|
-  #     t.paid = true
-  #     t.save!
-  #   end
-  #   vendor.credits += transaction.credits
-  #   flash[:notice] = "#{ vendor.business } has been paid #{ transaction.credits } credits."
-  #   vendor.save!
-  #   redirect_to admin_transaction_path(id: transaction.id)
-  # end
 
   controller do
     

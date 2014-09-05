@@ -1,9 +1,12 @@
 ActiveAdmin.register Token do
   menu label: 'Tokens'
 
+  config.per_page = 100
+
   scope :all
   scope :redeemed
   scope :not_redeemed
+  scope :not_redeemed_not_printed
 
   permit_params :token_number, :token_value
 
@@ -12,25 +15,38 @@ ActiveAdmin.register Token do
   end
 
   filter :id
+  filter :credits
   filter :encrypted_token_code
+  filter :printed
   filter :user_id
 
-   index do
+  index do
     selectable_column
     column :id, sortable: true
     column :user
     column :encrypted_token_code, sortable: false do |token|
       token.encrypted_token_code.scan(/.{4}|.+/).join('-')
     end
-    column :credits, sortable: :credits
+    column :credits, sortable: true
+    column :printed, sortable: true
     column :redeemed, sortable: true
     actions
+  end
+
+  batch_action :print do |selection|
+    Token.find(selection).each do |token|
+      print_token_path(token, format: 'pdf')
+    end
+    redirect_to :back
   end
 
   show do |token|
     attributes_table do
       row :id
       row :user
+      row :encrypted_token_code do |token|
+        token.encrypted_token_code.scan(/.{4}|.+/).join('-')
+      end
       row :credits
       row :redeemed
       row :created_at
@@ -40,29 +56,36 @@ ActiveAdmin.register Token do
   end
 
   action_item only: :show do
-    link_to 'Print Token', admin_token_path(token, format: 'pdf') # if user.approved?
+    link_to 'Print Token', print_token_path(token, format: 'pdf')
   end
 
   controller do
     before_action :authenticate_admin_user!
 
-    def show
+    def print_token
       @token = Token.find(params[:id])
+      # TokenPdfPrinter.perform_async(@token.id)
+      # redirect_to :back
       respond_to do |format|
-        format.html
         format.pdf do
           render pdf: "Token ##{ @token.id }",
                 file: "#{ Rails.root }/app/admin/pdfs/token_pdf.html.erb",
               layout: 'codes.html',
-              margin: {  top: 8,
-                      bottom: 8,
-                        left: 10,
-                       right: 10 },
+              page_height: '3.5in',
+              page_width: '2in',
+              margin: {  top: 2,
+                      bottom: 2,
+                        left: 3,
+                       right: 3 },
          disposition: 'attachment',
   disable_javascript: true,
       enable_plugins: false
         end
       end
+    end
+
+    def show
+      @token = Token.find(params[:id])
     end
 
     def batch_token_create
