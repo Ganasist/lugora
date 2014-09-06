@@ -66,7 +66,7 @@ class TransactionsController < ApplicationController
 		if current_user == @user && @transaction.user == @user
 			@transaction.pending = false
 			@transaction.save
-			flash[:notice] = "You have authorized this purchase from #{@transaction.vendor.business}"
+			flash[:notice] = "You have received this purchase"
 			redirect_to :back
 		else
 			flash[:error] = "You cannot authorize that transaction!"

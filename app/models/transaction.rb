@@ -11,7 +11,7 @@ class Transaction < ActiveRecord::Base
 	scope :paid, -> { where(paid: true) }
 	scope :not_paid, -> { where(paid: false) }
 
-	validates :user, :vendor, :product, :credits, :quantity, :security_code, :code_position, presence: true
+	validates :user_id, :vendor_id, :product_id, :credits, :quantity, :security_code, :code_position, presence: true
 	validates :credits, :security_code, :code_position, numericality: { only_integer: true }
 	validates :security_code, length: { is: 6 }
 
