@@ -27,7 +27,8 @@
 			<br>
 			<h3><%= number_with_delimiter(@product.credits, delimiter: ",") %> credits</h3>
 			<br>
-			<p class="text-left"><%= @product.description %></p>
+			<p><%= @product.location %></p>
+			<p><%= @product.description %></p>
 			<h4>
 				<% if @product.amount_available.between?(1, 10) %>
 					<strong>Few in stock</strong>

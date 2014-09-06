@@ -6,6 +6,7 @@
 		  	<%= f.input :name, label: 'Product/Service name' %>
 		  	<%= f.input :credits, label: 'Cost in credits' %>		  	
 		  	<%= f.input :amount_available %>
+		  	<%= f.input :location, as: :text, input_html: { rows: 6, maxlength: 255 } %>
 		  	<%= f.input :description, as: :text, input_html: { rows: 6, maxlength: 255 }, label: 'Brief description (optional)' %>
 		  	<hr>
 		  	<div class="text-center">
