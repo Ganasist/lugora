@@ -13,7 +13,7 @@ class ApplicationController < ActionController::Base
 
     def check_user_approval
       if user_signed_in?
-        if !current_user.approved?
+        unless current_user.approved?
           redirect_to edit_user_registration_path
           flash[:alert] = "You need to be Approved by an administrator before using WuDii."
         end

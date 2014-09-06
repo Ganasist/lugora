@@ -1,6 +1,6 @@
 <div class="row">
 	<% unless @transaction.product.nil? %>
-	<div class="columns large-6 large-uncentered medium-8 small-12 small-centered">
+	<div class="columns large-6 large-uncentered medium-8 small-10 small-centered">
 		<ul class="vcard">
 			<li class="fn">Transaction ID: <%= @transaction.id %></li>	
 			<li class="fn">Date: <%= @transaction.created_at.to_formatted_s(:long_ordinal) %></li>
@@ -17,16 +17,27 @@
 		  <li class="fn">Quantity: <%= @transaction.quantity %></li>
 		  <li class="fn">Amount: <%= number_with_delimiter(@transaction.credits, delimiter: ',') %> credits</li>
 		  <li class="fn">Status: <%= @transaction.pending? ? 'Pending' : 'Cleared' %></li>
-		  <% if @transaction.pending %>
+		  <% if user_signed_in? && @transaction.pending %>
 		  <br>
 		  <li class="fn text-center">
-			  <%= link_to authorize_transaction_path(@user, @transaction), method: :post do %>
-	 		  	<%= fa_icon 'lock 4x' %><br>
-	 		  	Authorize Now 
-	 		  <% end %>
- 		  <% end %>
+		  	<span class="left">
+				  <%= link_to authorize_transaction_path(@user, @transaction), method: :post do %>
+		 		  	<%= fa_icon 'paper-plane-o 4x' %><br>
+		 		  	Delivered 
+		 		  <% end %>
+		  	</span>
+		  	<span class="right">
+		 		  <%= link_to reject_transaction_path(@user, @transaction), method: :post do %>
+		 		  	<%= fa_icon 'exclamation 4x' %><br>
+		 		  	Not Delivered 
+		 		  <% end %>
+		  	</span>
 		  </li>
 		</ul>
+		  <% elsif @transaction.rejected && !@transaction.pending? %>
+		  <br>
+		  	<h3 class="text-center">Purchase was rejected!</h3>
+ 		  <% end %>
 	</div>
 	<div class="columns large-6 large-uncentered small-12 medium-8 small-12 small-centered">
 		<br>

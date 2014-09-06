@@ -42,6 +42,7 @@ Rails.application.routes.draw do
 	end
 
 	match 'users/:id/transactions/:transaction_id/authorize' => 'transactions#authorize', as: 'authorize_transaction', via: :post
+	match 'users/:id/transactions/:transaction_id/reject' => 'transactions#reject', as: 'reject_transaction', via: :post
 	match 'products/:id/upvote' => 'products#vote', as: 'product_upvote', via: :post
 	match 'products/:id/downvote' => 'products#vote', as: 'product_downvote', via: :post
   match 'admins/tokens' => 'admin/tokens#batch_token_create', as: 'batch_token_create', via: :post

@@ -31,6 +31,17 @@ class Transaction < ActiveRecord::Base
 		self.product.save!
 	end
 
+	after_commit :adjust_purchase_count_on_rejection, on: :update
+	def adjust_purchase_count_on_rejection
+		if !self.pending? && self.rejected?
+			self.vendor.purchases 				-= self.quantity
+			self.vendor.save!
+			self.product.purchases 				-= self.quantity
+			self.product.amount_available += self.quantity
+			self.product.save!
+		end
+	end
+
 	def unit_price
 		credits / quantity
 	end
@@ -46,6 +57,22 @@ class Transaction < ActiveRecord::Base
 			end
 		rescue => e
 			self.errors.add(:base, "Transaction failed!")
+		end
+	end
+
+	def reject_transaction
+		self.user.credits 	+= self.credits
+		self.vendor.credits -= self.credits
+		self.rejected 			= true
+		self.pending 				= false
+		begin
+			ActiveRecord::Base.transaction do
+				self.save!
+				self.vendor.save!
+				self.user.save!
+			end
+		rescue => e
+			self.errors.add(:base, "Transaction rejection failed!")
 		end
 	end
 

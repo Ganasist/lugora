@@ -69,7 +69,23 @@ class TransactionsController < ApplicationController
 			flash[:notice] = "You have received this purchase"
 			redirect_to :back
 		else
-			flash[:error] = "You cannot authorize that transaction!"
+			flash[:error] = "You cannot authorize that purchase!"
+			redirect_to :back
+		end
+	end
+
+	def reject
+		@user = User.find(params[:id])
+		@transaction = Transaction.find(params[:transaction_id])
+		if current_user == @user && @transaction.user == @user
+			if @transaction.reject_transaction
+				flash[:notice] = "You have rejected this purchase"
+      else
+        flash[:error] = "This purchase could not be rejected at this time."
+			end
+			redirect_to :back
+		else
+			flash[:error] = "You cannot reject that purchase!"
 			redirect_to :back
 		end
 	end
