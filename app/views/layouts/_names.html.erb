@@ -2,17 +2,17 @@
   <% if user_signed_in? %>
   	<%= link_to current_user do %>
       WuDii <%= fa_icon 'circle-o-notch' %> - 
-      <%= (request.fullpath).include?('/transactions') ? 'Receipt' : current_user.first_name %>
+      <%= transaction_show? ? 'Receipt' : current_user.first_name %>
     <% end %>
   <% elsif vendor_signed_in? %>
     <%= link_to current_vendor do %>
       WuDii <%= fa_icon 'circle-o-notch' %> - 
-      <%= (request.fullpath).include?('/transactions') ? 'Receipt' : current_vendor.business %>
+      <%= transaction_show? ? 'Receipt' : current_vendor.business %>
     <% end %>
   <% elsif current_admin_user %>
     <%= link_to admin_root_path do %>
       WuDii <%= fa_icon 'circle-o-notch' %> - 
-      <%= (request.fullpath).include?('/transactions') ? 'Receipt' : current_admin_user.email %>
+      <%= transaction_show? ? 'Receipt' : current_admin_user.email %>
     <% end %>    
   <% else %>
     <%= link_to root_path do %>
@@ -24,17 +24,17 @@
   <% if user_signed_in? %>
     <%= link_to current_user do %>
       WuDii <%= fa_icon 'circle-o-notch' %> - 
-      <%= (request.fullpath).include?('/transactions') ? 'Receipt' : name_truncate(current_user) %>
+      <%= transaction_show? ? 'Receipt' : name_truncate(current_user) %>
     <% end %>    
   <% elsif vendor_signed_in? %>
     <%= link_to current_vendor do %>
       WuDii <%= fa_icon 'circle-o-notch' %> - 
-      <%= (request.fullpath).include?('/transactions') ? 'Receipt' : name_truncate(current_vendor) %>
+      <%= transaction_show? ? 'Receipt' : name_truncate(current_vendor) %>
     <% end %>
   <% elsif current_admin_user %>
     <%= link_to current_vendor do %>
       WuDii <%= fa_icon 'circle-o-notch' %> - 
-      <%= (request.fullpath).include?('/transactions') ? 'Receipt' : current_admin_user.email %>
+      <%= transaction_show? ? 'Receipt'  : current_admin_user.email %>
     <% end %>
   <% else %>
     <%= link_to root_path do %>

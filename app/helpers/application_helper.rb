@@ -8,4 +8,8 @@ module ApplicationHelper
 		end
 		name.truncate(14, separator: /\:print:/)
 	end
+
+	def transaction_show?
+		params[:controller] == "transactions" && params[:action] == "show"
+	end
 end
