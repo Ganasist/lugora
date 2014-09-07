@@ -1,6 +1,7 @@
 class TransactionAuthorize
   include Sidekiq::Worker
   include Sidetiq::Schedulable
+  sidekiq_options retry: false
 
   recurrence { hourly(2) }
 

@@ -13,17 +13,30 @@ class TokenPdfPrinter
       include Rails.application.routes.url_helpers
       include ApplicationHelper
     end
-    render pdf: "Token ##{ @token.id }",
-                file: "#{ Rails.root }/app/admin/pdfs/token_pdf.html.erb",
-              layout: 'codes.html',
-              page_height: '3.5in',
-              page_width: '2in',
-              margin: {  top: 2,
-                      bottom: 2,
-                        left: 3,
-                       right: 3 },
-         disposition: 'attachment',
-  disable_javascript: true,
-      enable_plugins: false
+     pdf_html = av.render file: "#{ Rails.root }/app/admin/pdfs/token_pdf.html.erb", 
+                          layout: "#{ Rails.root }/app/views/layouts/codes.html.erb", 
+                          locals: { token: @token }
+
+
+    # pdf = WickedPdf.new.pdf_from_html_file("#{ Rails.root }/app/admin/pdfs/token_pdf.html.erb")
+
+    # WickedPdf.new.pdf_from_string(
+    #   render_to_string("#{ Rails.root }/app/admin/pdfs/token_pdf.html.erb", :layout => 'layouts/codes'),
+      
+    # )
+  
+   # render pdf: "Token #1",
+   #                                      file: "#{ Rails.root }/app/admin/pdfs/token_pdf.html.erb",
+   #                                    layout: 'codes.html',
+   #                               page_height: '3.5in',
+   #                                page_width: '2in',
+   #                                    margin: {  top: 2,
+   #                                            bottom: 2,
+   #                                              left: 3,
+   #                                             right: 3 },
+   #                               disposition: 'attachment',
+   #                        disable_javascript: true,
+   #                            enable_plugins: false
+
   end
 end

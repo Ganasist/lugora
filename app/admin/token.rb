@@ -56,7 +56,7 @@ ActiveAdmin.register Token do
   end
 
   action_item only: :show do
-    link_to 'Print Token', print_token_path(token, format: 'pdf')
+    link_to 'Print Token', print_token_path
   end
 
   controller do
@@ -66,8 +66,8 @@ ActiveAdmin.register Token do
       @token = Token.find(params[:id])
       # TokenPdfPrinter.perform_async(@token.id)
       # redirect_to :back
-      respond_to do |format|
-        format.pdf do
+      # respond_to do |format|
+        # format.pdf do
           render pdf: "Token ##{ @token.id }",
                 file: "#{ Rails.root }/app/admin/pdfs/token_pdf.html.erb",
               layout: 'codes.html',
@@ -80,8 +80,8 @@ ActiveAdmin.register Token do
          disposition: 'attachment',
   disable_javascript: true,
       enable_plugins: false
-        end
-      end
+        # end
+      # end
     end
 
     def show

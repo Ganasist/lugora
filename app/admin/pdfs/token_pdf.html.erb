@@ -1,3 +1,4 @@
+<%# @token == @token %>
 <br>
 <div class="barcode text-center"><br><br><br><br><br><br><br><br>
   <p><%= @token.encrypted_token_code.scan(/.{4}|.+/).join('-') %></p>

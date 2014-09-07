@@ -35,7 +35,7 @@ Rails.application.configure do
   config.paperclip_defaults = {
     :storage => :s3,
     :s3_credentials => {
-      :bucket => ENV['S3_PRO_BUCKET_NAME']
+      :bucket => ENV['S3_STA_BUCKET_NAME']
     }
   }
 
@@ -79,7 +79,7 @@ Rails.application.configure do
   config.active_support.deprecation = :notify
 
   # ActionMailer Config
-  config.action_mailer.default_url_options = { host: ENV['PRO_DOMAIN_NAME'] }
+  config.action_mailer.default_url_options = { host: ENV['STAG_DOMAIN_NAME'] }
   config.action_mailer.raise_delivery_errors = true
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.perform_deliveries = true
