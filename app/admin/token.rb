@@ -34,12 +34,7 @@ ActiveAdmin.register Token do
   end
 
   batch_action :email do |selection|
-    tokens = []
-    selection.each do |token|
-      puts token
-      tokens << token
-    end
-    TokenPdfPrinter.perform_async(tokens)
+    TokenPdfPrinter.perform_async(selection)
     redirect_to :back
   end
 

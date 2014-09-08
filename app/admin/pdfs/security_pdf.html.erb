@@ -2,10 +2,10 @@
   <div class="columns large-12">
     <h4 class="text-right"><%= Time.now.strftime("%B %d, %Y %R") %></h4>
     <br>
-    <h2 class="text-center"><%= "#{ @user.id }#{  SecureRandom.hex(4).upcase }" %></h2>
+    <h2 class="text-center"><%= "#{ user.id }#{  SecureRandom.hex(4).upcase }" %></h2>
     <br>
     <table class="code_table">
-      <% @user.security_codes[0..47].in_groups_of(8, false).each_with_index do |codes, top_index| %>
+      <% user.security_codes[0..47].in_groups_of(8, false).each_with_index do |codes, top_index| %>
       <tr>
         <% codes.each_with_index do |code, index| %>
           <td class="codes"><%= (index + 1) + (top_index * 8) %>. <%= code %></td>
@@ -15,7 +15,7 @@
     </table>
     <br>
     <table class="code_table">
-      <% @user.security_codes[48..95].in_groups_of(8, false).each_with_index do |codes, top_index| %>
+      <% user.security_codes[48..95].in_groups_of(8, false).each_with_index do |codes, top_index| %>
       <tr>
         <% codes.each_with_index do |code, index| %>
           <td class="codes"><%= (index + 49) + (top_index * 8) %>. <%= code %></td>
@@ -25,7 +25,7 @@
     </table>
     <br>
     <table class="code_table">
-      <% @user.security_codes[96..144].in_groups_of(8, false).each_with_index do |codes, top_index| %>
+      <% user.security_codes[96..144].in_groups_of(8, false).each_with_index do |codes, top_index| %>
       <tr>
         <% codes.each_with_index do |code, index| %>
           <td class="codes"><%= (index + 97) + (top_index * 8) %>. <%= code %></td>

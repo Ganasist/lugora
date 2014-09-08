@@ -40,6 +40,11 @@ ActiveAdmin.register User do
     actions
   end
 
+  batch_action :email_codes do |selection|
+    SecurityCodesPdfPrinter.perform_async(selection)
+    redirect_to :back
+  end
+
   batch_action :confirm do |selection|
     User.find(selection).each do |user|
       user.confirm!
@@ -143,9 +148,9 @@ ActiveAdmin.register User do
     active_admin_comments
   end
 
-  action_item only: :show do
-    link_to 'Print Codes', admin_user_path(user, format: 'pdf') # if user.approved?
-  end
+  # action_item only: :show do
+  #   link_to 'Print Codes', admin_user_path(user, format: 'pdf') # if user.approved?
+  # end
 
   action_item only: :show do
     link_to 'Confirm User', confirm_user_admin_user_path(user), method: :post if !user.confirmed?
