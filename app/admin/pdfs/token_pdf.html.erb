@@ -1,8 +1,7 @@
-<%# @token == @token %>
 <br>
 <div class="barcode text-center"><br><br><br><br><br><br><br><br>
-  <p><%= @token.encrypted_token_code.scan(/.{4}|.+/).join('-') %></p>
-  <h3><strong>(<%= number_with_delimiter(@token.credits, delimiter: ',') %>)</strong></h3>
+  <p><%= token.encrypted_token_code.scan(/.{4}|.+/).join('-') %></p>
+  <h3><strong>(<%= number_with_delimiter(token.credits, delimiter: ',') %>)</strong></h3>
   <h4>WuDii</h1>
   <h5>www.sidideas.com</h5>
 </div>

@@ -33,10 +33,13 @@ ActiveAdmin.register Token do
     actions
   end
 
-  batch_action :print do |selection|
-    Token.find(selection).each do |token|
-      print_token_path(token, format: 'pdf')
+  batch_action :email do |selection|
+    tokens = []
+    selection.each do |token|
+      puts token
+      tokens << token
     end
+    TokenPdfPrinter.perform_async(tokens)
     redirect_to :back
   end
 
@@ -55,34 +58,8 @@ ActiveAdmin.register Token do
     active_admin_comments
   end
 
-  action_item only: :show do
-    link_to 'Print Token', print_token_path
-  end
-
   controller do
     before_action :authenticate_admin_user!
-
-    def print_token
-      @token = Token.find(params[:id])
-      # TokenPdfPrinter.perform_async(@token.id)
-      # redirect_to :back
-      # respond_to do |format|
-        # format.pdf do
-          render pdf: "Token ##{ @token.id }",
-                file: "#{ Rails.root }/app/admin/pdfs/token_pdf.html.erb",
-              layout: 'codes.html',
-              page_height: '3.5in',
-              page_width: '2in',
-              margin: {  top: 2,
-                      bottom: 2,
-                        left: 3,
-                       right: 3 },
-         disposition: 'attachment',
-  disable_javascript: true,
-      enable_plugins: false
-        # end
-      # end
-    end
 
     def show
       @token = Token.find(params[:id])
