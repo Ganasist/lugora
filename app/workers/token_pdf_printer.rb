@@ -23,10 +23,10 @@ class TokenPdfPrinter
 
       pdf =  WickedPdf.new.pdf_from_string(html, page_height: '3.5in',
                                                   page_width: '2in',
-                                                       margin: { top: 2,
-                                                              bottom: 2,
-                                                                left: 3,
-                                                               right: 3 })
+                                                      margin: { top: 2,
+                                                             bottom: 2,
+                                                               left: 3,
+                                                              right: 3 })
 
       TokenMailer.delay.token_mail(token.id, pdf)
       token.printed = true
